@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { get } from 'lodash'
 import { compose } from 'redux';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useParams } from 'react-router-dom';
 
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
 import { CATEGORIES_ROUTE } from '../../constants/routes'
@@ -68,19 +68,15 @@ const mapStateToProps = (state, { storeID }) => {
     });
 }
 
-const connectTo = ({ storeID }) => [
-    `/stores/${storeID}`
-]
-
-function withUrlHook(Component) {
+function withHooks(Component) {
     return function WrappedComponent(props) {
+        const { storeID } = useParams();
         const { url } = useRouteMatch();
-        return <Component {...props} url={applyUrlCorrection(url)} />;
+        return <Component {...props} url={applyUrlCorrection(url)} storeID={storeID} />;
     }
 }
 
 export default compose(
-    withUrlHook,
-    firestoreConnect(connectTo),
+    withHooks,
     connect(mapStateToProps),
 )(CategoryMenu);

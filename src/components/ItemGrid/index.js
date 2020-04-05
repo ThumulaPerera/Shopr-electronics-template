@@ -75,7 +75,15 @@ const connectTo = ({ storeID }) => [
     `/stores/${storeID}/items`
 ]
 
+function withHooks(Component) {
+    return function WrappedComponent(props) {
+        const { storeID } = useParams();
+        return <Component {...props} storeID={storeID} />;
+    }
+}
+
 export default compose(
+    withHooks,
     firestoreConnect(connectTo),
     connect(mapStateToProps),
 )(ItemGrid);

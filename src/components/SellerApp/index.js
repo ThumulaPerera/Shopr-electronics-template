@@ -1,5 +1,7 @@
 import React, { createRef } from 'react';
 import { Switch, Route, useRouteMatch, useParams } from 'react-router-dom';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase'
 
 import NavBar from '../NavBar';
 import BrowseProducts from '../BrowseProducts';
@@ -8,7 +10,7 @@ import Cart from '../Cart';
 import Profile from '../Profile'
 import * as ROUTES from '../../constants/routes';
 
-function App() {
+function SellerApp() {
     const contextRef = createRef();
     const { path } = useRouteMatch();
 
@@ -37,4 +39,12 @@ function App() {
     );
 }
 
-export default App;
+const connectTo = ({ match }) => [
+    `/stores/${match.params.storeID}`
+]
+
+export default compose(
+    firestoreConnect(connectTo),
+)(SellerApp);
+
+
