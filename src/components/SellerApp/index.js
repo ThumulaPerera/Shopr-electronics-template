@@ -17,11 +17,6 @@ function App() {
                 <NavBar contextRef={contextRef} />
                 <Switch>
                     <Route
-                        exact
-                        path={`${path}${ROUTES.HOME_ROUTE}`}
-                        render={(props) => <BrowseProducts {...props} contextRef={contextRef} />}
-                    />
-                    <Route
                         path={`${path}${ROUTES.MY_PURCHASES_ROUTE}`}
                         component={MyPurchases} />}
                     />
@@ -32,6 +27,10 @@ function App() {
                     <Route
                         path={`${path}${ROUTES.PROFILE_ROUTE}`}
                         component={Profile} />}
+                    />
+                    <Route
+                        path={`${path}${ROUTES.HOME_ROUTE}`}
+                        render={(props) => <BrowseProducts {...props} contextRef={contextRef} />}
                     />
                 </Switch>
             </div>

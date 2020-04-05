@@ -7,6 +7,10 @@ import _ from 'lodash'
 import SignedInMenu from './SignedInMenu'
 
 export default class NavBar extends Component {
+  state = { activeItem: 'Browse Products' }
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   contextRef = createRef()
 
   render() {
@@ -14,8 +18,7 @@ export default class NavBar extends Component {
 
     return (
         <Sticky context={contextRef}>
-            <SignedInMenu/>
-          
+            <SignedInMenu activeItem={this.state.activeItem} handleItemClick={this.handleItemClick} />  
         </Sticky>
     )
   }

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
 import { get } from 'lodash'
 import { compose } from 'redux';
+import { useParams } from 'react-router-dom';
 
 import ItemCard from '../ItemCard';
 import calculateRating from '../../helpers/calculateRating';
@@ -12,7 +13,8 @@ import calculateRating from '../../helpers/calculateRating';
 const ItemGrid = (props) => {
     console.log('propsss....',props)
 
-    const { items } = props;
+    let { items } = props;
+    const { category } = useParams();
 
     if (!isLoaded(items)) {
         return <div>Loading...</div>
@@ -22,6 +24,20 @@ const ItemGrid = (props) => {
         return <div>No items to display...</div>
     }
 
+    //use category to filter out items
+    if(category){
+        console.log('category : ', category)
+        let newItems = {}
+        Object.keys(items).map(key => {
+            const item = items[key]
+            console.log(item)
+            if(item.category.name == category){
+                newItems = { ...newItems , item}
+            }
+        })
+        items = newItems;
+    }
+    
     return (
         <Segment basic>
             <Card.Group>
