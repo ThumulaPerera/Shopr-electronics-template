@@ -40,7 +40,15 @@ function SellerApp() {
 }
 
 const connectTo = ({ match }) => [
-    `/stores/${match.params.storeID}`
+    {
+        collection: 'stores',
+        doc: `${match.params.storeID}`,
+        storeAs: 'sellerStore'
+    },
+    {
+        collection: `/stores/${match.params.storeID}/items`,
+        storeAs: 'sellerItems'
+    },
 ]
 
 export default compose(

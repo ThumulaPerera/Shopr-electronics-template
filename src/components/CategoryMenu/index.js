@@ -64,15 +64,14 @@ class CategoryMenu extends Component {
 
 const mapStateToProps = (state, { storeID }) => {
     return ({
-        categories: get(state.firestore.data, `stores.${storeID}.categories`),
+        categories: get(state.firestore.data, `sellerStore.categories`),
     });
 }
 
 function withHooks(Component) {
     return function WrappedComponent(props) {
-        const { storeID } = useParams();
         const { url } = useRouteMatch();
-        return <Component {...props} url={applyUrlCorrection(url)} storeID={storeID} />;
+        return <Component {...props} url={applyUrlCorrection(url)} />;
     }
 }
 

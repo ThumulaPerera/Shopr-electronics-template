@@ -19,7 +19,7 @@ const BrowseProducts = ({ contextRef }) => {
             <Grid.Column width={13}>
                 <Switch>
                     <Route exact path={`${path}/`}>
-                        <ItemGrid />
+                        {/* <ItemGrid selectedCategory={}/> fill */}
                     </Route>
                     <Route path={`${path}/:category`}>
                         <ItemGrid />

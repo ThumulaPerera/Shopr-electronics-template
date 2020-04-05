@@ -9,14 +9,15 @@ import { useParams } from 'react-router-dom';
 
 import ItemCard from '../ItemCard';
 import calculateRating from '../../helpers/calculateRating';
+import filterItemsByCategory from '../../helpers/filterItemsByCategory'
 
 const ItemGrid = (props) => {
-    console.log('propsss....',props)
+    console.log('propsss....', props)
 
     let { items } = props;
-    const { category } = useParams();
+    const { categories, selectedCategory } = props;
 
-    if (!isLoaded(items)) {
+    if (!(isLoaded(items) && isLoaded(categories))) {
         return <div>Loading...</div>
     }
 
@@ -24,20 +25,10 @@ const ItemGrid = (props) => {
         return <div>No items to display...</div>
     }
 
-    //use category to filter out items
-    if(category){
-        console.log('category : ', category)
-        let newItems = {}
-        Object.keys(items).map(key => {
-            const item = items[key]
-            console.log(item)
-            if(item.category.name == category){
-                newItems = { ...newItems , item}
-            }
-        })
-        items = newItems;
+    if (isLoaded(items) && isLoaded(categories)) {
+        items = filterItemsByCategory(items, categories, selectedCategory)
     }
-    
+
     return (
         <Segment basic>
             <Card.Group>
@@ -45,7 +36,7 @@ const ItemGrid = (props) => {
                     const { name, photos, description, basePrice, reviews } = items[itemKey];
 
                     const imageURL = photos[0].url;
-                    const { amount } = basePrice ;
+                    const { amount } = basePrice;
                     const currency = basePrice.currency.currency;
                     const rating = calculateRating(reviews);
 
@@ -65,25 +56,24 @@ const ItemGrid = (props) => {
     )
 };
 
-const mapStateToProps = (state, { storeID }) => {
+const mapStateToProps = (state, { storeID, selectedCategory }) => {
+    const categories = get(state.firestore.data, `sellerStore.categories`)
+    const items = get(state.firestore.data, `sellerItems`)
+
     return ({
-        items: get(state.firestore.data, `stores.${storeID}.items`),
+        items,
+        categories
     });
 }
 
-const connectTo = ({ storeID }) => [
-    `/stores/${storeID}/items`
-]
-
 function withHooks(Component) {
     return function WrappedComponent(props) {
-        const { storeID } = useParams();
-        return <Component {...props} storeID={storeID} />;
+        const { storeID, category } = useParams();
+        return <Component {...props} storeID={storeID} selectedCategory={category ? category : props.selectedCategory} />;
     }
 }
 
 export default compose(
     withHooks,
-    firestoreConnect(connectTo),
     connect(mapStateToProps),
 )(ItemGrid);
