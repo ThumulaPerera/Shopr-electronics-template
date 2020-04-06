@@ -41,6 +41,7 @@ class CategoryMenu extends Component {
                         <Menu pointing secondary vertical fluid inverted>
                             <Link to={`${url}/`}>
                                 <Menu.Item
+                                    as='p'
                                     name='All'
                                     active={activeItem === 'All'}
                                     onClick={this.handleItemClick}
@@ -51,6 +52,7 @@ class CategoryMenu extends Component {
                                 return (
                                     <Link to={`${url}/${name}`} key={key}>
                                         <Menu.Item
+                                            as='p'
                                             name={name}
                                             active={activeItem === name}
                                             onClick={this.handleItemClick}

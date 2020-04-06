@@ -31,10 +31,8 @@ const BrowseProducts = ({ contextRef, categories }) => {
                 <Switch>
                     <Route exact path={`${path}/`}>
                             {
-                                categories.map(({ name }) => (
-                                    <div>
-                                        <ItemGrid selectedCategory={name} />
-                                    </div>
+                                categories.map(({ name }, key) => (
+                                        <ItemGrid selectedCategory={name} key={key} />
                                 ))
                             }
                     </Route>
