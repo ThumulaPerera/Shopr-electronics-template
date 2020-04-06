@@ -1,13 +1,11 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import SellerApp from '../SellerApp'
 import { MAIN_ROUTE } from '../../constants/routes';
 
 function App() {
-    const contextRef = createRef();
-
-    return (
+   return (
         <BrowserRouter>
             <Switch>
                 <Route

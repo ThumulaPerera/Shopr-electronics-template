@@ -1,14 +1,25 @@
-import React, { createRef} from 'react';
+import React from 'react';
 import { Grid } from 'semantic-ui-react';
 
-import { useParams, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useRouteMatch, Switch, Route } from 'react-router-dom';
+import { get } from 'lodash';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 
 import ItemGrid from '../ItemGrid';
 import CategoryMenu from '../CategoryMenu';
-import { CATEGORIES_ROUTE } from '../../constants/routes'
 
-const BrowseProducts = ({ contextRef }) => {
+const BrowseProducts = ({ contextRef, categories }) => {
     const { path } = useRouteMatch()
+
+    if (!isLoaded(categories)) {
+        return <div>Loading...</div>
+    }
+
+    if (isEmpty(categories)) {
+        return <div>No categories to display...</div>
+    }
 
     return(
     <Grid columns={2} divided>
@@ -19,7 +30,13 @@ const BrowseProducts = ({ contextRef }) => {
             <Grid.Column width={13}>
                 <Switch>
                     <Route exact path={`${path}/`}>
-                        {/* <ItemGrid selectedCategory={}/> fill */}
+                            {
+                                categories.map(({ name }) => (
+                                    <div>
+                                        <ItemGrid selectedCategory={name} />
+                                    </div>
+                                ))
+                            }
                     </Route>
                     <Route path={`${path}/:category`}>
                         <ItemGrid />
@@ -30,4 +47,11 @@ const BrowseProducts = ({ contextRef }) => {
     </Grid>
 )}
 
-export default BrowseProducts
+const mapStateToProps = (state) => ({
+    categories: get(state.firestore.data, `sellerStore.categories`),
+});
+
+
+export default compose(
+    connect(mapStateToProps),
+)(BrowseProducts);

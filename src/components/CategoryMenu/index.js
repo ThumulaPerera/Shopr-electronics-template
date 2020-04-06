@@ -2,13 +2,12 @@ import React, { Component, createRef } from 'react'
 import { Menu, Segment, Sticky } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 import { get } from 'lodash'
 import { compose } from 'redux';
-import { Link, useRouteMatch, useParams } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
-import { CATEGORIES_ROUTE } from '../../constants/routes'
 
 class CategoryMenu extends Component {
     state = { activeItem: 'home' }
@@ -26,7 +25,7 @@ class CategoryMenu extends Component {
         }
 
         if (isEmpty(categories)) {
-            return <div>No items to display...</div>
+            return <div>No categories to display...</div>
         }
 
         return (
@@ -40,6 +39,13 @@ class CategoryMenu extends Component {
                     </Segment>
                     <div style={{ overflow: 'auto', maxHeight: 500 }}>
                         <Menu pointing secondary vertical fluid inverted>
+                            <Link to={`${url}/`}>
+                                <Menu.Item
+                                    name='All'
+                                    active={activeItem === 'All'}
+                                    onClick={this.handleItemClick}
+                                />
+                            </Link>
                             {Object.keys(categories).map(key => {
                                 const { name } = categories[key];
                                 return (
@@ -62,11 +68,9 @@ class CategoryMenu extends Component {
     }
 }
 
-const mapStateToProps = (state, { storeID }) => {
-    return ({
-        categories: get(state.firestore.data, `sellerStore.categories`),
-    });
-}
+const mapStateToProps = (state) => ({
+    categories: get(state.firestore.data, `sellerStore.categories`),
+});
 
 function withHooks(Component) {
     return function WrappedComponent(props) {

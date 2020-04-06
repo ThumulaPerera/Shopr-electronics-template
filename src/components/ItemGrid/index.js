@@ -1,36 +1,50 @@
 import React from 'react';
-import { Card, Segment } from 'semantic-ui-react';
+import { Card, Segment, Header, Icon } from 'semantic-ui-react';
 
 import { connect } from 'react-redux'
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 import { get } from 'lodash'
 import { compose } from 'redux';
 import { useParams } from 'react-router-dom';
 
 import ItemCard from '../ItemCard';
 import calculateRating from '../../helpers/calculateRating';
-import filterItemsByCategory from '../../helpers/filterItemsByCategory'
+import getItemsAndIconByCategory from '../../helpers/getItemsAndIconByCategory'
 
 const ItemGrid = (props) => {
     console.log('propsss....', props)
 
     let { items } = props;
     const { categories, selectedCategory } = props;
+    let icon;
 
     if (!(isLoaded(items) && isLoaded(categories))) {
         return <div>Loading...</div>
     }
 
-    if (isEmpty(items)) {
-        return <div>No items to display...</div>
+    if (isLoaded(items) && isLoaded(categories)) {
+        const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
+        items = filtered.itemsOfSelectedCategory;
+        icon = filtered.categoryIcon;
     }
 
-    if (isLoaded(items) && isLoaded(categories)) {
-        items = filterItemsByCategory(items, categories, selectedCategory)
+    if (isEmpty(items)){
+        return (
+            <Segment basic>
+                <Header as='h2'>
+                <Header.Content>{icon ? <Icon name={icon} /> : null}{selectedCategory}</Header.Content>
+                </Header>
+                <div>No items to display....</div>
+            </Segment>
+        )
     }
 
     return (
+
         <Segment basic>
+        <Header as='h2'>
+            <Header.Content>{icon ? <Icon name={icon} /> : null}{selectedCategory}</Header.Content>
+        </Header>
             <Card.Group>
                 {Object.keys(items).map(itemKey => {
                     const { name, photos, description, basePrice, reviews } = items[itemKey];
