@@ -41,12 +41,12 @@ function SellerApp() {
 
 const connectTo = ({ match }) => [
     {
-        collection: 'stores',
+        collection: 'Stores',
         doc: `${match.params.storeID}`,
         storeAs: 'sellerStore'
     },
     {
-        collection: `/stores/${match.params.storeID}/items`,
+        collection: `/Stores/${match.params.storeID}/Items`,
         storeAs: 'sellerItems'
     },
 ]

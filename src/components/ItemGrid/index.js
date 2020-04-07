@@ -14,7 +14,7 @@ import getItemsAndIconByCategory from '../../helpers/getItemsAndIconByCategory'
 const ItemGrid = (props) => {
     console.log('propsss....', props)
 
-    let { items } = props;
+    let { items, currency } = props;
     const { categories, selectedCategory } = props;
     let icon;
 
@@ -28,7 +28,7 @@ const ItemGrid = (props) => {
         icon = filtered.categoryIcon;
     }
 
-    if (isEmpty(items)){
+    if (!items || isEmpty(items)){
         return (
             <Segment basic>
                 <Header as='h2'>
@@ -47,12 +47,11 @@ const ItemGrid = (props) => {
         </Header>
             <Card.Group>
                 {Object.keys(items).map(itemKey => {
-                    const { name, photos, description, basePrice, reviews } = items[itemKey];
+                    const { name, photos, description, basePrice, rating } = items[itemKey];
 
                     const imageURL = photos[0].url;
-                    const { amount } = basePrice;
-                    const currency = basePrice.currency.currency;
-                    const rating = calculateRating(reviews);
+                    const amount = basePrice;
+                    const itemRating = calculateRating(rating);
 
                     return <ItemCard
                         key={itemKey}
@@ -62,7 +61,7 @@ const ItemGrid = (props) => {
                         description={description}
                         currency={currency}
                         price={amount}
-                        rating={rating}
+                        rating={itemRating}
                     />
                 })}
             </Card.Group>
@@ -71,12 +70,10 @@ const ItemGrid = (props) => {
 };
 
 const mapStateToProps = (state, { storeID, selectedCategory }) => {
-    const categories = get(state.firestore.data, `sellerStore.categories`)
-    const items = get(state.firestore.data, `sellerItems`)
-
     return ({
-        items,
-        categories
+        items : get(state.firestore.data, `sellerItems`),
+        categories : get(state.firestore.data, `sellerStore.categories`),
+        currency : get(state.firestore.data, `sellerStore.currency`),
     });
 }
 

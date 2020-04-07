@@ -1,9 +1,11 @@
 import React from 'react'
 
+import ItemPage from '../ItemPage'
+
 function Cart() {
     return (
         <div>
-            <h1>Cart Page</h1>
+            <ItemPage />   {/*<--remove later*/}
         </div>
     )
 }

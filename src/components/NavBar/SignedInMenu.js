@@ -2,6 +2,8 @@ import React, { Component, createRef } from 'react'
 import { Input, Menu, Button, Container } from 'semantic-ui-react'
 import { NavLink, useRouteMatch } from 'react-router-dom'
 
+import FbSignOutButton from '../FbSignOutButton' 
+
 import * as ROUTES from '../../constants/routes'
 import applyUrlCorrection from '../../helpers/applyUrlCorrection'
 
@@ -51,7 +53,8 @@ const SignedInMenu = ({ activeItem, handleItemClick }) => {
               onClick={handleItemClick}
             />
           </NavLink>
-          <Button primary style={{ marginLeft: '10px', marginBottom: '10px' }}>Sign Out</Button>
+          {/* <Button primary style={{ marginLeft: '10px', marginBottom: '10px' }}>Sign Out</Button> */}
+          <FbSignOutButton />
         </Menu.Menu>
     </Menu>
   )
