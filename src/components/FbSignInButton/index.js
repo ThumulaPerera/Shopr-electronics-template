@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withFirestore } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -10,7 +10,10 @@ import { signInWithFb } from '../../actions/authActions'
 function FbSignInButton({ signIn }) {
 
     return (
-        <Button primary onClick={signIn}> Sign In With Facbook </Button>
+        <Button primary icon labelPosition='right' onClick={signIn}>
+            Sign In With Facebook
+            <Icon name='facebook' size='large'/>
+        </Button>
     )
 }
 
