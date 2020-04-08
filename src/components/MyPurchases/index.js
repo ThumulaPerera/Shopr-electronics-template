@@ -1,6 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-function MyPurchases() {
+import SignInToContinue from '../SignInToContinue'
+
+function MyPurchases({ auth }) {
+    if (!auth.uid){
+        return <SignInToContinue />
+    }
+
     return (
         <div>
             <h1>Purchases Page</h1>
@@ -8,4 +15,8 @@ function MyPurchases() {
     )
 }
 
-export default MyPurchases
+const mapStateToProps = state => ({
+    auth : state.firebase.auth,
+}) 
+
+export default connect(mapStateToProps)(MyPurchases)

@@ -1,14 +1,22 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-import FbSignInButton from '../FbSignInButton'
+import SignInToContinue from '../SignInToContinue'
 
-function Profile() {
+function Profile({ auth }) {
+    if (!auth.uid){
+        return <SignInToContinue />
+    }
+
     return (
         <div>
             <h1>Profile Page</h1>
-            <FbSignInButton />
         </div>
     )
 }
 
-export default Profile
+const mapStateToProps = state => ({
+    auth : state.firebase.auth,
+}) 
+
+export default connect(mapStateToProps)(Profile)
