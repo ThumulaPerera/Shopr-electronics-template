@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import { Switch, Route, useRouteMatch, useParams } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase'
+import ReduxToastr from 'react-redux-toastr'
 
 import NavBar from '../NavBar';
 import BrowseProducts from '../BrowseProducts';
@@ -17,6 +18,7 @@ function SellerApp() {
     return (
             <div className="App" ref={contextRef}>
                 <NavBar contextRef={contextRef} />
+                <ReduxToastr />
                 <Switch>
                     <Route
                         path={`${path}${ROUTES.MY_PURCHASES_ROUTE}`}

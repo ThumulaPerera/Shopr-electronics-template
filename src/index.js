@@ -6,6 +6,7 @@ import { createFirestoreInstance } from 'redux-firestore' // <- needed if using 
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import 'semantic-ui-css/semantic.min.css';
 
 import App from './components/App';

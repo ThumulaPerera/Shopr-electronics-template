@@ -1,4 +1,5 @@
 import { AUTH_ACTION_TYPES } from '../constants/actionTypes'
+import { toastr } from 'react-redux-toastr'
 
 export const signInWithFb = (currentStore, firestore) => {
     return (dispatch, getState, {getFirebase }) => {
@@ -23,7 +24,7 @@ export const signInWithFb = (currentStore, firestore) => {
               }
             );
           })
-        .then(() => {
+        .then((result) => {
             dispatch({ type : AUTH_ACTION_TYPES.LOGIN_SUCCESS })
         })
         .catch((error) => {
@@ -31,6 +32,7 @@ export const signInWithFb = (currentStore, firestore) => {
                 type: AUTH_ACTION_TYPES.LOGIN_ERROR, 
                 error,
             })
+            toastr.error('Error', error.message)
         })
     }
 }
@@ -46,6 +48,7 @@ export const signOut = () => {
                 type: AUTH_ACTION_TYPES.SIGNOUT_ERROR, 
                 error,
             })
+            toastr.error('Error', error.message)
         })
     }
 }
