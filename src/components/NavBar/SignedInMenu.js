@@ -53,7 +53,6 @@ const SignedInMenu = ({ activeItem, handleItemClick }) => {
               onClick={handleItemClick}
             />
           </NavLink>
-          {/* <Button primary style={{ marginLeft: '10px', marginBottom: '10px' }}>Sign Out</Button> */}
           <FbSignOutButton />
         </Menu.Menu>
     </Menu>

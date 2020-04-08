@@ -1,12 +1,11 @@
 import React, { Component, createRef } from 'react'
-import { Image, Input, Menu, Segment, Sticky } from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom'
-
-import _ from 'lodash'
+import { Sticky } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 import SignedInMenu from './SignedInMenu'
+import SignedOutMenu from './SignedOutMenu'
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   state = { activeItem: 'Browse Products' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -14,12 +13,22 @@ export default class NavBar extends Component {
   contextRef = createRef()
 
   render() {
-    const { contextRef } = this.props
+    const { contextRef, auth } = this.props
 
     return (
         <Sticky context={contextRef}>
+          {auth.uid ? 
             <SignedInMenu activeItem={this.state.activeItem} handleItemClick={this.handleItemClick} />  
+            :
+            <SignedOutMenu activeItem={this.state.activeItem} handleItemClick={this.handleItemClick} />
+          }
         </Sticky>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  auth : state.firebase.auth
+})
+
+export default connect(mapStateToProps)(NavBar)
