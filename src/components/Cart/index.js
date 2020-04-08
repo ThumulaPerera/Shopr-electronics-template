@@ -11,7 +11,7 @@ function Cart({ auth }) {
 
     return (
         <div>
-            <ItemPage />   {/*<--remove later*/}
+            <h> cart </h>
         </div>
     )
 }

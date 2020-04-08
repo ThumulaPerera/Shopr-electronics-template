@@ -8,7 +8,8 @@ import NavBar from '../NavBar';
 import BrowseProducts from '../BrowseProducts';
 import MyPurchases from '../MyPurchases';
 import Cart from '../Cart';
-import Profile from '../Profile'
+import Profile from '../Profile';
+import ItemPage from '../ItemPage';
 import * as ROUTES from '../../constants/routes';
 
 function SellerApp() {
@@ -31,6 +32,10 @@ function SellerApp() {
                     <Route
                         path={`${path}${ROUTES.PROFILE_ROUTE}`}
                         component={Profile} />}
+                    />
+                    <Route
+                        path={`${path}${ROUTES.ITEMS_ROUTE}/:itemId`}
+                        component={ItemPage} />}
                     />
                     <Route
                         path={`${path}${ROUTES.HOME_ROUTE}`}
