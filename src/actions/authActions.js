@@ -1,6 +1,8 @@
 import { AUTH_ACTION_TYPES } from '../constants/actionTypes'
 import { toastr } from 'react-redux-toastr'
 
+import * as ROUTES from '../constants/routes'
+
 export const signInWithFb = (currentStore, firestore) => {
     return (dispatch, getState, {getFirebase }) => {
         const firebase = getFirebase();
@@ -37,11 +39,12 @@ export const signInWithFb = (currentStore, firestore) => {
     }
 }
 
-export const signOut = () => {
+export const signOut = (history, url) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
 
         firebase.auth().signOut().then(() => {
+            history.push(`${url}${ROUTES.HOME_ROUTE}`)
             dispatch({ type : AUTH_ACTION_TYPES.SIGNOUT_SUCCESS })
         }).catch((error) => {
             dispatch({ 

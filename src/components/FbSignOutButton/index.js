@@ -1,18 +1,26 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { signOut } from '../../actions/authActions'
+import { withRouter } from "react-router";
+import { compose } from 'redux'
 
-function FbSignOutButton({ signOut }) {
+import { signOut } from '../../actions/authActions'
+import applyUrlCorrection from '../../helpers/applyUrlCorrection'
+
+function FbSignOutButton({ signOut, history, match }) {
     return (
-        <Button primary onClick={signOut}> Sign Out </Button>
+        <Button primary onClick={() => {console.log('clicked sign out');signOut(history, match.url)}}> Sign Out </Button>
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signOut : () => dispatch(signOut()),
+        signOut : (history, url) => dispatch(signOut(history, url)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(FbSignOutButton)
+export default compose(
+    withRouter,
+    connect(null, mapDispatchToProps)
+)
+(FbSignOutButton)
