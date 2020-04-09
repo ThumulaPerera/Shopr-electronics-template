@@ -10,8 +10,11 @@ import { isLoaded, isEmpty } from 'react-redux-firebase'
 import ItemGrid from '../ItemGrid';
 import CategoryMenu from '../CategoryMenu';
 
+import applyUrlCorrection from '../../helpers/applyUrlCorrection'
+
 const BrowseProducts = ({ contextRef, categories }) => {
-    const { path } = useRouteMatch()
+    const { path, url } = useRouteMatch()
+    console.log('from browse : ',url)
 
     if (!isLoaded(categories)) {
         return <div>Loading...</div>
@@ -32,12 +35,12 @@ const BrowseProducts = ({ contextRef, categories }) => {
                     <Route exact path={`${path}/`}>
                             {
                                 categories.map(({ name }, key) => (
-                                        <ItemGrid selectedCategory={name} key={key} />
+                                        <ItemGrid selectedCategory={name} key={key} url={applyUrlCorrection(url)}/>
                                 ))
                             }
                     </Route>
                     <Route path={`${path}/:category`}>
-                        <ItemGrid />
+                        <ItemGrid url={applyUrlCorrection(url)}/>
                     </Route>
                 </Switch>
             </Grid.Column>

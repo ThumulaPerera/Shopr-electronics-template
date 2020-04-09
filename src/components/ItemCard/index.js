@@ -1,11 +1,18 @@
 import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
 
 import RatingDisplay from '../RatingDisplay'
+import { ITEMS_ROUTE } from '../../constants/routes'
 
-const ItemCard = ({ id, imageURL, name, description, currency, price, rating }) => {
+const ItemCard = ({ id, imageURL, name, description, currency, price, rating, url, history }) => {
+    const onClick = () => {
+        console.log("clicked" + id)
+        history.push(`${url}${ITEMS_ROUTE}/${id}`)
+    }
+
     return (
-        <Card onClick={() => {console.log("clicked" + id)}}>
+        <Card onClick={onClick}>
             <Image src={imageURL} wrapped ui={false} />
             <Card.Content>
                 <Card.Header textAlign='center'>{name}</Card.Header>
@@ -26,4 +33,4 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating }) 
     )
 }
 
-export default ItemCard
+export default withRouter(ItemCard)

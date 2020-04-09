@@ -15,7 +15,7 @@ export default function getItemsAndIconByCategory(items, categories, selectedCat
                 const item = items[key]
                 const itemCategoryID = item.category
                 if (itemCategoryID === selectedCategoryID) {
-                    itemsOfSelectedCategory = { ...itemsOfSelectedCategory, item }
+                    itemsOfSelectedCategory = { ...itemsOfSelectedCategory, [key]: item }
                 }
             })
         }

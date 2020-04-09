@@ -15,7 +15,7 @@ const ItemGrid = (props) => {
     console.log('propsss....', props)
 
     let { items, currency } = props;
-    const { categories, selectedCategory } = props;
+    const { categories, selectedCategory, url } = props;
     let icon;
 
     if (!(isLoaded(items) && isLoaded(categories))) {
@@ -62,6 +62,7 @@ const ItemGrid = (props) => {
                         currency={currency}
                         price={amount}
                         rating={itemRating}
+                        url={url}
                     />
                 })}
             </Card.Group>

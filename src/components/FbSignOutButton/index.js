@@ -9,7 +9,7 @@ import applyUrlCorrection from '../../helpers/applyUrlCorrection'
 
 function FbSignOutButton({ signOut, history, match }) {
     return (
-        <Button primary onClick={() => {console.log('clicked sign out');signOut(history, match.url)}}> Sign Out </Button>
+        <Button primary onClick={() => {signOut(history, match.url)}}> Sign Out </Button>
     )
 }
 
