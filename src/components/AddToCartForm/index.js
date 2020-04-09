@@ -20,8 +20,10 @@ const renderSelect = field => (
     />
 );
 
-function AddToCartForm({ item, subItems, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId }) {
+function AddToCartForm({ item, subItems, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset }) {
     const addToCart = () => {
+        toastr.warning('Adding item....', 'Adding item to cart. Do not refresh the page')
+
         const orderItem = {
             item : itemId,
             noOfItems : parseInt(selectedValues.quantity),
@@ -51,6 +53,7 @@ function AddToCartForm({ item, subItems, selectedSubItem, selectedValues, childr
         })
         .then(() => {
             toastr.success('Added to cart', 'Navigate to the cart tab to view your cart')
+            reset()
         })
         .catch((error) => {
             toastr.error('Could not add item', error.message)
