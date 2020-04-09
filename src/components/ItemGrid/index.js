@@ -70,7 +70,7 @@ const ItemGrid = (props) => {
     )
 };
 
-const mapStateToProps = (state, { storeID, selectedCategory }) => {
+const mapStateToProps = (state) => {
     return ({
         items : get(state.firestore.data, `sellerItems`),
         categories : get(state.firestore.data, `sellerStore.categories`),
