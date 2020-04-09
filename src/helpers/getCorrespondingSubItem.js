@@ -16,7 +16,7 @@ export default function getCorrespondingSubItem(subItems, variants){
                 }
             }
             if(!isEmpty(sub)){
-                return sub
+                return { ...sub , id: subItemId }
             }
         }
     }

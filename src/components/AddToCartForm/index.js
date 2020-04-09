@@ -1,7 +1,13 @@
 import React, { Fragment } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Form, Message } from "semantic-ui-react";
+import { Form, Container } from "semantic-ui-react";
 import { isLoaded, isEmpty } from 'react-redux-firebase'
+import { compose } from 'redux';
+import { connect } from 'react-redux'
+import { get } from 'lodash';
+import { withFirestore } from 'react-redux-firebase'
+import { useRouteMatch } from 'react-router-dom'
+import { toastr } from 'react-redux-toastr'
 
 const renderSelect = field => (
     <Form.Select
@@ -14,12 +20,46 @@ const renderSelect = field => (
     />
 );
 
-function AddToCartForm({ item, subItems, children }) {
-    const handleSubmit = (values) => {console.log('form submitted', values)}
+function AddToCartForm({ item, subItems, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId }) {
+    const addToCart = () => {
+        const orderItem = {
+            item : itemId,
+            noOfItems : parseInt(selectedValues.quantity),
+            subItem : selectedSubItem.id,
+            unitPrice : selectedSubItem.price
+        }
+
+        return firestore
+            .collection('Stores')
+            .doc(storeId)
+            .collection('Buyers')
+            .doc(buyerId)
+            .get()
+        .then(dataSnapshot => {
+            let cart = dataSnapshot.get('cart')
+            return cart ? cart : []
+        })
+        .then(cart => {
+            cart.push(orderItem)
+            console.log(cart)
+            return firestore
+            .collection('Stores')
+            .doc(storeId)
+            .collection('Buyers')
+            .doc(buyerId)
+            .update({ 'cart' : cart})
+        })
+        .then(() => {
+            toastr.success('Added to cart', 'Navigate to the cart tab to view your cart')
+        })
+        .catch((error) => {
+            toastr.error('Could not add item', error.message)
+        })
+    }
 
     return (
         <Fragment>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={addToCart}>
                 {
                     item && item.variants.map((variant, key) => {
                         const { title, attributes } = variant;
@@ -44,14 +84,49 @@ function AddToCartForm({ item, subItems, children }) {
                     })
                 }
                 {children}
-                <Form.Group inline>
-                    <Form.Button primary>Add To Cart</Form.Button>
-                </Form.Group>
+
+                <Field
+                    component={Form.Input}
+                    type="number"
+                    label="quantity"
+                    name="quantity"
+                    placeholder="quantity"
+                />
+
+                <Container textAlign='center'>
+                    <Form.Button 
+                        primary 
+                        disabled={
+                            isEmpty(selectedSubItem) ||        /* <-- give error messages indicating why add to cart is diabled */
+                            selectedSubItem.stock === 0 || 
+                            !selectedValues.quantity || 
+                            (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
+                            }
+                    >
+                        Add To Cart
+                    </Form.Button>
+                </Container>
             </Form>
         </Fragment>
     )
 }
 
-export default reduxForm({
-    form: "addToCart"
-  })(AddToCartForm);
+const mapStateToProps = (state) => ({
+    selectedValues : get(state.form.addToCart, `values`),
+    buyerId : get(state.firebase.auth, 'uid')
+}) 
+
+function withHooks(Component) {
+    return function WrappedComponent(props) {
+        const match = useRouteMatch();
+        return <Component {...props} storeId={match.params.storeID}  />;
+    }
+}
+
+export default compose(
+    reduxForm({ form: "addToCart" }),
+    withHooks,
+    withFirestore,
+    connect(mapStateToProps)
+)
+(AddToCartForm);

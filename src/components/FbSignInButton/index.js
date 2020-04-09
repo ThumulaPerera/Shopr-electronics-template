@@ -10,7 +10,7 @@ import { signInWithFb } from '../../actions/authActions'
 function FbSignInButton({ signIn }) {
 
     return (
-        <Button primary icon labelPosition='right' onClick={signIn}>
+        <Button color='facebook' icon labelPosition='right' onClick={signIn}>
             Sign In With Facebook
             <Icon name='facebook' size='large'/>
         </Button>
@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch, { storeID, firestore }) => {
 function withHooks(Component) {
     return function WrappedComponent(props) {
         const match = useRouteMatch();
-        console.log('match :', match)
         return <Component {...props} storeID={match.params.storeID}  />;
     }
 }
