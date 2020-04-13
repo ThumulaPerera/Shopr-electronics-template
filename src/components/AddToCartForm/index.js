@@ -20,7 +20,7 @@ const renderSelect = field => (
     />
 );
 
-function AddToCartForm({ item, subItems, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset }) {
+function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset }) {
     const addToCart = () => {
         toastr.warning('Adding item....', 'Adding item to cart. Do not refresh the page')
 
@@ -69,9 +69,9 @@ function AddToCartForm({ item, subItems, selectedSubItem, selectedValues, childr
                         let options = [];
                         attributes.map(attribute => {
                             options.push({
-                                key : attribute,
-                                text : attribute,
-                                value : attribute
+                                key : attribute.attribute,
+                                text : attribute.attribute,
+                                value : attribute.attribute
                             })
                         });
                         return(

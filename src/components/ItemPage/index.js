@@ -5,7 +5,6 @@ import { Carousel } from "react-responsive-carousel";
 import { get } from 'lodash';
 import { connect } from 'react-redux'
 import { isLoaded, isEmpty } from 'react-redux-firebase'
-import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux';
 
 import RatingDisplay from '../RatingDisplay'
@@ -17,7 +16,7 @@ import calculateRating from '../../helpers/calculateRating';
 import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
 import AddToCartForm from '../AddToCartForm'
 
-const ItemPage = ({ item, subItems, selectedVariants, match }) => {
+const ItemPage = ({ item, selectedVariants, match }) => {
     if (!(isLoaded(item))) {
         return <div>Loading...</div>
     }
@@ -31,8 +30,8 @@ const ItemPage = ({ item, subItems, selectedVariants, match }) => {
     const itemRating = calculateRating(rating);
     let selectedSubItem = {}
 
-    if(isLoaded(selectedVariants) && isLoaded(subItems)){
-        selectedSubItem = getCorrespondingSubItem(subItems, selectedVariants)
+    if(isLoaded(selectedVariants) && isLoaded(item)){
+        selectedSubItem = getCorrespondingSubItem(item, selectedVariants)
         console.log('selected :',selectedSubItem)
     }
 
@@ -84,7 +83,7 @@ const ItemPage = ({ item, subItems, selectedVariants, match }) => {
                         ))}
                     </Grid>
 
-                    <AddToCartForm item={item} subItems={subItems} selectedSubItem={selectedSubItem} itemId={match.params.itemId}>
+                    <AddToCartForm item={item} selectedSubItem={selectedSubItem} itemId={match.params.itemId}>
                         <Divider hidden/>
 
                         {
@@ -114,34 +113,10 @@ const ItemPage = ({ item, subItems, selectedVariants, match }) => {
 )}
 
 const mapStateToProps = (state, {match}) => ({
-    subItems : get(state.firestore.data, `/Stores/${match.params.storeID}/SubItems`),
-    selectedVariants : get(state.form.addToCart, `values`)
+    item: get(state.firestore.data, `sellerItems.${match.params.itemId}`), 
+    selectedVariants : get(state.form.addToCart, `values`),
 }) 
 
-const connectTo = ({ match, item }) => {
-    if (!(isLoaded(item))) {
-        return []
-    }
-
-    if(isEmpty(item)){
-        return []
-    }
-    
-    let listners = [];
-    item && item.subItems.map((subItem, key) => {
-        console.log(subItem.path)
-        listners.push({
-            collection: `/Stores/${match.params.storeID}/SubItems`,
-            doc: subItem.id,
-        })
-    })
-    return listners
-}
-
 export default compose(
-    connect((state, {match}) => ({
-        item: get(state.firestore.data, `sellerItems.${match.params.itemId}`), 
-    })),
-    firestoreConnect(connectTo),
     connect(mapStateToProps),
 )(ItemPage)
