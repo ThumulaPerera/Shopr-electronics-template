@@ -22,11 +22,17 @@ const authReducer = (state = initState, action) => {
 
         case AUTH_ACTION_TYPES.SIGNOUT_SUCCESS:
             console.log('signout success')
-            return state
+            return{
+                ...state, 
+                authError : null
+            }
 
-        case AUTH_ACTION_TYPES.SIGNOUT_SUCCESS:
-            console.log('login error :', action.error)
-            return state
+        case AUTH_ACTION_TYPES.SIGNOUT_ERROR:
+            console.log('signout error :', action.error)
+            return{
+                ...state, 
+                authError : action.error
+            }
         
         default : return state
     }
