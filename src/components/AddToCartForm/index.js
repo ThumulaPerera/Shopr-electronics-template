@@ -21,7 +21,19 @@ const renderSelect = field => (
 );
 
 function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset }) {
+    let addToCartDisabled = !buyerId || /* <-- give error messages indicating why add to cart is diabled */
+        isEmpty(selectedSubItem) ||
+        selectedSubItem.stock === 0 ||
+        !selectedValues.quantity ||
+        (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
+
+
     const addToCart = () => {
+        if(addToCartDisabled) {
+            toastr.error('Adding item disabled')
+            return
+        }
+
         toastr.warning('Adding item....', 'Adding item to cart. Do not refresh the page')
 
         const orderItem = {
@@ -99,13 +111,7 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerI
                 <Container textAlign='center'>
                     <Form.Button 
                         primary 
-                        disabled={
-                            !buyerId || /* <-- give error messages indicating why add to cart is diabled */
-                            isEmpty(selectedSubItem) ||        
-                            selectedSubItem.stock === 0 || 
-                            !selectedValues.quantity || 
-                            (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1) 
-                            }
+                        disabled={addToCartDisabled}
                     >
                         Add To Cart
                     </Form.Button>
