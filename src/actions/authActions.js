@@ -7,6 +7,8 @@ export const signInWithFb = (currentStore, firestore) => {
     return (dispatch, getState, {getFirebase }) => {
         const firebase = getFirebase();
 
+        console.log('curerent store :', currentStore)
+
         firebase.login({
             provider: 'facebook',
             type: 'popup',
@@ -37,7 +39,7 @@ export const signInWithFb = (currentStore, firestore) => {
                 type: AUTH_ACTION_TYPES.LOGIN_ERROR, 
                 error,
             })
-            toastr.error('Error', error.message)
+            toastr.error('Could not log in', error.message)
         })
     }
 }

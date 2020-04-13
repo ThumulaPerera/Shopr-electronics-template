@@ -9,6 +9,8 @@ import { withFirestore } from 'react-redux-firebase'
 import { useRouteMatch } from 'react-router-dom'
 import { toastr } from 'react-redux-toastr'
 
+import { signInWithFb } from '../../actions/authActions'
+
 const renderSelect = field => (
     <Form.Select
       label={field.label}
@@ -20,8 +22,8 @@ const renderSelect = field => (
     />
 );
 
-function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset }) {
-    let addToCartDisabled = !buyerId || /* <-- give error messages indicating why add to cart is diabled */
+function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset, signIn }) {
+    let addToCartDisabled =  /* <-- give error messages indicating why add to cart is diabled */
         isEmpty(selectedSubItem) ||
         selectedSubItem.stock === 0 ||
         !selectedValues.quantity ||
@@ -29,6 +31,12 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerI
 
 
     const addToCart = () => {
+        if(!buyerId){
+            toastr.error('Sign In to add items to cart')
+            signIn()
+            return
+        }
+
         if(addToCartDisabled) {
             toastr.error('Adding item disabled')
             return
@@ -126,6 +134,12 @@ const mapStateToProps = (state) => ({
     buyerId : get(state.firebase.auth, 'uid')
 }) 
 
+const mapDispatchToProps = (dispatch, { storeId, firestore }) => {
+    return {
+        signIn : () => dispatch(signInWithFb(storeId, firestore)),
+    }
+}
+
 function withHooks(Component) {
     return function WrappedComponent(props) {
         const match = useRouteMatch();
@@ -137,6 +151,6 @@ export default compose(
     reduxForm({ form: "addToCart" }),
     withHooks,
     withFirestore,
-    connect(mapStateToProps)
+    connect(mapStateToProps, mapDispatchToProps)
 )
 (AddToCartForm);
