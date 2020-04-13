@@ -100,10 +100,11 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerI
                     <Form.Button 
                         primary 
                         disabled={
-                            isEmpty(selectedSubItem) ||        /* <-- give error messages indicating why add to cart is diabled */
+                            !buyerId || /* <-- give error messages indicating why add to cart is diabled */
+                            isEmpty(selectedSubItem) ||        
                             selectedSubItem.stock === 0 || 
                             !selectedValues.quantity || 
-                            (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
+                            (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1) 
                             }
                     >
                         Add To Cart
