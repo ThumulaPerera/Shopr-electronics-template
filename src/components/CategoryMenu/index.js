@@ -33,7 +33,7 @@ class CategoryMenu extends Component {
                 context={contextRef}
                 offset={80}
             >
-                <Segment padded inverted>
+                <Segment padded inverted  style={{ borderRadius: '0px' }}>
                     <Segment textAlign='center' size='large' inverted>
                         Categories
                     </Segment>

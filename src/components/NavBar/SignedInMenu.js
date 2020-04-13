@@ -15,9 +15,8 @@ const SignedInMenu = ({ activeItem, handleItemClick }) => {
 
   return (
     <Menu
-      attached='top'
       inverted
-      style={{ padding: '1em' }}
+      style={{ padding: '1em', borderRadius: '0px' }}
     >
         <NavLink to={`${url}${ROUTES.HOME_ROUTE}`}>
           <Menu.Item

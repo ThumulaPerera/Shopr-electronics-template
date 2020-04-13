@@ -9,7 +9,7 @@ import applyUrlCorrection from '../../helpers/applyUrlCorrection'
 
 function FbSignOutButton({ signOut, history, match }) {
     return (
-        <Button color='facebook' onClick={() => {signOut(history, match.url)}}> Sign Out </Button>
+        <Button color='facebook' onClick={() => {signOut(history, match.url)}} style={{ borderRadius: '0px' }}> Sign Out </Button>
     )
 }
 
