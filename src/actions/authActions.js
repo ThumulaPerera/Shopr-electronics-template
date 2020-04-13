@@ -23,6 +23,9 @@ export const signInWithFb = (currentStore, firestore) => {
                 displayName: socialAuthUser.profile.displayName,
                 email: socialAuthUser.profile.email,
                 avatarUrl : socialAuthUser.profile.avatarUrl,
+              },
+              {
+                  merge: true
               }
             );
           })
