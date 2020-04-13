@@ -12,8 +12,6 @@ import calculateRating from '../../helpers/calculateRating';
 import getItemsAndIconByCategory from '../../helpers/getItemsAndIconByCategory'
 
 const ItemGrid = (props) => {
-    console.log('propsss....', props)
-
     let { items, currency } = props;
     const { categories, selectedCategory, url } = props;
     let icon;
