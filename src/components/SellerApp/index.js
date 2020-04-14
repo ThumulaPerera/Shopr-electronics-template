@@ -10,7 +10,7 @@ import MyPurchases from '../MyPurchases';
 import Cart from '../Cart';
 import Profile from '../Profile';
 import ItemPage from '../ItemPage';
-import CoverPhoto from '../CoverPhoto';
+import StoreDetailsPane from '../StoreDetailsPane';
 import * as ROUTES from '../../constants/routes';
 
 function SellerApp() {
@@ -19,7 +19,7 @@ function SellerApp() {
 
     return (
             <div className="App" ref={contextRef}>
-                <CoverPhoto />
+                <StoreDetailsPane />
                 <NavBar contextRef={contextRef} />
                 <ReduxToastr />
                 <Switch>
