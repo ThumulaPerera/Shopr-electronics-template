@@ -6,7 +6,7 @@ function CoverPhoto() {
             <Image 
             src='https://change-itn.eu/wp-content/uploads/2018/07/long.jpg' 
             fluid
-            style={{maxHeight : '8rem'}}    
+            style={{height : '8rem'}}    
             />
     )
 }
