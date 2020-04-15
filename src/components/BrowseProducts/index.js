@@ -25,7 +25,7 @@ const BrowseProducts = ({ contextRef, categories }) => {
     }
 
     return(
-    <Grid columns={2} divided>
+    <Grid columns={2} divided={false}>
         <Grid.Row>
             <Grid.Column width={3}>
                 <CategoryMenu contextRef={contextRef} />
