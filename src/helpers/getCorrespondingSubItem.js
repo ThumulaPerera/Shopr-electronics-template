@@ -6,9 +6,17 @@ export default function getCorrespondingSubItem(item, selectedVariants){
     if(item && selectedVariants){
         const { subItems, variants } = item
 
-        if(!(subItems || variants)){
+        if(!(subItems)){
             return sub
         }
+
+        if(!variants || variants===[]) {
+            if(subItems.length === 1){
+                return subItems[0]
+            }
+            return sub
+        }
+
 
         for (let i = 0; i < subItems.length; i++) {
             sub = subItems[i]
