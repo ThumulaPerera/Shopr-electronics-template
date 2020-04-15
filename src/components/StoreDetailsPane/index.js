@@ -1,18 +1,51 @@
 import React from 'react'
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid, Loader } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { isLoaded, isEmpty } from 'react-redux-firebase'
+import { get } from 'lodash'
+import { compose } from 'redux';
 
 import CoverPhoto from './CoverPhoto'
+import Logo from './Logo'
 
-function StoreDetailsPane() {
+function StoreDetailsPane({ storeCustomization }) {
+    if(!isLoaded(storeCustomization)){
+        return <Loader />
+    }
+
+    const logo = storeCustomization.logo ? storeCustomization.logo : '';
+    const cover = storeCustomization.coverPhotos && storeCustomization.coverPhotos.main[0] ? storeCustomization.coverPhotos.main[0] : '';
+
+    console.log('logo',logo)
+    console.log('cover',cover)
+
+    if (logo === '' && cover === ''){
+        return null
+    }
+
+    if (cover === ''){
+        return (
+            // <div style={{ height: '8rem' }}>
+                <Grid>
+                    <Grid.Row inverted color='black'>
+                        <Grid.Column stretched width='16' verticalAlign='middle'>
+                            <Logo src={logo}/>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            // </div>
+        )
+    }
+
     return (
         // <div style={{ height: '8rem' }}>
             <Grid>
                 <Grid.Row columns='2' inverted color='black'>
-                    <Grid.Column stretched width='4'>
-                        <Segment basic/>
+                    <Grid.Column stretched width='4' verticalAlign='middle'>
+                        <Logo src={logo}/>
                     </Grid.Column>
                     <Grid.Column width='12'>
-                        <CoverPhoto />
+                        <CoverPhoto src={cover}/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
@@ -20,4 +53,13 @@ function StoreDetailsPane() {
     )
 }
 
-export default StoreDetailsPane
+const mapStateToProps = (state) => {
+    return ({
+        storeCustomization : get(state.firestore.data, `sellerStore.storeCustomization`),
+    });
+}
+
+export default compose(
+    connect(mapStateToProps),
+)(StoreDetailsPane);
+

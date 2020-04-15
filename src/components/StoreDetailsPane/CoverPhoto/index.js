@@ -1,10 +1,10 @@
 import React from 'react'
 import { Image } from 'semantic-ui-react'
 
-function CoverPhoto() {
+function CoverPhoto({src}) {
     return (
             <Image 
-            src='https://change-itn.eu/wp-content/uploads/2018/07/long.jpg' 
+            src={src} 
             fluid
             style={{height : '8rem'}}    
             />
