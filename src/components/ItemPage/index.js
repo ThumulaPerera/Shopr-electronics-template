@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Grid, Header, Container, Divider, Icon, Label } from 'semantic-ui-react'
+import { Segment, Grid, Header, Container, Divider, Image, Icon, Label } from 'semantic-ui-react'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { get } from 'lodash';
@@ -16,7 +16,7 @@ import calculateRating from '../../helpers/calculateRating';
 import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
 import AddToCartForm from '../AddToCartForm'
 
-const ItemPage = ({ item, selectedVariants, match }) => {
+const ItemPage = ({ item, selectedVariants, match, currency }) => {
     if (!(isLoaded(item))) {
         return <div>Loading...</div>
     }
@@ -27,7 +27,8 @@ const ItemPage = ({ item, selectedVariants, match }) => {
     }
 
     const { name, photos, rating, description, attributes, basePrice } = item
-    const itemRating = calculateRating(rating);
+    const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
+    const itemRating = rating ? calculateRating(rating) : null;
     let selectedSubItem = {}
 
     if(isLoaded(selectedVariants) && isLoaded(item)){
@@ -46,8 +47,13 @@ const ItemPage = ({ item, selectedVariants, match }) => {
                                 <img src={photo.url} />
                                 <p className="legend">{photo.title}</p>
                             </div>)
-                        )}
+                        )}    
                     </Carousel>
+                    {!photos &&
+                        <div >
+                            <Image src={defaultImgUrl} />
+                        </div>
+                    }
                 </Segment>
             </Grid.Column>
             <Grid.Column>
@@ -60,14 +66,14 @@ const ItemPage = ({ item, selectedVariants, match }) => {
 
                     <Container textAlign='justified'>
                         <p>
-                            {description}
+                            {description ? description : 'no item description...'}
                         </p>
                     </Container>
 
                     <Divider />
 
                     <Grid columns={2}>
-                        {attributes.map(({ title, attribute }, key) => (
+                        {attributes && attributes.map(({ title, attribute }, key) => (
                             <Grid.Row key={key}>
                                 <Grid.Column textAlign='right' width={4}>
                                     <p>
@@ -91,16 +97,17 @@ const ItemPage = ({ item, selectedVariants, match }) => {
                             <InStockLabel />
                         }
 
-                        {!isEmpty(selectedSubItem) && selectedSubItem.stock === 0 &&
+                        {
+                            !isEmpty(selectedSubItem) && selectedSubItem.stock === 0 &&
                             <OutOfStockLabel />
                         }
 
                         <Divider hidden/>
 
                         {isEmpty(selectedSubItem) ?
-                            <CurrencyLabel price={basePrice} />
+                            <CurrencyLabel price={basePrice} currency={currency}/>
                             :
-                            <CurrencyLabel price={selectedSubItem.price} />
+                            <CurrencyLabel price={selectedSubItem.price} currency={currency} />
                         }
 
                         <Divider hidden/>
@@ -115,6 +122,7 @@ const ItemPage = ({ item, selectedVariants, match }) => {
 const mapStateToProps = (state, {match}) => ({
     item: get(state.firestore.data, `sellerItems.${match.params.itemId}`), 
     selectedVariants : get(state.form.addToCart, `values`),
+    currency : get(state.firestore.data, `sellerStore.currency`),
 }) 
 
 export default compose(

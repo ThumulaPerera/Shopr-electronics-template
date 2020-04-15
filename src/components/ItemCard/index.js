@@ -7,7 +7,6 @@ import { ITEMS_ROUTE } from '../../constants/routes'
 
 const ItemCard = ({ id, imageURL, name, description, currency, price, rating, url, history }) => {
     const onClick = () => {
-        console.log("clicked" + id)
         history.push(`${url}${ITEMS_ROUTE}/${id}`)
     }
 

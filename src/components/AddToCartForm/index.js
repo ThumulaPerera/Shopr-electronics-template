@@ -84,7 +84,7 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerI
         <Fragment>
             <Form onSubmit={addToCart}>
                 {
-                    item && item.variants.map((variant, key) => {
+                    item && item.variants && item.variants.map((variant, key) => {
                         const { title, attributes } = variant;
                         let options = [];
                         attributes.map(attribute => {

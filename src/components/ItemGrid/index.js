@@ -14,6 +14,7 @@ import getItemsAndIconByCategory from '../../helpers/getItemsAndIconByCategory'
 const ItemGrid = (props) => {
     let { items, currency } = props;
     const { categories, selectedCategory, url } = props;
+    const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
     let icon;
 
     if (!(isLoaded(items) && isLoaded(categories))) {
@@ -47,7 +48,7 @@ const ItemGrid = (props) => {
                 {Object.keys(items).map(itemKey => {
                     const { name, photos, description, basePrice, rating } = items[itemKey];
 
-                    const imageURL = photos ? photos[0].url : '';
+                    const imageURL = photos ? photos[0].url : defaultImgUrl;
                     const amount = basePrice;
                     const itemRating = rating ? calculateRating(rating) : null;
 
@@ -56,7 +57,7 @@ const ItemGrid = (props) => {
                     if(!minRequirementsToDisplay){
                         return null
                     }
-                    
+
                     return <ItemCard
                         key={itemKey}
                         id={itemKey}
