@@ -12,8 +12,6 @@ class NavBar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  contextRef = createRef()
-
   render() {
     const { contextRef, auth, storeCustomization } = this.props
 
