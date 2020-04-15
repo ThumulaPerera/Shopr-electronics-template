@@ -31,7 +31,7 @@ class CategoryMenu extends Component {
         return (
             <Sticky
                 context={contextRef}
-                offset={80}
+                offset={65}
             >
                 <Segment padded inverted basic>
                     <Segment textAlign='center' size='large' inverted>
