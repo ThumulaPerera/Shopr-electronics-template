@@ -15,6 +15,7 @@ function StoreDetailsPane({ storeCustomization }) {
 
     const logo = storeCustomization.logo ? storeCustomization.logo : '';
     const cover = storeCustomization.coverPhotos && storeCustomization.coverPhotos.main[0] ? storeCustomization.coverPhotos.main[0] : '';
+    const color = storeCustomization.color ? storeCustomization.color : '';
 
     console.log('logo',logo)
     console.log('cover',cover)
@@ -27,7 +28,7 @@ function StoreDetailsPane({ storeCustomization }) {
         return (
             // <div style={{ height: '8rem' }}>
                 <Grid>
-                    <Grid.Row inverted color='black'>
+                    <Grid.Row inverted color={color}>
                         <Grid.Column stretched width='16' verticalAlign='middle'>
                             <Logo src={logo}/>
                         </Grid.Column>
@@ -40,7 +41,7 @@ function StoreDetailsPane({ storeCustomization }) {
     return (
         // <div style={{ height: '8rem' }}>
             <Grid>
-                <Grid.Row columns='2' inverted color='black'>
+                <Grid.Row columns='2' inverted color={color}>
                     <Grid.Column stretched width='4' verticalAlign='middle'>
                         <Logo src={logo}/>
                     </Grid.Column>

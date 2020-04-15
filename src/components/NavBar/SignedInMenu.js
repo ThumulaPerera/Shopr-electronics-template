@@ -7,7 +7,7 @@ import FbSignOutButton from '../FbSignOutButton'
 import * as ROUTES from '../../constants/routes'
 import applyUrlCorrection from '../../helpers/applyUrlCorrection'
 
-const SignedInMenu = ({ activeItem, handleItemClick }) => {
+const SignedInMenu = ({ activeItem, handleItemClick, color }) => {
   let { url } = useRouteMatch();
   url = applyUrlCorrection(url);
 
@@ -15,6 +15,7 @@ const SignedInMenu = ({ activeItem, handleItemClick }) => {
 
   return (
     <Menu
+      color={color}
       inverted
       style={{ padding: '1em', borderRadius: '0px' }}
     >

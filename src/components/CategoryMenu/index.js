@@ -18,7 +18,11 @@ class CategoryMenu extends Component {
 
     render() {
         const { activeItem } = this.state
-        const { categories, contextRef, url } = this.props
+        const { categories, contextRef, url, storeCustomization } = this.props
+
+        if(!isLoaded(storeCustomization)){
+            return <div>Loading...</div>
+        }
 
         if (!isLoaded(categories)) {
             return <div>Loading...</div>
@@ -28,17 +32,19 @@ class CategoryMenu extends Component {
             return <div>No categories to display...</div>
         }
 
+        const color = storeCustomization.color ? storeCustomization.color : '';
+
         return (
             <Sticky
                 context={contextRef}
                 offset={65}
             >
-                <Segment padded inverted basic>
-                    <Segment textAlign='center' size='large' inverted>
+                <Segment padded inverted basic color={color}>
+                    <Segment textAlign='center' size='large' inverted color={color}>
                         Categories
                     </Segment>
                     <div style={{ overflow: 'auto', maxHeight: 500 }}>
-                        <Menu pointing secondary vertical fluid inverted>
+                        <Menu pointing basic secondary vertical inverted color={color} style={{border:'0px'}}>
                             <Link to={`${url}/`}>
                                 <Menu.Item
                                     as='p'
@@ -72,6 +78,7 @@ class CategoryMenu extends Component {
 
 const mapStateToProps = (state) => ({
     categories: get(state.firestore.data, `sellerStore.categories`),
+    storeCustomization : get(state.firestore.data, `sellerStore.storeCustomization`),
 });
 
 function withHooks(Component) {
