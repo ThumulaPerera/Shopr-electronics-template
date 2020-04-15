@@ -43,14 +43,20 @@ const ItemGrid = (props) => {
         <Header as='h2'>
             <Header.Content>{icon ? <Icon name={icon} /> : null}{selectedCategory}</Header.Content>
         </Header>
-            <Card.Group>
+            <Card.Group itemsPerRow='4'>
                 {Object.keys(items).map(itemKey => {
                     const { name, photos, description, basePrice, rating } = items[itemKey];
 
-                    const imageURL = photos[0].url;
+                    const imageURL = photos ? photos[0].url : '';
                     const amount = basePrice;
-                    const itemRating = calculateRating(rating);
+                    const itemRating = rating ? calculateRating(rating) : null;
 
+                    const minRequirementsToDisplay = name && basePrice
+
+                    if(!minRequirementsToDisplay){
+                        return null
+                    }
+                    
                     return <ItemCard
                         key={itemKey}
                         id={itemKey}
