@@ -43,7 +43,7 @@ function ItemTable({ items, currency, cart, url }) {
                             <Table.Cell verticalAlign='top'>
                                 {
                                     variantArray && variantArray.map((variant, key) => (
-                                        <Segment compact basic style={{padding:'0px'}}>
+                                        <Segment compact basic style={{padding:'0px'}} key={key}>
                                         <Label size='large' pointing='left' color='black'>
                                             {item.variants[key].title}
                                             <Label.Detail>{variant}</Label.Detail>
