@@ -11,7 +11,7 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
     }
 
     return (
-        <Card onClick={onClick}>
+        <Card onClick={onClick} raised>
             <Image src={imageURL} wrapped ui={false} />
             <Card.Content>
                 <Card.Header textAlign='center'>{name}</Card.Header>
@@ -25,9 +25,9 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
                     {currency} {price}
                 </span>
             </Card.Content>
-            <Card.Content extra textAlign='center'>
+            {rating && <Card.Content extra textAlign='center'>
                 <RatingDisplay rating={rating} />
-            </Card.Content>
+            </Card.Content>}
         </Card>
     )
 }
