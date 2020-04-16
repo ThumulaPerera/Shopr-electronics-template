@@ -5,14 +5,18 @@ import { withRouter } from 'react-router-dom'
 import RatingDisplay from '../RatingDisplay'
 import { ITEMS_ROUTE } from '../../constants/routes'
 
-const ItemCard = ({ id, imageURL, name, description, currency, price, rating, url, history }) => {
+const ItemCard = ({ id, imageURL, name, description, currency, price, rating, url, history, tiny }) => {
     const onClick = () => {
         history.push(`${url}${ITEMS_ROUTE}/${id}`)
     }
 
     return (
         <Card onClick={onClick} raised>
-            <Image src={imageURL} wrapped ui={false} />
+            {tiny ?
+                <img src={imageURL} height='100px' style={{objectFit:'contain'}}/>
+                :
+                <Image src={imageURL} wrapped ui={false} />
+            } 
             <Card.Content>
                 <Card.Header textAlign='center'>{name}</Card.Header>
                 <Card.Description>

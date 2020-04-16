@@ -37,6 +37,7 @@ function ItemTable({ items, currency, cart, url }) {
                                         price={price}
                                         url={url}
                                         imageURL={imageURL}
+                                        tiny={true}
                                     />
                             </Table.Cell>
                             <Table.Cell verticalAlign='top'>
