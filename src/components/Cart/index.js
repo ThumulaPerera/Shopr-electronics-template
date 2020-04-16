@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { createRef } from 'react'
 import { compose } from 'redux'
 import { isLoaded, isEmpty } from 'react-redux-firebase'
 import { connect } from 'react-redux'
-import { Grid, Segment, Loader} from 'semantic-ui-react'
+import { Grid, Segment, Loader, Ref, Sticky} from 'semantic-ui-react'
 import { get } from 'lodash'
 import { firestoreConnect } from 'react-redux-firebase'
 
@@ -10,6 +10,8 @@ import ItemTable from './ItemTable'
 import SignInToContinue from '../SignInToContinue'
 
 function Cart({ auth, items, currency, cart, match }) {
+    const contextRef = createRef();
+
     if (!auth.uid){
         return <SignInToContinue icon='shopping cart'/>
     }
@@ -19,17 +21,23 @@ function Cart({ auth, items, currency, cart, match }) {
     }
 
     return (
+        <Ref innerRef={contextRef}>
         <Grid>
             <Grid.Row>
+                
                 <Grid.Column width='12'>
-                    <ItemTable items={items} currency={currency} cart={cart} url={`/${match.params.storeID}`}/>
+                    <ItemTable items={items} currency={currency} cart={cart} url={`/${match.params.storeID}`} contextRef={contextRef}/>
                 </Grid.Column>
                 <Grid.Column width='4'>
-                    <Segment basic color='black' secondary inverted size='massive' style={{height:'60rem'}}>
+                    <Sticky context={contextRef} offset={200}>
+                    <Segment basic color='black' secondary inverted size='massive' style={{height:'30rem'}}>
                     </Segment>
+                    </Sticky>
                 </Grid.Column>
-            </Grid.Row>
+            </Grid.Row>       
         </Grid>
+        </Ref>
+
     )
 }
 

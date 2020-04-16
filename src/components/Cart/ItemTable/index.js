@@ -1,14 +1,16 @@
 import React from 'react'
-import { Table, Label, Container, Segment, Card } from 'semantic-ui-react'
+import { Table, Label, Container, Segment, Sticky } from 'semantic-ui-react'
 
 import ItemCard from '../../ItemCard'
 
-function ItemTable({ items, currency, cart, url }) {
+function ItemTable({ items, currency, cart, url, contextRef }) {
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
 
     return (
-        <Table basic fixed textAlign='center'>
-            <Table.Header>
+        <Segment >
+        <Sticky context={contextRef} offset={66}>
+            <Table basic fixed textAlign='center' color='black' inverted>
+            <Table.Header >
                 <Table.Row>
                     <Table.HeaderCell>Product</Table.HeaderCell>
                     <Table.HeaderCell>Variant</Table.HeaderCell>
@@ -16,6 +18,9 @@ function ItemTable({ items, currency, cart, url }) {
                     <Table.HeaderCell>Total</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
+            </Table>
+            </Sticky>
+        <Table basic fixed textAlign='center'>
             <Table.Body>
                 {cart && cart.map((orderItem, index) => {
                     const item = items[orderItem.item]
@@ -64,6 +69,7 @@ function ItemTable({ items, currency, cart, url }) {
                 }
             </Table.Body>
         </Table>
+        </Segment>
     )
 }
 
