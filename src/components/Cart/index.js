@@ -7,7 +7,10 @@ import { get } from 'lodash'
 import { firestoreConnect } from 'react-redux-firebase'
 
 import ItemTable from './ItemTable'
+import SidePane from './SidePane'
 import SignInToContinue from '../SignInToContinue'
+
+import calculateCartTotal from '../../helpers/calculateCartTotal'
 
 function Cart({ auth, items, currency, cart, match }) {
     const contextRef = createRef();
@@ -20,18 +23,19 @@ function Cart({ auth, items, currency, cart, match }) {
         return <Loader />
     }
 
+    const cartTotal = calculateCartTotal(items, cart)
+    console.log(cartTotal)
+
     return (
         <Ref innerRef={contextRef}>
         <Grid>
             <Grid.Row>
-                
                 <Grid.Column width='12'>
                     <ItemTable items={items} currency={currency} cart={cart} url={`/${match.params.storeID}`} contextRef={contextRef}/>
                 </Grid.Column>
                 <Grid.Column width='4'>
                     <Sticky context={contextRef} offset={200}>
-                    <Segment basic color='black' secondary inverted size='massive' style={{height:'30rem'}}>
-                    </Segment>
+                        <SidePane />
                     </Sticky>
                 </Grid.Column>
             </Grid.Row>       
