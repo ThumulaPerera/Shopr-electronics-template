@@ -1,18 +1,18 @@
 import React, { createRef } from 'react'
 import { compose } from 'redux'
-import { isLoaded, isEmpty } from 'react-redux-firebase'
+import { isLoaded, isEmpty, firestoreConnect, withFirestore } from 'react-redux-firebase'
 import { connect } from 'react-redux'
 import { Grid, Segment, Loader, Ref, Sticky} from 'semantic-ui-react'
 import { get } from 'lodash'
-import { firestoreConnect } from 'react-redux-firebase'
 
 import ItemTable from './ItemTable'
 import SidePane from './SidePane'
 import SignInToContinue from '../SignInToContinue'
+import { removeItem } from '../../actions/cartActions'
 
 import calculateCartTotal from '../../helpers/calculateCartTotal'
 
-function Cart({ auth, items, currency, cart, match }) {
+function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress }) {
     const contextRef = createRef();
 
     if (!auth.uid){
@@ -28,7 +28,15 @@ function Cart({ auth, items, currency, cart, match }) {
         <Grid>
             <Grid.Row>
                 <Grid.Column width='12'>
-                    <ItemTable items={items} currency={currency} cart={cart} url={`/${match.params.storeID}`} contextRef={contextRef}/>
+                    <ItemTable 
+                        items={items} 
+                        currency={currency} 
+                        cart={cart} 
+                        url={`/${match.params.storeID}`} 
+                        removeItem={removeItem} 
+                        contextRef={contextRef} 
+                        changeInProgress={changeInProgress}    
+                    />
                 </Grid.Column>
                 <Grid.Column width='4'>
                     <Sticky context={contextRef} offset={200}>
@@ -38,15 +46,21 @@ function Cart({ auth, items, currency, cart, match }) {
             </Grid.Row>       
         </Grid>
         </Ref>
-
     )
 }
 
 const mapStateToProps = state => ({
     items : get(state.firestore.data, `sellerItems`),
     currency : get(state.firestore.data, `sellerStore.currency`),
-    cart : get(state.firestore.data, `buyer.cart`)
+    cart : get(state.firestore.data, `buyer.cart`),
+    changeInProgress : state.cart.changeInProgress
 }) 
+
+const mapDispatchToProps = (dispatch, { firestore, match, auth }) => {
+    return {
+        removeItem : (itemIndex) => dispatch(removeItem(firestore, itemIndex, match.params.storeID, auth.uid)),
+    }
+}
 
 const connectTo = ({ match, auth }) => {
     if(!(isLoaded(auth))){
@@ -60,7 +74,8 @@ const connectTo = ({ match, auth }) => {
 }
 
 export default compose(
+    withFirestore,
     connect(state => ({auth : state.firebase.auth})),
     firestoreConnect(connectTo),
-    connect(mapStateToProps)
+    connect(mapStateToProps, mapDispatchToProps)
 )(Cart)

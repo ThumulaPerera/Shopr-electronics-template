@@ -1,23 +1,28 @@
 import React from 'react'
-import { Table, Label, Container, Segment, Sticky } from 'semantic-ui-react'
+import { Table, Label, Icon, Segment, Sticky, Form, Button } from 'semantic-ui-react'
 
 import ItemCard from '../../ItemCard'
 
-function ItemTable({ items, currency, cart, url, contextRef }) {
+function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress }) {
+    const deleteFromCart = (index) => {
+        removeItem(index);
+    }
+
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
 
     return (
         <Segment >
         <Sticky context={contextRef} offset={66}>
             <Table basic fixed textAlign='center' color='black' inverted>
-            <Table.Header >
-                <Table.Row>
-                    <Table.HeaderCell>Product</Table.HeaderCell>
-                    <Table.HeaderCell>Variant</Table.HeaderCell>
-                    <Table.HeaderCell>Quantity</Table.HeaderCell>
-                    <Table.HeaderCell>Total</Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
+                <Table.Header >
+                    <Table.Row>
+                        <Table.HeaderCell>Product</Table.HeaderCell>
+                        <Table.HeaderCell>Variant</Table.HeaderCell>
+                        <Table.HeaderCell>Quantity</Table.HeaderCell>
+                        <Table.HeaderCell>Total</Table.HeaderCell>
+                        <Table.HeaderCell></Table.HeaderCell>
+                    </Table.Row>
+                </Table.Header>
             </Table>
             </Sticky>
         <Table basic fixed textAlign='center'>
@@ -62,6 +67,19 @@ function ItemTable({ items, currency, cart, url, contextRef }) {
                             </Table.Cell>
                             <Table.Cell>
                             <b>{currency} {quantity*price}</b>
+                            </Table.Cell>
+                            <Table.Cell verticalAlign='top'>
+                                <Button
+                                    onClick={() => deleteFromCart(index)}
+                                    disabled={changeInProgress}
+                                    floated='right'
+                                    icon
+                                    labelPosition='right'
+                                    negative
+                                >
+                                    remove
+                                    <Icon name='remove'/>
+                            </Button>
                             </Table.Cell>
                         </Table.Row>
                     )

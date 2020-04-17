@@ -5,8 +5,10 @@ import { reducer as toastrReducer} from 'react-redux-toastr'
 import { reducer as formReducer } from 'redux-form'
 
 import authReducer from '../reducers/authReducer'
+import cartReducer from '../reducers/cartReducer'
 
 const rootReducer = combineReducers({
+     cart: cartReducer,
      auth: authReducer,
      firebase: firebaseReducer,
      firestore: firestoreReducer, // <- needed if using firestore
