@@ -29,7 +29,7 @@ export default function getCorrespondingSubItem(item, selectedVariants){
                 }
             }
             if (!isEmpty(sub)) {
-                return { ...sub, id: i}
+                return sub.variants ? { ...sub, id: i} : {}
             }
         }
     }

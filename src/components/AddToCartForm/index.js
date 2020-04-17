@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Form, Container, Message } from "semantic-ui-react";
+import { Form, Container, Message, Divider } from "semantic-ui-react";
 import { isLoaded, isEmpty } from 'react-redux-firebase'
 import { compose } from 'redux';
 import { connect } from 'react-redux'
@@ -17,20 +17,23 @@ const integer = value => Number.isInteger(parseFloat(value)) ? undefined : 'Must
 const positive = value => parseFloat(value) > 0 ? undefined : 'Must be a positive value'
 
 function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset, signIn, handleSubmit, errors, submitFailed, anyTouched, submitting }) {
+    
+    //same variable is used again below (remove)
     let addToCartDisabled =  /* <-- give error messages indicating why add to cart is diabled */
         isEmpty(selectedSubItem) ||
+        !selectedSubItem.stock ||
         selectedSubItem.stock === 0 ||
         (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
     
     let warningList = [];
-    if (isEmpty(selectedSubItem)){
-        warningList.push('An item matching the selected variants does not exist')
+    if (isEmpty(selectedSubItem) || selectedSubItem.stock === null){
+        warningList.push('An item matching the selected variants is not available')
     }
-    if (selectedSubItem.stock){
+    else if (selectedSubItem.stock > -1){
         if(selectedSubItem.stock === 0){
             warningList.push('The item is out of stock')
         }
-        if(selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1){
+        else if(selectedValues.quantity > selectedSubItem.stock){
             warningList.push('Insufficient quantity of items in stock')
         }
     }
@@ -59,6 +62,7 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerI
 
     return (
         <Fragment>
+            <Divider/>
             <Form onSubmit={handleSubmit} warning={anyTouched && addToCartDisabled}>
                 {
                     item && item.variants && item.variants.map((variant, key) => {
@@ -148,10 +152,11 @@ const addToCart = (values, dispatch, props) => {
     const { selectedSubItem, selectedValues, buyerId, firestore, storeId, itemId, reset, signIn } = props
     console.log(selectedSubItem.stock)
 
+    //same variable is used again above (remove)
     let addToCartDisabled =  
         isEmpty(selectedSubItem) ||
+        !selectedSubItem.stock ||
         selectedSubItem.stock === 0 ||
-        !selectedValues.quantity ||
         (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
 
     if(!buyerId){

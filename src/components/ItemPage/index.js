@@ -93,18 +93,18 @@ const ItemPage = ({ item, selectedVariants, match, currency }) => {
                         <Divider hidden/>
 
                         {
-                            !isEmpty(selectedSubItem) && selectedSubItem.stock !== 0 &&
+                            !isEmpty(selectedSubItem) && selectedSubItem.stock !== null && selectedSubItem.stock !== 0 &&
                             <InStockLabel />
                         }
 
                         {
-                            !isEmpty(selectedSubItem) && selectedSubItem.stock === 0 &&
+                            !isEmpty(selectedSubItem) && !selectedSubItem.stock &&
                             <OutOfStockLabel />
                         }
 
                         <Divider hidden/>
 
-                        {isEmpty(selectedSubItem) ?
+                        {(isEmpty(selectedSubItem) || !selectedSubItem.price) ?
                             <CurrencyLabel price={basePrice} currency={currency}/>
                             :
                             <CurrencyLabel price={selectedSubItem.price} currency={currency} />
