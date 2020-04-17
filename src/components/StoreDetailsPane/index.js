@@ -28,7 +28,7 @@ function StoreDetailsPane({ storeCustomization }) {
         return (
             // <div style={{ height: '8rem' }}>
                 <Grid>
-                    <Grid.Row inverted color={color}>
+                    <Grid.Row color={color}>
                         <Grid.Column stretched width='16' verticalAlign='middle'>
                             <Logo src={logo}/>
                         </Grid.Column>
@@ -41,7 +41,7 @@ function StoreDetailsPane({ storeCustomization }) {
     return (
         // <div style={{ height: '8rem' }}>
             <Grid>
-                <Grid.Row columns='2' inverted color={color}>
+                <Grid.Row columns='2' color={color}>
                     <Grid.Column stretched width='4' verticalAlign='middle'>
                         <Logo src={logo}/>
                     </Grid.Column>
