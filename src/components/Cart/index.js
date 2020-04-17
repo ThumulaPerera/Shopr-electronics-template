@@ -23,9 +23,6 @@ function Cart({ auth, items, currency, cart, match }) {
         return <Loader />
     }
 
-    const cartTotal = calculateCartTotal(items, cart)
-    console.log(cartTotal)
-
     return (
         <Ref innerRef={contextRef}>
         <Grid>
@@ -35,7 +32,7 @@ function Cart({ auth, items, currency, cart, match }) {
                 </Grid.Column>
                 <Grid.Column width='4'>
                     <Sticky context={contextRef} offset={200}>
-                        <SidePane />
+                        <SidePane total={calculateCartTotal(items, cart)} currency={currency}/>
                     </Sticky>
                 </Grid.Column>
             </Grid.Row>       
