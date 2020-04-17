@@ -3,7 +3,7 @@ import { Table, Label, Icon, Segment, Sticky, Form, Button } from 'semantic-ui-r
 
 import ItemCard from '../../ItemCard'
 
-function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress }) {
+function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress, color }) {
     const deleteFromCart = (index) => {
         removeItem(index);
     }
@@ -13,7 +13,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
     return (
         <Segment >
         <Sticky context={contextRef} offset={66}>
-            <Table basic fixed textAlign='center' color='black' inverted>
+            <Table basic fixed textAlign='center' color={color} inverted>
                 <Table.Header >
                     <Table.Row>
                         <Table.HeaderCell>Product</Table.HeaderCell>
@@ -54,7 +54,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                 {
                                     variantArray && variantArray.map((variant, key) => (
                                         <Segment compact basic style={{padding:'0px'}} key={key}>
-                                        <Label size='large' pointing='left' color='black'>
+                                        <Label size='large' pointing='left' color={color}>
                                             {item.variants[key].title}
                                             <Label.Detail>{variant}</Label.Detail>
                                         </Label>

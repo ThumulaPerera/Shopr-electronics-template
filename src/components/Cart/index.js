@@ -12,7 +12,7 @@ import { removeItem } from '../../actions/cartActions'
 
 import calculateCartTotal from '../../helpers/calculateCartTotal'
 
-function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress }) {
+function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress, color }) {
     const contextRef = createRef();
 
     if (!auth.uid){
@@ -35,12 +35,13 @@ function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress
                         url={`/${match.params.storeID}`} 
                         removeItem={removeItem} 
                         contextRef={contextRef} 
-                        changeInProgress={changeInProgress}    
+                        changeInProgress={changeInProgress} 
+                        color={color}   
                     />
                 </Grid.Column>
                 <Grid.Column width='4'>
                     <Sticky context={contextRef} offset={200}>
-                        <SidePane total={calculateCartTotal(items, cart)} currency={currency}/>
+                        <SidePane total={calculateCartTotal(items, cart)} currency={currency} color={color}/>
                     </Sticky>
                 </Grid.Column>
             </Grid.Row>       
@@ -53,6 +54,7 @@ const mapStateToProps = state => ({
     items : get(state.firestore.data, `sellerItems`),
     currency : get(state.firestore.data, `sellerStore.currency`),
     cart : get(state.firestore.data, `buyer.cart`),
+    color : get(state.firestore.data, `sellerStore.storeCustomization.color`),
     changeInProgress : state.cart.changeInProgress
 }) 
 
