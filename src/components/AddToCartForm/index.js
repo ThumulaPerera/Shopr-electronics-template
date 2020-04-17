@@ -16,14 +16,14 @@ const required = value => value ? undefined : 'Required'
 const integer = value => Number.isInteger(parseFloat(value)) ? undefined : 'Must be an integer'
 const positive = value => parseFloat(value) > 0 ? undefined : 'Must be a positive value'
 
-function AddToCartForm({ item, selectedSubItem, selectedValues, children, buyerId, firestore, storeId, itemId, reset, signIn, handleSubmit, errors, submitFailed, anyTouched, submitting }) {
+function AddToCartForm({ item, selectedSubItem, selectedValues, children, handleSubmit, errors, submitFailed, anyTouched, submitting, stockEnabled}) {
     
     //same variable is used again below (remove)
     let addToCartDisabled =  /* <-- give error messages indicating why add to cart is diabled */
         isEmpty(selectedSubItem) ||
         !selectedSubItem.stock ||
         selectedSubItem.stock === 0 ||
-        (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
+        (selectedValues.quantity > selectedSubItem.stock && stockEnabled)
     
     let warningList = [];
     if (isEmpty(selectedSubItem) || selectedSubItem.stock === null){
@@ -149,7 +149,7 @@ function withHooks(Component) {
 const addToCart = (values, dispatch, props) => {
 
     console.log(props)
-    const { selectedSubItem, selectedValues, buyerId, firestore, storeId, itemId, reset, signIn } = props
+    const { selectedSubItem, selectedValues, buyerId, firestore, storeId, itemId, reset, signIn, stockEnabled } = props
     console.log(selectedSubItem.stock)
 
     //same variable is used again above (remove)
@@ -157,7 +157,7 @@ const addToCart = (values, dispatch, props) => {
         isEmpty(selectedSubItem) ||
         !selectedSubItem.stock ||
         selectedSubItem.stock === 0 ||
-        (selectedValues.quantity > selectedSubItem.stock && selectedSubItem.stock != -1)
+        (selectedValues.quantity > selectedSubItem.stock && stockEnabled)
 
     if(!buyerId){
         toastr.error('Sign In to add items to cart')

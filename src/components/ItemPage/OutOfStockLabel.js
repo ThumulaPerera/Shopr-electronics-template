@@ -5,7 +5,7 @@ function OutOfStockLabel() {
     return (
         <Container textAlign='center'>
             <Label color='grey' tag size='huge'>
-                Out of stock
+                out of stock
             </Label>
         </Container>
     )

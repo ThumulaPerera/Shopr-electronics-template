@@ -16,7 +16,7 @@ import calculateRating from '../../helpers/calculateRating';
 import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
 import AddToCartForm from '../AddToCartForm'
 
-const ItemPage = ({ item, selectedVariants, match, currency }) => {
+const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => {
     if (!(isLoaded(item))) {
         return <div>Loading...</div>
     }
@@ -89,11 +89,16 @@ const ItemPage = ({ item, selectedVariants, match, currency }) => {
                         ))}
                     </Grid>
 
-                    <AddToCartForm item={item} selectedSubItem={selectedSubItem} itemId={match.params.itemId}>
+                    <AddToCartForm item={item} selectedSubItem={selectedSubItem} itemId={match.params.itemId} stockEnabled={stockEnabled}>
                         <Divider hidden/>
 
                         {
-                            !isEmpty(selectedSubItem) && selectedSubItem.stock !== null && selectedSubItem.stock !== 0 &&
+                            !isEmpty(selectedSubItem) && selectedSubItem.stock !== null && selectedSubItem.stock !== 0 && stockEnabled &&
+                            <InStockLabel quantity={selectedSubItem.stock}/>
+                        }
+
+                        {
+                            !isEmpty(selectedSubItem) && selectedSubItem.stock !== null && selectedSubItem.stock !== 0 && !stockEnabled &&
                             <InStockLabel />
                         }
 
@@ -123,6 +128,7 @@ const mapStateToProps = (state, {match}) => ({
     item: get(state.firestore.data, `sellerItems.${match.params.itemId}`), 
     selectedVariants : get(state.form.addToCart, `values`),
     currency : get(state.firestore.data, `sellerStore.currency`),
+    stockEnabled : get(state.firestore.data, `sellerStore.enableInventoryManagement`),
 }) 
 
 export default compose(

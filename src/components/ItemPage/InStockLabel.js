@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container, Label } from 'semantic-ui-react'
 
-function InStockLabel() {
+function InStockLabel({quantity}) {
     return (
         <Container textAlign='center'>
             <Label color='green' tag size='huge'>
-                In stock
+                {quantity} in stock
             </Label>
         </Container>
     )
