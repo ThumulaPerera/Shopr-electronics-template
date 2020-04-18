@@ -12,7 +12,7 @@ export default function getCorrespondingSubItem(item, selectedVariants){
 
         if(!variants || variants===[]) {
             if(subItems.length === 1){
-                return subItems[0]
+                return { ...subItems[0], id: 0 }
             }
             return sub
         }
