@@ -14,6 +14,7 @@ import OutOfStockLabel from './OutOfStockLabel'
 
 import calculateRating from '../../helpers/calculateRating';
 import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
+import calculateDiscount from '../../helpers/calculateDiscount'
 import AddToCartForm from '../AddToCartForm'
 
 const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => {
@@ -26,9 +27,10 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
         return <div>No item...</div>
     }
 
-    const { name, photos, rating, description, attributes, basePrice } = item
+    const { name, photos, rating, description, attributes, basePrice, discount } = item
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
     const itemRating = rating ? calculateRating(rating) : null;
+    const baseDiscount = calculateDiscount(basePrice, discount);
     let selectedSubItem = {}
 
     if(isLoaded(selectedVariants) && isLoaded(item)){
@@ -58,6 +60,12 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
             </Grid.Column>
             <Grid.Column>
                 <Segment basic>
+                    {
+                        baseDiscount ?
+                            <Label attached='top right' size='huge' color='red'>{discount.percentage} % off</Label>
+                            :
+                            null
+                    }
                     <Header size='huge'>{name}</Header>
 
                     <RatingDisplay rating={itemRating}/>
@@ -110,9 +118,9 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
                         <Divider hidden/>
 
                         {(isEmpty(selectedSubItem) || !selectedSubItem.price) ?
-                            <CurrencyLabel price={basePrice} currency={currency}/>
+                            <CurrencyLabel price={basePrice} currency={currency} discount={discount}/>
                             :
-                            <CurrencyLabel price={selectedSubItem.price} currency={currency} />
+                            <CurrencyLabel price={selectedSubItem.price} currency={currency} discount={discount}/>
                         }
 
                         <Divider hidden/>

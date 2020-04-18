@@ -1,12 +1,18 @@
 import React from 'react'
 import { Container, Icon, Label } from 'semantic-ui-react'
 
-function CurrencyLabel({currency, price}) {
+import calculateDiscount from '../../helpers/calculateDiscount'
+
+function CurrencyLabel({currency, price, discount}) {
+    const discountValue = calculateDiscount(price, discount)
+
     return (
         <Container textAlign='center'>
             <Label color='red' tag size='huge'>
-                <Icon name='money bill alternate outline' />
-                {currency} {price}
+                {discountValue !== 0 &&
+                    <p style={{ textDecoration: 'line-through', fontSize:'1rem' }}> <Icon name='money bill alternate outline' /> {currency} {price} </p>
+                }
+                <p> <Icon name='money bill alternate outline' /> {currency} {price - discountValue} </p>            
             </Label>
         </Container>
     )

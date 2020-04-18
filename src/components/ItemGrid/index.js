@@ -46,7 +46,7 @@ const ItemGrid = (props) => {
         </Header>
             <Card.Group itemsPerRow='4'>
                 {Object.keys(items).map(itemKey => {
-                    const { name, photos, description, basePrice, rating } = items[itemKey];
+                    const { name, photos, description, basePrice, rating, discount } = items[itemKey];
 
                     const imageURL = photos ? photos[0].url : defaultImgUrl;
                     const amount = basePrice;
@@ -67,6 +67,7 @@ const ItemGrid = (props) => {
                         currency={currency}
                         price={amount}
                         rating={itemRating}
+                        discount={discount}
                         url={url}
                     />
                 })}

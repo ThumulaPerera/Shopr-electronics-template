@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Label, Icon, Segment, Sticky, Form, Button } from 'semantic-ui-react'
 
 import ItemCard from '../../ItemCard'
+import calculateDiscount from '../../../helpers/calculateDiscount'
 
 function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress, color }) {
     const deleteFromCart = (index) => {
@@ -33,7 +34,9 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                     const price = item.subItems[orderItem.subItem].price
                     const quantity = orderItem.noOfItems
 
-                    const { name, photos} = item;
+                    const { name, photos, discount } = item;
+
+                    const discountValue = calculateDiscount(price, discount)
 
                     const imageURL = photos ? photos[0].url : defaultImgUrl;
 
@@ -47,6 +50,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                         price={price}
                                         url={url}
                                         imageURL={imageURL}
+                                        discount={discount}
                                         tiny={true}
                                     />
                             </Table.Cell>
@@ -66,7 +70,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                 <b>x {quantity}</b>
                             </Table.Cell>
                             <Table.Cell>
-                            <b>{currency} {quantity*price}</b>
+                            <b>{currency} {quantity * (price - discountValue)}</b>
                             </Table.Cell>
                             <Table.Cell verticalAlign='top'>
                                 <Button
