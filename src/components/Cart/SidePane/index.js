@@ -10,7 +10,7 @@ function SidePane({ total, color, currency }) {
                 Cart Total :
             </Header>
             <Container textAlign='center'>
-                <Header as='h2'>{currency} {total}</Header>
+                <Header as='h2'>{currency} {total.toFixed(2)}</Header>
             </Container>
             <Segment color={color} secondary inverted textAlign='center' padded='very'>
                 <Button positive size='large'>CHECKOUT</Button>

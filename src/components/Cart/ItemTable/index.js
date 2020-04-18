@@ -70,7 +70,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                 <b>x {quantity}</b>
                             </Table.Cell>
                             <Table.Cell>
-                            <b>{currency} {quantity * (price - discountValue)}</b>
+                            <b>{currency} {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}</b>
                             </Table.Cell>
                             <Table.Cell verticalAlign='top'>
                                 <Button
