@@ -24,7 +24,7 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, handle
     
     let warningList = [];
     if (isEmpty(selectedSubItem) || selectedSubItem.stock === null){
-        warningList.push('An item matching the selected variants is not available')
+        warningList.push('An item matching the selection is not available')
     }
     else if (selectedSubItem.stock > -1){
         if(selectedSubItem.stock === 0){
