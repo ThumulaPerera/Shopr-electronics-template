@@ -19,7 +19,7 @@ function SellerApp() {
 
     return (
             <div className="App" ref={contextRef}>
-                <StoreDetailsPane />
+                {/* <StoreDetailsPane /> */}
                 <NavBar contextRef={contextRef} />
                 <ReduxToastr />
                 <Switch>
