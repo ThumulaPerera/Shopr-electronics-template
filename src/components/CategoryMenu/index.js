@@ -14,8 +14,6 @@ class CategoryMenu extends Component {
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-    contextRef = createRef();
-
     render() {
         const { activeItem } = this.state
         const { categories, contextRef, url, storeCustomization } = this.props
@@ -37,14 +35,14 @@ class CategoryMenu extends Component {
         return (
             <Sticky
                 context={contextRef}
-                offset={65}
+                offset={80}
             >
-                <Segment padded inverted basic color={color}>
-                    <Segment textAlign='center' size='large' inverted color={color}>
+                <Segment padded basic>
+                    <Segment textAlign='center' size='large' basic>
                         Categories
                     </Segment>
                     <div style={{ overflow: 'auto', maxHeight: 500 }}>
-                        <Menu pointing basic secondary vertical inverted color={color} style={{border:'0px'}}>
+                        <Menu pointing basic secondary vertical color={color}>
                             <Link to={`${url}/`}>
                                 <Menu.Item
                                     as='p'
