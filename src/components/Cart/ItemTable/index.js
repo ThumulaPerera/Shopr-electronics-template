@@ -15,7 +15,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
     return (
         <Segment basic>
         <Sticky context={contextRef} offset={75}>
-            <Table basic='very' fixed textAlign='center' color={color}>
+            <Table fixed textAlign='center' color={color}>
                 <Table.Header >
                     <Table.Row>
                         <Table.HeaderCell>Product</Table.HeaderCell>
@@ -76,19 +76,6 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                             <Table.Cell>
                             <b>{currency} {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}</b>
                             </Table.Cell>
-                            {/* <Table.Cell verticalAlign='top'>
-                                <Button
-                                    onClick={() => deleteFromCart(index)}
-                                    disabled={changeInProgress}
-                                    floated='right'
-                                    icon
-                                    labelPosition='right'
-                                    negative
-                                >
-                                    remove
-                                    <Icon name='remove'/>
-                            </Button>
-                            </Table.Cell> */}
                         </Table.Row>
                     )
                 })
