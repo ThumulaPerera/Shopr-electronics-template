@@ -2,6 +2,7 @@ import React from 'react'
 import { Table, Label, Icon, Segment, Sticky, Form, Button } from 'semantic-ui-react'
 
 import ItemCard from '../../ItemCard'
+import ShowVariantsAccordian from '../ShowVariantsAccordian'
 import calculateDiscount from '../../../helpers/calculateDiscount'
 
 function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress, color }) {
@@ -12,22 +13,23 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
 
     return (
-        <Segment >
-        <Sticky context={contextRef} offset={66}>
-            <Table basic fixed textAlign='center' color={color} inverted>
+        <Segment basic>
+        <Sticky context={contextRef} offset={75}>
+            <Table basic='very' fixed textAlign='center' color={color}>
                 <Table.Header >
                     <Table.Row>
                         <Table.HeaderCell>Product</Table.HeaderCell>
-                        <Table.HeaderCell>Variant</Table.HeaderCell>
+                        <Table.HeaderCell>Variants and Attributes</Table.HeaderCell>
                         <Table.HeaderCell>Quantity</Table.HeaderCell>
                         <Table.HeaderCell>Total</Table.HeaderCell>
-                        <Table.HeaderCell></Table.HeaderCell>
+                        {/* <Table.HeaderCell></Table.HeaderCell> */}
                     </Table.Row>
                 </Table.Header>
             </Table>
-            </Sticky>
-        <Table basic fixed textAlign='center'>
-            <Table.Body>
+        </Sticky>
+        <div style={{maxHeight:'70vh', overflowY:'scroll', marginTop:'.5rem'}}>
+        <Table basic='very' fixed textAlign='center' >
+            <Table.Body >
                 {cart && cart.map((orderItem, index) => {
                     const item = items[orderItem.item]
                     const variantArray = item.subItems[orderItem.subItem].variants
@@ -42,7 +44,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
 
                     return (
                         <Table.Row key={index}>
-                            <Table.Cell>
+                            <Table.Cell style={{padding : '1rem'}}>
                                     <ItemCard 
                                         id={orderItem.item}
                                         name={name}
@@ -54,25 +56,27 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                         tiny={true}
                                     />
                             </Table.Cell>
-                            <Table.Cell verticalAlign='top'>
-                                {
-                                    variantArray && variantArray.map((variant, key) => (
-                                        <Segment compact basic style={{padding:'0px'}} key={key} textAlign='left'>
-                                        <Label size='large' pointing='left' color={color} >
-                                            {item.variants[key].title}
-                                            <Label.Detail>{variant}</Label.Detail>
-                                        </Label>
-                                        </Segment>
-                                    ))
-                                }
+                            <Table.Cell verticalAlign='top' textAlign='left'>
+                                <ShowVariantsAccordian variantArray={variantArray} item={item}/>
                             </Table.Cell>
                             <Table.Cell>
-                                <b>x {quantity}</b>
+                                <p><b>x {quantity}</b></p>
+                                <Button
+                                    onClick={() => deleteFromCart(index)}
+                                    disabled={changeInProgress}
+                                    icon
+                                    labelPosition='right'
+                                    basic
+                                    negative
+                                >
+                                    Remove
+                                    <Icon name='remove'/>
+                                </Button>
                             </Table.Cell>
                             <Table.Cell>
                             <b>{currency} {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}</b>
                             </Table.Cell>
-                            <Table.Cell verticalAlign='top'>
+                            {/* <Table.Cell verticalAlign='top'>
                                 <Button
                                     onClick={() => deleteFromCart(index)}
                                     disabled={changeInProgress}
@@ -84,13 +88,14 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                     remove
                                     <Icon name='remove'/>
                             </Button>
-                            </Table.Cell>
+                            </Table.Cell> */}
                         </Table.Row>
                     )
                 })
                 }
             </Table.Body>
         </Table>
+        </div>
         </Segment>
     )
 }
