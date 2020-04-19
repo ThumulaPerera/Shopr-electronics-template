@@ -41,7 +41,12 @@ function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress
                 </Grid.Column>
                 <Grid.Column width='4'>
                     <Sticky context={contextRef} offset={200}>
-                        <SidePane total={calculateCartTotal(items, cart)} currency={currency} color={color}/>
+                        <SidePane 
+                            total={calculateCartTotal(items, cart)} 
+                            currency={currency} 
+                            color={color}
+                            noOfItems={cart ? cart.length : 0}    
+                            />
                     </Sticky>
                 </Grid.Column>
             </Grid.Row>       

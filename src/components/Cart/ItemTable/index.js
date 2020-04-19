@@ -18,11 +18,10 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
             <Table fixed textAlign='center' color={color}>
                 <Table.Header >
                     <Table.Row>
-                        <Table.HeaderCell>Product</Table.HeaderCell>
+                        <Table.HeaderCell>Item</Table.HeaderCell>
                         <Table.HeaderCell>Variants and Attributes</Table.HeaderCell>
                         <Table.HeaderCell>Quantity</Table.HeaderCell>
                         <Table.HeaderCell>Total</Table.HeaderCell>
-                        {/* <Table.HeaderCell></Table.HeaderCell> */}
                     </Table.Row>
                 </Table.Header>
             </Table>
