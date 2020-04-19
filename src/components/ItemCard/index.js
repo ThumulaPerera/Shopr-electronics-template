@@ -12,6 +12,7 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
     }
 
     const discountValue = calculateDiscount(price, discount)
+    const descriptionMaxLength = 110;
 
     return (
         <Card onClick={onClick} raised>
@@ -28,9 +29,9 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
             } 
             <Card.Content>
                 <Card.Header textAlign='center'>{name}</Card.Header>
-                <Card.Description>
-                    {description}
-                </Card.Description>
+                {description && <Card.Description>
+                    {description.length > descriptionMaxLength ? `${description.substring(0, descriptionMaxLength)}...` : description}
+                </Card.Description>}
             </Card.Content>
             <Card.Content extra textAlign='center' >
                 <span style={{ color: 'red' }}>  
