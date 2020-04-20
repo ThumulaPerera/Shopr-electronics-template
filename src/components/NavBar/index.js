@@ -8,7 +8,7 @@ import SignedInMenu from './SignedInMenu'
 import SignedOutMenu from './SignedOutMenu'
 
 class NavBar extends Component {
-  state = { activeItem: 'Browse Products' }
+  state = { activeItem: '' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 

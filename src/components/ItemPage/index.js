@@ -51,7 +51,7 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
                             </div>)
                         )}    
                     </Carousel>
-                    {!photos &&
+                    {(!photos || photos.length===0) &&
                         <div >
                             <Image src={defaultImgUrl} />
                         </div>

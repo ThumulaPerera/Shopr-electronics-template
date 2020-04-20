@@ -12,7 +12,7 @@ export default function calculateRating(reviews){
 
 /* calculate rating using rating */
 export default function calculateRating({totalRating, ratingCount}){
-    return totalRating / ratingCount
+    return ratingCount ? totalRating / ratingCount : 0
     //just a float value is returned here
     //the rendering component automatically maps that float to an int by flooring
 }

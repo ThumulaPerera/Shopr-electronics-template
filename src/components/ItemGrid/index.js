@@ -48,7 +48,7 @@ const ItemGrid = (props) => {
                 {Object.keys(items).map(itemKey => {
                     const { name, photos, description, basePrice, rating, discount } = items[itemKey];
 
-                    const imageURL = photos ? photos[0].url : defaultImgUrl;
+                    const imageURL = photos && photos[0] ? photos[0].url : defaultImgUrl;
                     const amount = basePrice;
                     const itemRating = rating ? calculateRating(rating) : null;
 

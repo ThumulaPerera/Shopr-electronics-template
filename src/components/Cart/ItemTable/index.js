@@ -4,6 +4,7 @@ import { Table, Label, Icon, Segment, Sticky, Form, Button } from 'semantic-ui-r
 import ItemCard from '../../ItemCard'
 import ShowVariantsAccordian from '../ShowVariantsAccordian'
 import calculateDiscount from '../../../helpers/calculateDiscount'
+import calculateRating from '../../../helpers/calculateRating'
 
 function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress, color }) {
     const deleteFromCart = (index) => {
@@ -35,11 +36,11 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                     const price = item.subItems[orderItem.subItem].price
                     const quantity = orderItem.noOfItems
 
-                    const { name, photos, discount } = item;
+                    const { name, photos, discount, rating } = item;
 
                     const discountValue = calculateDiscount(price, discount)
-
-                    const imageURL = photos ? photos[0].url : defaultImgUrl;
+                    const itemRating = rating ? calculateRating(rating) : null;
+                    const imageURL = photos && photos[0] ? photos[0].url : defaultImgUrl;
 
                     return (
                         <Table.Row key={index}>
@@ -52,6 +53,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                                         url={url}
                                         imageURL={imageURL}
                                         discount={discount}
+                                        rating={itemRating}
                                         tiny={true}
                                     />
                             </Table.Cell>

@@ -41,7 +41,7 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
                     <p> <Icon name='money bill alternate outline' /> {currency} {(price - discountValue).toFixed(2)} </p>
                 </span>
             </Card.Content>
-            {rating && <Card.Content extra textAlign='center'>
+            {rating!==null && <Card.Content extra textAlign='center'>
                 <RatingDisplay rating={rating} />
             </Card.Content>}
         </Card>
