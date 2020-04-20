@@ -15,7 +15,7 @@ class ItemTable extends Component {
 
     render(){
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
-    const { items, currency, cart, url, contextRef, editItemQuantity, changeInProgress, color } = this.props
+    const { items, currency, cart, url, contextRef, editItemQuantity, changeInProgress, color, stockEnabled } = this.props
     return (
         <Segment basic>
         <Sticky context={contextRef} offset={75}>
@@ -37,6 +37,7 @@ class ItemTable extends Component {
                     const item = items[orderItem.item]
                     const variantArray = item.subItems[orderItem.subItem].variants
                     const price = item.subItems[orderItem.subItem].price
+                    const stock = item.subItems[orderItem.subItem].stock
                     const quantity = orderItem.noOfItems
 
                     const { name, photos, discount, rating } = item;
@@ -69,10 +70,11 @@ class ItemTable extends Component {
                                     index={index} 
                                     editItemQuantity={editItemQuantity}
                                     currentQuantity={quantity}
+                                    stockEnabled={stockEnabled}
+                                    stock={stock}
                                 />  
                                 <br/>
                                 <Button
-                                    as='a'
                                     onClick={() => this.deleteFromCart(index)}
                                     disabled={changeInProgress}
                                     basic

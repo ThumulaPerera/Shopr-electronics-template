@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Accordion, Button, Icon } from 'semantic-ui-react'
-// import {Form,Input} from 'semantic-ui-react-form-validator'
+import { Accordion, Button, Icon, Grid } from 'semantic-ui-react'
+import {Form,Input} from 'semantic-ui-react-form-validator'
 
 
 export default class QuantityForm extends Component {
@@ -31,6 +31,19 @@ export default class QuantityForm extends Component {
 
     render() {
         const { quantity, activeIndex } = this.state
+        const { stockEnabled, stock } = this.props
+
+        let validators = ['required', 'isNumber', 'isPositive'] 
+        let errorMessages = [
+            'quantity is required', 
+            'must be an integer', 
+            'must be positive'
+        ]
+        if(stockEnabled){
+            const max = stock ? stock : 0
+            validators.push(`maxNumber:${max}`)
+            errorMessages.push('insufficient quantity in stock')
+        }
 
         return (
             
@@ -46,17 +59,26 @@ export default class QuantityForm extends Component {
                     Change Quantity
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === 0}>
-                <Form size='small' onSubmit={this.handleSubmit}>
-                    <Form.Group>
-                        <Form.Input
-                            placeholder='quantity'
-                            name='quantity'
-                            value={quantity}
-                            onChange={this.handleChange}
-                            type='number'
-                        />
-                        <Form.Button size='tiny' content='Change' />
-                    </Form.Group>
+                <Form onSubmit={this.handleSubmit} >
+                    <Grid>
+                        <Grid.Row verticalAlign='middle'>
+                            <Grid.Column width='10'>
+                                <Input
+                                    placeholder='quantity'
+                                    name='quantity'
+                                    value={quantity}
+                                    onChange={this.handleChange}
+                                    width='16'
+                                    type='number'
+                                    validators={validators}
+                                    errorMessages={errorMessages}
+                                />
+                            </Grid.Column>
+                            <Grid.Column width='6'>
+                                <Button floated='right' content='Change' />
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                 </Form>
                 </Accordion.Content>
             </Accordion>

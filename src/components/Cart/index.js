@@ -12,7 +12,7 @@ import { removeItem, editItemQuantity } from '../../actions/cartActions'
 
 import calculateCartTotal from '../../helpers/calculateCartTotal'
 
-function Cart({ auth, items, currency, cart, match, removeItem, editItemQuantity, changeInProgress, color }) {
+function Cart({ auth, items, currency, cart, match, removeItem, editItemQuantity, changeInProgress, color, stockEnabled }) {
     const contextRef = createRef();
 
     if (!auth.uid){
@@ -38,6 +38,7 @@ function Cart({ auth, items, currency, cart, match, removeItem, editItemQuantity
                         contextRef={contextRef} 
                         changeInProgress={changeInProgress} 
                         color={color}   
+                        stockEnabled={stockEnabled}
                     />
                 </Grid.Column>
                 <Grid.Column width='4'>
@@ -59,6 +60,7 @@ function Cart({ auth, items, currency, cart, match, removeItem, editItemQuantity
 const mapStateToProps = state => ({
     items : get(state.firestore.data, `sellerItems`),
     currency : get(state.firestore.data, `sellerStore.currency`),
+    stockEnabled : get(state.firestore.data, `sellerStore.enableInventoryManagement`),
     cart : get(state.firestore.data, `buyer.cart`),
     color : get(state.firestore.data, `sellerStore.storeCustomization.color`),
     changeInProgress : state.cart.changeInProgress
