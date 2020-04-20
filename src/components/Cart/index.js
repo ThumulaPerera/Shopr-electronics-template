@@ -8,11 +8,11 @@ import { get } from 'lodash'
 import ItemTable from './ItemTable'
 import SidePane from './SidePane'
 import SignInToContinue from '../SignInToContinue'
-import { removeItem } from '../../actions/cartActions'
+import { removeItem, editItemQuantity } from '../../actions/cartActions'
 
 import calculateCartTotal from '../../helpers/calculateCartTotal'
 
-function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress, color }) {
+function Cart({ auth, items, currency, cart, match, removeItem, editItemQuantity, changeInProgress, color }) {
     const contextRef = createRef();
 
     if (!auth.uid){
@@ -34,6 +34,7 @@ function Cart({ auth, items, currency, cart, match, removeItem, changeInProgress
                         cart={cart} 
                         url={`/${match.params.storeID}`} 
                         removeItem={removeItem} 
+                        editItemQuantity={editItemQuantity}
                         contextRef={contextRef} 
                         changeInProgress={changeInProgress} 
                         color={color}   
@@ -66,6 +67,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, { firestore, match, auth }) => {
     return {
         removeItem : (itemIndex) => dispatch(removeItem(firestore, itemIndex, match.params.storeID, auth.uid)),
+        editItemQuantity : (itemIndex, newQuantity) => dispatch(editItemQuantity(firestore, itemIndex, newQuantity, match.params.storeID, auth.uid)) 
     }
 }
 

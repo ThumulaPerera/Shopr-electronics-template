@@ -1,18 +1,21 @@
-import React from 'react'
-import { Table, Label, Icon, Segment, Sticky, Form, Button } from 'semantic-ui-react'
+import React, {Component} from 'react'
+import { Table, Form, Icon, Segment, Sticky, Button } from 'semantic-ui-react'
 
 import ItemCard from '../../ItemCard'
 import ShowVariantsAccordian from '../ShowVariantsAccordian'
+import QuantityForm from './QuantityForm'
 import calculateDiscount from '../../../helpers/calculateDiscount'
 import calculateRating from '../../../helpers/calculateRating'
 
-function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeInProgress, color }) {
-    const deleteFromCart = (index) => {
-        removeItem(index);
+class ItemTable extends Component {
+
+    deleteFromCart = (index) => {
+        this.props.removeItem(index);
     }
 
+    render(){
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
-
+    const { items, currency, cart, url, contextRef, editItemQuantity, changeInProgress, color } = this.props
     return (
         <Segment basic>
         <Sticky context={contextRef} offset={75}>
@@ -60,18 +63,23 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
                             <Table.Cell verticalAlign='top' textAlign='left'>
                                 <ShowVariantsAccordian variantArray={variantArray} item={item}/>
                             </Table.Cell>
-                            <Table.Cell>
+                            <Table.Cell textAlign='center'>
                                 <p><b>x {quantity}</b></p>
+                                <QuantityForm 
+                                    index={index} 
+                                    editItemQuantity={editItemQuantity}
+                                    currentQuantity={quantity}
+                                />  
+                                <br/>
                                 <Button
-                                    onClick={() => deleteFromCart(index)}
+                                    as='a'
+                                    onClick={() => this.deleteFromCart(index)}
                                     disabled={changeInProgress}
-                                    icon
-                                    labelPosition='right'
                                     basic
                                     negative
+                                    fluid
                                 >
-                                    Remove
-                                    <Icon name='remove'/>
+                                    Remove from cart
                                 </Button>
                             </Table.Cell>
                             <Table.Cell>
@@ -86,6 +94,7 @@ function ItemTable({ items, currency, cart, url, contextRef, removeItem, changeI
         </div>
         </Segment>
     )
+    }  
 }
 
 export default ItemTable
