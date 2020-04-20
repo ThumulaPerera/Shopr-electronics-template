@@ -1,7 +1,10 @@
 import React, { createRef } from 'react';
 import { Switch, Route, useRouteMatch, useParams } from 'react-router-dom';
 import { compose } from 'redux';
+import { get } from 'lodash';
+import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 import ReduxToastr from 'react-redux-toastr'
 
 import NavBar from '../NavBar';
@@ -10,12 +13,21 @@ import MyPurchases from '../MyPurchases';
 import Cart from '../Cart';
 import Profile from '../Profile';
 import ItemPage from '../ItemPage';
+import NotFoundPage from '../NotFoundPage'
 import StoreDetailsPane from '../StoreDetailsPane';
 import * as ROUTES from '../../constants/routes';
 
-function SellerApp() {
+function SellerApp({ sellerStore }) {
     const contextRef = createRef();
     const { path } = useRouteMatch();
+
+    if(!isLoaded(sellerStore)){
+        return <div>Loading...</div>
+    }
+
+    if(isEmpty(sellerStore)){
+        return <NotFoundPage />
+    }
 
     return (
             <div className="App" ref={contextRef}>
@@ -60,8 +72,13 @@ const connectTo = ({ match }) => [
     },
 ]
 
+const mapStateToProps = (state) => ({
+    sellerStore : get(state.firestore.ordered, 'sellerStore')
+}) 
+
 export default compose(
     firestoreConnect(connectTo),
+    connect(mapStateToProps),
 )(SellerApp);
 
 
