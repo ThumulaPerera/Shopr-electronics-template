@@ -45,6 +45,11 @@ export const addToCart = (values, dispatch, props) => {
         return cart ? cart : []
     })
     .then(cart => {
+        cart.forEach(item => {
+            if(orderItem.item === item.item && orderItem.subItem === item.subItem){
+                throw new Error("A similar item is already in cart. Change its quantity instead")
+            }
+        });
         cart.push(orderItem)
         console.log(cart)
         return firestore
