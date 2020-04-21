@@ -8,7 +8,7 @@ function CurrencyLabel({currency, price, discount}) {
 
     return (
         <Container textAlign='center'>
-            <Label color='red' tag size='huge'>
+            <Label color='red' tag size='large'>
                 {discountValue !== 0 &&
                     <p style={{ textDecoration: 'line-through', fontSize:'1rem' }}> <Icon name='money bill alternate outline' /> {currency} {price.toFixed(2)} </p>
                 }
