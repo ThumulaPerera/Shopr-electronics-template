@@ -17,7 +17,7 @@ import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
 import calculateDiscount from '../../helpers/calculateDiscount'
 import AddToCartForm from '../AddToCartForm'
 
-const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => {
+const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled, color }) => {
     if (!(isLoaded(item))) {
         return <div>Loading...</div>
     }
@@ -39,9 +39,9 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
     }
 
     return(
-    <Segment>
-        <Grid columns={2} divided>
-            <Grid.Column>
+    <Segment basic padded>
+        <Grid columns={3} relaxed='very'>
+             <Grid.Column width='7'>
                 <Segment basic>
                     <Carousel showArrows={true} infiniteLoop={true} showIndicators={false} >
                         {photos && photos.map((photo, key) => (
@@ -58,7 +58,7 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
                     }
                 </Segment>
             </Grid.Column>
-            <Grid.Column>
+            <Grid.Column width='5'>
                 <Segment basic>
                     {
                         baseDiscount ?
@@ -84,9 +84,9 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
                         {attributes && attributes.map(({ title, attribute }, key) => (
                             <Grid.Row key={key}>
                                 <Grid.Column textAlign='right' width={4}>
-                                    <p>
+                                    <p><b>
                                         {title} :
-                            </p>
+                                    </b></p>
                                 </Grid.Column>
                                 <Grid.Column textAlign='left' width={12}>
                                     <p>
@@ -95,9 +95,12 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
                                 </Grid.Column>
                             </Grid.Row>
                         ))}
-                    </Grid>
-
-                    <AddToCartForm item={item} selectedSubItem={selectedSubItem} itemId={match.params.itemId} stockEnabled={stockEnabled}>
+                    </Grid>                                 
+                </Segment>
+            </Grid.Column>
+            <Grid.Column width='4'>
+            <Segment color={color}>
+                <AddToCartForm item={item} selectedSubItem={selectedSubItem} itemId={match.params.itemId} stockEnabled={stockEnabled}>
                         <Divider hidden/>
 
                         {
@@ -124,9 +127,8 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled }) => 
                         }
 
                         <Divider hidden/>
-                    </AddToCartForm>               
-                      
-                </Segment>
+                    </AddToCartForm>
+                    </Segment>
             </Grid.Column>
         </Grid>
     </Segment>
@@ -137,6 +139,7 @@ const mapStateToProps = (state, {match}) => ({
     selectedVariants : get(state.form.addToCart, `values`),
     currency : get(state.firestore.data, `sellerStore.currency`),
     stockEnabled : get(state.firestore.data, `sellerStore.enableInventoryManagement`),
+    color : get(state.firestore.data, `sellerStore.storeCustomization.color`),
 }) 
 
 export default compose(

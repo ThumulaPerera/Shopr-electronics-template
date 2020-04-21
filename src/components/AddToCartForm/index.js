@@ -59,7 +59,6 @@ function AddToCartForm({ item, selectedSubItem, selectedValues, children, handle
 
     return (
         <Fragment>
-            <Divider/>
             <Form onSubmit={handleSubmit} warning={anyTouched && addToCartDisabled}>
                 {
                     item && item.variants && item.variants.map((variant, key) => {
