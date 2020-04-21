@@ -15,7 +15,7 @@ class ItemTable extends Component {
 
     render(){
     const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg'
-    const { items, currency, cart, url, contextRef, editItemQuantity, changeInProgress, color, stockEnabled } = this.props
+    const { items, currency, cart, url, contextRef, removeItem, editItemQuantity, changeInProgress, color, stockEnabled } = this.props
     return (
         <Segment basic>
         <Sticky context={contextRef} offset={75}>
@@ -69,6 +69,7 @@ class ItemTable extends Component {
                                 <QuantityForm 
                                     index={index} 
                                     editItemQuantity={editItemQuantity}
+                                    removeItem={removeItem}
                                     currentQuantity={quantity}
                                     stockEnabled={stockEnabled}
                                     stock={stock}

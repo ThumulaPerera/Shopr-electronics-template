@@ -13,8 +13,12 @@ export default class QuantityForm extends Component {
 
     handleSubmit = () => {
         const { quantity } = this.state
-        const { index } = this.props
-        this.props.editItemQuantity(index, quantity)
+        const { index, editItemQuantity, removeItem, currentQuantity } = this.props
+        if (quantity == 0){
+            removeItem(index)
+        } else {
+            editItemQuantity(index, quantity)
+        }
         this.setState({ activeIndex: -1 })
     }
 
