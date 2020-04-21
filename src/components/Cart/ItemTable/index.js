@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Table, Form, Icon, Segment, Sticky, Button } from 'semantic-ui-react'
+import { Table, Container, Icon, Segment, Sticky, Button, Message, } from 'semantic-ui-react'
 
 import ItemCard from '../../ItemCard'
 import ShowVariantsAccordian from '../ShowVariantsAccordian'
@@ -88,9 +88,44 @@ class ItemTable extends Component {
                                 >
                                     Remove from cart
                                 </Button>
+
+                                {stockEnabled && stock ?
+                                    <Container textAlign='justified' style={{marginTop:'1rem'}}>
+                                    <Message 
+                                        warning 
+                                        icon='warning' 
+                                        hidden={stock >= quantity}
+                                        header='Selected quantity no longer in stock'
+                                        content={`Only ${stock} item/s are available in stock. Change the quantity or remove this item from cart before checking out`}
+                                    />
+                                    </Container>
+                                    :
+                                    <Container textAlign='justified' style={{marginTop:'1rem'}}>
+                                    <Message 
+                                        warning 
+                                        icon='warning' 
+                                        hidden={stock >= quantity}
+                                        header='Item no longer in stock'
+                                        content='Remove this item from cart before checking out'
+                                    />
+                                    </Container>
+
+                                }
+
+                                {(!stockEnabled && !stock) ?
+                                    <Container textAlign='justified' style={{marginTop:'1rem'}}>
+                                    <Message warning icon='warning'>
+                                        <Message.Header>Item no longer in stock</Message.Header>
+                                        <p>Remove this item from cart before checking out</p>
+                                    </Message>
+                                    </Container>
+                                    :
+                                    null
+                                }
+
                             </Table.Cell>
                             <Table.Cell>
-                            <b>{currency} {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}</b>
+                                <b>{currency} {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}</b>                            
                             </Table.Cell>
                         </Table.Row>
                     )
