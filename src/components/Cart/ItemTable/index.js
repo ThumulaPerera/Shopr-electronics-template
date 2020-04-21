@@ -10,7 +10,10 @@ import calculateRating from '../../../helpers/calculateRating'
 class ItemTable extends Component {
 
     deleteFromCart = (index) => {
-        this.props.removeItem(index);
+        const confirmed = window.confirm('Remove item from cart?')
+        if (confirmed) {
+            this.props.removeItem(index);
+        }
     }
 
     render(){
