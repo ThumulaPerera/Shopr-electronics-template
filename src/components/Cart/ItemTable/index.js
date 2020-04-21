@@ -76,6 +76,7 @@ class ItemTable extends Component {
                                     currentQuantity={quantity}
                                     stockEnabled={stockEnabled}
                                     stock={stock}
+                                    changeInProgress={changeInProgress}
                                 />  
                                 <br/>
                                 <Button

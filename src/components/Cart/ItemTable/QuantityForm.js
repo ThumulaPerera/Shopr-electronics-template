@@ -41,7 +41,7 @@ export default class QuantityForm extends Component {
 
     render() {
         const { quantity, activeIndex, open } = this.state
-        const { stockEnabled, stock, currentQuantity } = this.props
+        const { stockEnabled, stock, currentQuantity, changeInProgress } = this.props
 
         let validators = ['required', 'isNumber', 'isPositive']
         let errorMessages = [
@@ -85,7 +85,7 @@ export default class QuantityForm extends Component {
                                     />
                                 </Grid.Column>
                                 <Grid.Column width='6'>
-                                    <Button floated='right' content='Change' disabled={quantity===currentQuantity}/>
+                                    <Button floated='right' content='Change' disabled={quantity===currentQuantity || changeInProgress}/>
                                 </Grid.Column>
                             </Grid.Row>
                         </Grid>
