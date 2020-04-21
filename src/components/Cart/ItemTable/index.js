@@ -89,7 +89,7 @@ class ItemTable extends Component {
                                     Remove from cart
                                 </Button>
 
-                                {stockEnabled && stock ?
+                                {stockEnabled && stock &&
                                     <Container textAlign='justified' style={{marginTop:'1rem'}}>
                                     <Message 
                                         warning 
@@ -99,7 +99,8 @@ class ItemTable extends Component {
                                         content={`Only ${stock} item/s are available in stock. Change the quantity or remove this item from cart before checking out`}
                                     />
                                     </Container>
-                                    :
+                                }
+                                {stockEnabled && !stock &&
                                     <Container textAlign='justified' style={{marginTop:'1rem'}}>
                                     <Message 
                                         warning 
@@ -111,16 +112,15 @@ class ItemTable extends Component {
                                     </Container>
 
                                 }
-
-                                {(!stockEnabled && !stock) ?
+                                {!stockEnabled && !stock &&
                                     <Container textAlign='justified' style={{marginTop:'1rem'}}>
-                                    <Message warning icon='warning'>
-                                        <Message.Header>Item no longer in stock</Message.Header>
-                                        <p>Remove this item from cart before checking out</p>
-                                    </Message>
+                                    <Message 
+                                        warning 
+                                        icon='warning'
+                                        header='Item no longer in stock'
+                                        content='Remove this item from cart before checking out'
+                                    />
                                     </Container>
-                                    :
-                                    null
                                 }
 
                             </Table.Cell>

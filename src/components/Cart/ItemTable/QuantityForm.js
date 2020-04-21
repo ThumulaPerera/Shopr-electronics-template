@@ -53,6 +53,11 @@ export default class QuantityForm extends Component {
             const max = stock ? stock : 0
             validators.push(`maxNumber:${max}`)
             errorMessages.push('insufficient quantity in stock')
+        } else {
+            if(!stock){
+                validators.push('maxNumber:0')
+                errorMessages.push('out of stock')
+            }
         }
 
         return (
