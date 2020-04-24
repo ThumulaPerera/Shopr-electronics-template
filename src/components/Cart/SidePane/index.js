@@ -4,20 +4,25 @@ import { Grid, Segment, Header, Icon, Container, Button } from 'semantic-ui-reac
 
 function SidePane({ total, color, currency, noOfItems }) {
     return (
-        <Segment basic size='massive' >
-            <Header as='h2' color={color}>
+        <Segment size='massive' style={{ marginRight:'2rem' }} color={color}>
+            <Header as='h2' textAlign='center'>
+                Cart Summary
+            </Header>
+            <Header as='h3'>
                 {noOfItems} {noOfItems === 1 ? 'item in cart' : 'items in cart'}
             </Header>
-            <Header as='h6' color={color}>
-                <Icon name='cart' />
+            <Header as='h6' >
+                <Icon name='cart' color={color}/>
                 Cart Total :
             </Header>
             <Container textAlign='center'>
                 <Header as='h2'>{currency} {total.toFixed(2)}</Header>
             </Container>
-            <Segment basic padded='very' textAlign='center' >
-                <Button positive size='large'>CHECKOUT</Button>
-            </Segment>
+            {/* <Segment basic padded='very' textAlign='center' > */}
+            <Container style={{ marginTop:'3rem' }}>
+                <Button fluid positive size='large'>CHECKOUT</Button>
+            </Container>
+            {/* </Segment> */}
         </Segment>
     )
 }
