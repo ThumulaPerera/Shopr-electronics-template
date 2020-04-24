@@ -47,7 +47,7 @@ const ItemPage = ({ item, selectedVariants, match, currency, stockEnabled, color
                         {photos && photos.map((photo, key) => (
                             <div key={key}>
                                 <img src={photo.url} />
-                                <p className="legend">{photo.title}</p>
+                                {/* <p className="legend">{photo.title}</p> */}
                             </div>)
                         )}    
                     </Carousel>

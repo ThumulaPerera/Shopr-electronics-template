@@ -12,7 +12,7 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
     }
 
     const discountValue = calculateDiscount(price, discount)
-    const descriptionMaxLength = 110;
+    const descriptionMaxLength = 100;
 
     return (
         <Card onClick={onClick} raised>
@@ -36,7 +36,7 @@ const ItemCard = ({ id, imageURL, name, description, currency, price, rating, ur
             <Card.Content extra textAlign='center' >
                 <span style={{ color: 'red' }}>  
                     {discountValue!==0 && 
-                        <p style={{textDecoration:'line-through' , fontSize:'.9rem'}}> <Icon name='money bill alternate outline' /> {currency} {price.toFixed(2)} </p>
+                        <p style={{textDecoration:'line-through' , fontSize:'.9rem', color: 'black'}}> <Icon name='money bill alternate outline' /> {currency} {price.toFixed(2)} </p>
                     }
                     <p> <Icon name='money bill alternate outline' /> {currency} {(price - discountValue).toFixed(2)} </p>
                 </span>

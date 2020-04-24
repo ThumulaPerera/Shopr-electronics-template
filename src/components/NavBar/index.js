@@ -24,9 +24,19 @@ class NavBar extends Component {
     return (
         <Sticky context={contextRef}>
           {auth.uid ? 
-            <SignedInMenu activeItem={this.state.activeItem} handleItemClick={this.handleItemClick} color={color}/>  
+            <SignedInMenu 
+              activeItem={this.state.activeItem} 
+              handleItemClick={this.handleItemClick} 
+              color={color} 
+              logo={storeCustomization.logo ? storeCustomization.logo : ''}
+            />  
             :
-            <SignedOutMenu activeItem={this.state.activeItem} handleItemClick={this.handleItemClick} color={color}/>
+            <SignedOutMenu 
+              activeItem={this.state.activeItem} 
+              handleItemClick={this.handleItemClick} 
+              color={color}
+              logo={storeCustomization.logo ? storeCustomization.logo : ''}  
+            />
           }
         </Sticky>
     )

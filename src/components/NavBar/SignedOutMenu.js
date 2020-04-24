@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import { NavLink, useRouteMatch } from 'react-router-dom'
 
 import FbSignInButton from '../FbSignInButton'
@@ -8,7 +8,7 @@ import BrowseProductsLink from './BrowseProductsLink'
 import * as ROUTES from '../../constants/routes'
 import applyUrlCorrection from '../../helpers/applyUrlCorrection'
 
-const SignedInMenu = ({ activeItem, handleItemClick, color }) => {
+const SignedInMenu = ({ activeItem, handleItemClick, color, logo }) => {
   let { url } = useRouteMatch();
   url = applyUrlCorrection(url);
 
@@ -20,7 +20,8 @@ const SignedInMenu = ({ activeItem, handleItemClick, color }) => {
       borderless
       stackable
       style={{ padding: '1em', borderRadius: '0px' }}
-    >
+    > 
+      <Image src={logo} style={{ height: '3rem', marginRight: '2rem', marginLeft: '2rem' }} />
       <BrowseProductsLink url={url} activeItem={activeItem} handleItemClick={handleItemClick} />
       <Menu.Menu position='right'>
         <FbSignInButton />

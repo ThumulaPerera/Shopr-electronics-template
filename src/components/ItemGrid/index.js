@@ -40,7 +40,7 @@ const ItemGrid = (props) => {
 
     return (
 
-        <Segment basic>
+        <Segment basic padded='very'>
         <Header as='h2'>
             <Header.Content>{icon ? <Icon name={icon} /> : null}{selectedCategory}</Header.Content>
         </Header>
