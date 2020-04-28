@@ -1,4 +1,4 @@
-/* //calculate rating using reviws 
+/* //calculate rating using reviws
 
 export default function calculateRating(reviews){
     let totalRating = 0;
@@ -11,9 +11,8 @@ export default function calculateRating(reviews){
 } */
 
 /* calculate rating using rating */
-export default function calculateRating({totalRating, ratingCount}){
-    return ratingCount ? totalRating / ratingCount : 0
-    //just a float value is returned here
-    //the rendering component automatically maps that float to an int by flooring
+export default function calculateRating({ totalRating, ratingCount }) {
+  return ratingCount ? totalRating / ratingCount : 0;
+  // just a float value is returned here
+  // the rendering component automatically maps that float to an int by flooring
 }
-

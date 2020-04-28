@@ -1,102 +1,120 @@
-import React, { Component } from 'react'
-import { Accordion, Button, Icon, Grid, Confirm } from 'semantic-ui-react'
-import { Form, Input } from 'semantic-ui-react-form-validator'
+import React, { Component } from 'react';
+import {
+  Accordion, Button, Icon, Grid,
+} from 'semantic-ui-react';
+import { Form, Input } from 'semantic-ui-react-form-validator';
+import PropTypes from 'prop-types';
 
-
-export default class QuantityForm extends Component {
+class QuantityForm extends Component {
     state = {
-        quantity: this.props.currentQuantity,
-        activeIndex: -1,
+      // eslint-disable-next-line react/destructuring-assignment
+      quantity: this.props.currentQuantity,
+      activeIndex: -1,
     }
 
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     handleSubmit = () => {
-        const { quantity } = this.state
-        const { index, editItemQuantity, removeItem, currentQuantity } = this.props
-        if (quantity == 0) {
-            const confirmed = window.confirm('Remove item from cart?')  
-            if(confirmed){
-                removeItem(index)
-            }
-        } else {
-            const confirmed = window.confirm(`Change the quantity to ${quantity} ?`)  
-            if(confirmed){
-                editItemQuantity(index, quantity)
-            }
+      const { quantity } = this.state;
+      const {
+        index, editItemQuantity, removeItem, currentQuantity,
+      } = this.props;
+      if (quantity === 0) {
+        const confirmed = window.confirm('Remove item from cart?');
+        if (confirmed) {
+          removeItem(index);
         }
-        this.setState({ activeIndex: -1, quantity: this.props.currentQuantity })
+      } else {
+        const confirmed = window.confirm(`Change the quantity to ${quantity} ?`);
+        if (confirmed) {
+          editItemQuantity(index, quantity);
+        }
+      }
+      this.setState({ activeIndex: -1, quantity: currentQuantity });
     }
 
     handleAccordianClick = (e, titleProps) => {
-        const { index } = titleProps
-        const { activeIndex } = this.state
-        const newIndex = activeIndex === index ? -1 : index
+      const { index } = titleProps;
+      const { activeIndex } = this.state;
+      const newIndex = activeIndex === index ? -1 : index;
 
-        this.setState({ activeIndex: newIndex })
-        if (activeIndex === index) {
-            this.setState({ quantity: this.props.currentQuantity })
-        }
+      this.setState({ activeIndex: newIndex });
+      if (activeIndex === index) {
+        const { currentQuantity } = this.props;
+        this.setState({ quantity: currentQuantity });
+      }
     }
 
     render() {
-        const { quantity, activeIndex, open } = this.state
-        const { stockEnabled, stock, currentQuantity, changeInProgress } = this.props
+      const { quantity, activeIndex } = this.state;
+      const {
+        stockEnabled, stock, currentQuantity, changeInProgress,
+      } = this.props;
 
-        let validators = ['required', 'isNumber', 'isPositive']
-        let errorMessages = [
-            'quantity is required',
-            'must be an integer',
-            'must be positive'
-        ]
-        if (stockEnabled) {
-            const max = stock ? stock : 0
-            validators.push(`maxNumber:${max}`)
-            errorMessages.push('insufficient quantity in stock')
-        } else {
-            if(!stock){
-                validators.push('maxNumber:0')
-                errorMessages.push('out of stock')
-            }
-        }
+      const validators = ['required', 'isNumber', 'isPositive'];
+      const errorMessages = [
+        'quantity is required',
+        'must be an integer',
+        'must be positive',
+      ];
+      if (stockEnabled) {
+        const max = stock || 0;
+        validators.push(`maxNumber:${max}`);
+        errorMessages.push('insufficient quantity in stock');
+      } else if (!stock) {
+        validators.push('maxNumber:0');
+        errorMessages.push('out of stock');
+      }
 
-        return (
+      return (
 
-            <Accordion>
-                <Accordion.Title
-                    as={Button}
-                    active={activeIndex === 0}
-                    index={0}
-                    onClick={this.handleAccordianClick}
-                    fluid
-                >
-                    <Icon name='edit' />
-                    Change Quantity
-                </Accordion.Title>
-                <Accordion.Content active={activeIndex === 0}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Grid>
-                            <Grid.Row verticalAlign='middle'>
-                                <Grid.Column width='10'>
-                                    <Input
-                                        placeholder='quantity'
-                                        name='quantity'
-                                        value={quantity}
-                                        onChange={this.handleChange}
-                                        width='16'
-                                        type='number'
-                                        validators={validators}
-                                        errorMessages={errorMessages}
-                                    />
-                                </Grid.Column>
-                                <Grid.Column width='6'>
-                                    <Button floated='right' content='Change' disabled={quantity===currentQuantity || changeInProgress}/>
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </Form>
-                </Accordion.Content>
-            </Accordion>
-        )
+        <Accordion>
+          <Accordion.Title
+            as={Button}
+            active={activeIndex === 0}
+            index={0}
+            onClick={this.handleAccordianClick}
+            fluid
+          >
+            <Icon name="edit" />
+            Change Quantity
+          </Accordion.Title>
+          <Accordion.Content active={activeIndex === 0}>
+            <Form onSubmit={this.handleSubmit}>
+              <Grid>
+                <Grid.Row verticalAlign="middle">
+                  <Grid.Column width="10">
+                    <Input
+                      placeholder="quantity"
+                      name="quantity"
+                      value={quantity}
+                      onChange={this.handleChange}
+                      width="16"
+                      type="number"
+                      validators={validators}
+                      errorMessages={errorMessages}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width="6">
+                    <Button floated="right" content="Change" disabled={quantity === currentQuantity || changeInProgress} />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Form>
+          </Accordion.Content>
+        </Accordion>
+      );
     }
 }
+
+export default QuantityForm;
+
+QuantityForm.propTypes = {
+  stockEnabled: PropTypes.bool.isRequired,
+  stock: PropTypes.object.isRequired,
+  currentQuantity: PropTypes.number.isRequired,
+  changeInProgress: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  editItemQuantity: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+};

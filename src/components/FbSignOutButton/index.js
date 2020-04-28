@@ -1,26 +1,29 @@
-import React from 'react'
-import { Button } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import { withRouter } from "react-router";
-import { compose } from 'redux'
+import React from 'react';
+import { Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
 
-import { signOut } from '../../actions/authActions'
-import applyUrlCorrection from '../../helpers/applyUrlCorrection'
+import { signOut } from '../../actions/authActions';
 
 function FbSignOutButton({ signOut, history, match }) {
-    return (
-        <Button color='facebook' onClick={() => {signOut(history, match.url)}} style={{ borderRadius: '0px' }}> Sign Out </Button>
-    )
+  return (
+    <Button color="facebook" onClick={() => { signOut(history, match.url); }} style={{ borderRadius: '0px' }}> Sign Out </Button>
+  );
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signOut : (history, url) => dispatch(signOut(history, url)),
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+  signOut: (history, url) => dispatch(signOut(history, url)),
+});
 
 export default compose(
-    withRouter,
-    connect(null, mapDispatchToProps)
-)
-(FbSignOutButton)
+  withRouter,
+  connect(null, mapDispatchToProps),
+)(FbSignOutButton);
+
+FbSignOutButton.propTypes = {
+  signOut: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+};

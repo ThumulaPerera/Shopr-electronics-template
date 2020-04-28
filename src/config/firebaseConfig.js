@@ -1,9 +1,9 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/database'
-import 'firebase/firestore' // <- needed if using firestore
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/firestore'; // <- needed if using firestore
 
-//firebase config for electronics-template
+// firebase config for electronics-template
 // const fbConfig = {
 //   apiKey: "AIzaSyCYnzL0jsdr0eErI74VedANNoseVfYsIkI",
 //   authDomain: "electronics-template.firebaseapp.com",
@@ -15,29 +15,29 @@ import 'firebase/firestore' // <- needed if using firestore
 //   measurementId: "G-FH221XRGNM"
 // }
 
-//firebase config for ecom-cse
-var fbConfig = {
-  apiKey: "AIzaSyDgLsvomzUN0uBvH-QvBjfp_yvBPgeSuR8",
-  authDomain: "ecom-cse.firebaseapp.com",
-  databaseURL: "https://ecom-cse.firebaseio.com",
-  projectId: "ecom-cse",
-  storageBucket: "ecom-cse.appspot.com",
-  messagingSenderId: "535828749873",
-  appId: "1:535828749873:web:c991827f83d3ecef83bf10",
-  measurementId: "G-898N0JYJT9"
+// firebase config for ecom-cse
+const fbConfig = {
+  apiKey: 'AIzaSyDgLsvomzUN0uBvH-QvBjfp_yvBPgeSuR8',
+  authDomain: 'ecom-cse.firebaseapp.com',
+  databaseURL: 'https://ecom-cse.firebaseio.com',
+  projectId: 'ecom-cse',
+  storageBucket: 'ecom-cse.appspot.com',
+  messagingSenderId: '535828749873',
+  appId: '1:535828749873:web:c991827f83d3ecef83bf10',
+  measurementId: 'G-898N0JYJT9',
 };
 
 // react-redux-firebase config
 const rrfConfig = {
   userProfile: 'users',
   // useFirestoreForProfile: true // <--Firestore for Profile instead of Realtime DB
-}
+};
 
 // Initialize firebase instance
-firebase.initializeApp(fbConfig)
+firebase.initializeApp(fbConfig);
 
 // Initialize other services on firebase instance
-firebase.firestore() // <- needed if using firestore
+firebase.firestore(); // <- needed if using firestore
 // firebase.functions() // <- needed if using httpsCallable
 
 export default firebase;

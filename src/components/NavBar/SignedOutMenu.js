@@ -1,18 +1,18 @@
-import React from 'react'
-import { Menu, Image } from 'semantic-ui-react'
-import { NavLink, useRouteMatch } from 'react-router-dom'
+import React from 'react';
+import { Menu, Image } from 'semantic-ui-react';
+import { useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import FbSignInButton from '../FbSignInButton'
-import BrowseProductsLink from './BrowseProductsLink'
+import FbSignInButton from '../FbSignInButton';
+import BrowseProductsLink from './BrowseProductsLink';
 
-import * as ROUTES from '../../constants/routes'
-import applyUrlCorrection from '../../helpers/applyUrlCorrection'
+import applyUrlCorrection from '../../helpers/applyUrlCorrection';
 
-const SignedInMenu = ({ activeItem, handleItemClick, color, logo }) => {
+const SignedOutMenu = ({
+  activeItem, handleItemClick, color, logo,
+}) => {
   let { url } = useRouteMatch();
   url = applyUrlCorrection(url);
-
-  console.log(activeItem)
 
   return (
     <Menu
@@ -20,14 +20,21 @@ const SignedInMenu = ({ activeItem, handleItemClick, color, logo }) => {
       borderless
       stackable
       style={{ padding: '1em', borderRadius: '0px' }}
-    > 
+    >
       <Image src={logo} style={{ height: '3rem', marginRight: '2rem', marginLeft: '2rem' }} />
       <BrowseProductsLink url={url} activeItem={activeItem} handleItemClick={handleItemClick} />
-      <Menu.Menu position='right'>
+      <Menu.Menu position="right">
         <FbSignInButton />
       </Menu.Menu>
     </Menu>
-  )
-}
+  );
+};
 
-export default SignedInMenu;
+export default SignedOutMenu;
+
+SignedOutMenu.propTypes = {
+  activeItem: PropTypes.string.isRequired,
+  handleItemClick: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
+};
