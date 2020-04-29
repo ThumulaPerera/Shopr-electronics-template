@@ -40,7 +40,11 @@ function SidePane({
 export default SidePane;
 SidePane.propTypes = {
   total: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
-  currency: PropTypes.object.isRequired,
+  color: PropTypes.string,
+  currency: PropTypes.string.isRequired,
   noOfItems: PropTypes.number.isRequired,
+};
+
+SidePane.defaultProps = {
+  color: 'black',
 };

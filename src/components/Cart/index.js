@@ -112,13 +112,19 @@ export default compose(
 
 Cart.propTypes = {
   auth: PropTypes.object.isRequired,
-  items: PropTypes.object.isRequired,
+  items: PropTypes.object,
   currency: PropTypes.string.isRequired,
-  cart: PropTypes.array.isRequired,
+  cart: PropTypes.array,
   match: PropTypes.object.isRequired,
   removeItem: PropTypes.func.isRequired,
   editItemQuantity: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
+};
+
+Cart.defaultProps = {
+  cart: undefined,
+  color: 'black',
+  items: undefined,
 };

@@ -159,12 +159,17 @@ export default compose(
 AddToCartForm.propTypes = {
   item: PropTypes.object.isRequired,
   selectedSubItem: PropTypes.object.isRequired,
-  selectedValues: PropTypes.object.isRequired,
-  children: PropTypes.object.isRequired,
+  selectedValues: PropTypes.object,
+  children: PropTypes.array.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object,
   submitFailed: PropTypes.bool.isRequired,
   anyTouched: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   stockEnabled: PropTypes.bool.isRequired,
+};
+
+AddToCartForm.defaultProps = {
+  selectedValues: undefined,
+  errors: undefined,
 };

@@ -117,8 +117,12 @@ export default compose(
 
 ItemGrid.propTypes = {
   categories: PropTypes.array.isRequired,
-  items: PropTypes.object.isRequired,
+  items: PropTypes.object,
   currency: PropTypes.string.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+};
+
+ItemGrid.defaultProps = {
+  items: undefined,
 };

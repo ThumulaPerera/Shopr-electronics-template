@@ -189,9 +189,14 @@ export default compose(
 
 ItemPage.propTypes = {
   item: PropTypes.object.isRequired,
-  selectedVariants: PropTypes.object.isRequired,
+  selectedVariants: PropTypes.object,
   match: PropTypes.object.isRequired,
   currency: PropTypes.string.isRequired,
   stockEnabled: PropTypes.bool.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
+};
+
+ItemPage.defaultProps = {
+  selectedVariants: undefined,
+  color: null,
 };

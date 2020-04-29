@@ -12,7 +12,7 @@ class QuantityForm extends Component {
       activeIndex: -1,
     }
 
-    handleChange = (e, { name, value }) => this.setState({ [name]: value })
+    handleQtyChange = (e, { name, value }) => this.setState({ [name]: parseInt(value, 10) })
 
     handleSubmit = () => {
       const { quantity } = this.state;
@@ -88,7 +88,7 @@ class QuantityForm extends Component {
                       placeholder="quantity"
                       name="quantity"
                       value={quantity}
-                      onChange={this.handleChange}
+                      onChange={this.handleQtyChange}
                       width="16"
                       type="number"
                       validators={validators}
@@ -111,7 +111,7 @@ export default QuantityForm;
 
 QuantityForm.propTypes = {
   stockEnabled: PropTypes.bool.isRequired,
-  stock: PropTypes.object.isRequired,
+  stock: PropTypes.number.isRequired,
   currentQuantity: PropTypes.number.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,

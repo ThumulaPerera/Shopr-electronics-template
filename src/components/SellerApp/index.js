@@ -82,5 +82,9 @@ export default compose(
 )(SellerApp);
 
 SellerApp.propTypes = {
-  sellerStore: PropTypes.object.isRequired,
+  sellerStore: PropTypes.array,
+};
+
+SellerApp.defaultProps = {
+  sellerStore: undefined,
 };

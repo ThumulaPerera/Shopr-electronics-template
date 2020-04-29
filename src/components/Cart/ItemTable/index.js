@@ -170,13 +170,17 @@ export default ItemTable;
 
 ItemTable.propTypes = {
   items: PropTypes.object.isRequired,
-  currency: PropTypes.object.isRequired,
-  cart: PropTypes.object.isRequired,
+  currency: PropTypes.string.isRequired,
+  cart: PropTypes.array.isRequired,
   url: PropTypes.string.isRequired,
   contextRef: PropTypes.object.isRequired,
   removeItem: PropTypes.func.isRequired,
   editItemQuantity: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
+};
+
+ItemTable.defaultProps = {
+  color: 'black',
 };

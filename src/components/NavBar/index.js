@@ -21,7 +21,7 @@ class NavBar extends Component {
       return <Loader />;
     }
 
-    const color = storeCustomization.color ? storeCustomization.color : '';
+    const color = storeCustomization.color ? storeCustomization.color : null;
 
     return (
       <Sticky context={contextRef}>

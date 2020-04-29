@@ -33,7 +33,7 @@ class CategoryMenu extends Component {
         return <div>No categories to display...</div>;
       }
 
-      const color = storeCustomization.color ? storeCustomization.color : '';
+      const color = storeCustomization.color ? storeCustomization.color : null;
 
       return (
         <Sticky

@@ -35,6 +35,10 @@ export default SignedOutMenu;
 SignedOutMenu.propTypes = {
   activeItem: PropTypes.string.isRequired,
   handleItemClick: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
+  color: PropTypes.string,
   logo: PropTypes.string.isRequired,
+};
+
+SignedOutMenu.defaultProps = {
+  color: 'black',
 };

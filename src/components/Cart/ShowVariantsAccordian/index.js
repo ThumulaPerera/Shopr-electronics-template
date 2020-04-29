@@ -87,6 +87,10 @@ class ShowVariantsAccordian extends Component {
 export default ShowVariantsAccordian;
 
 ShowVariantsAccordian.propTypes = {
-  variantArray: PropTypes.object.isRequired,
+  variantArray: PropTypes.array,
   item: PropTypes.object.isRequired,
+};
+
+ShowVariantsAccordian.defaultProps = {
+  variantArray: null,
 };
