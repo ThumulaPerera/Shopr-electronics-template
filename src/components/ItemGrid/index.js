@@ -60,7 +60,10 @@ const ItemGrid = (props) => {
             name, photos, description, basePrice, rating, discount,
           } = items[itemKey];
 
-          const imageURL = photos && photos[0] ? photos[0].url : defaultImgUrl;
+          // eslint-disable-next-line no-nested-ternary
+          const imageURL = photos && photos[0]
+            ? (photos[0].thumbnail ? photos[0].thumbnail : photos[0].url)
+            : defaultImgUrl;
           const amount = basePrice;
           const itemRating = rating ? calculateRating(rating) : null;
 

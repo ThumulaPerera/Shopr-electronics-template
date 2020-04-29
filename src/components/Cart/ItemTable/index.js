@@ -63,7 +63,10 @@ class ItemTable extends Component {
 
                   const discountValue = calculateDiscount(price, discount);
                   const itemRating = rating ? calculateRating(rating) : null;
-                  const imageURL = photos && photos[0] ? photos[0].url : defaultImgUrl;
+                  // eslint-disable-next-line no-nested-ternary
+                  const imageURL = photos && photos[0]
+                    ? (photos[0].thumbnail ? photos[0].thumbnail : photos[0].url)
+                    : defaultImgUrl;
 
                   return (
                     // eslint-disable-next-line react/no-array-index-key
