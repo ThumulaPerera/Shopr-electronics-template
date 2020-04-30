@@ -15,7 +15,6 @@ import ItemTable from './ItemTable';
 import SidePane from './SidePane';
 import SignInToContinue from '../SignInToContinue';
 import { removeItem, editItemQuantity } from '../../actions/cartActions';
-
 import calculateCartTotal from '../../helpers/calculateCartTotal';
 
 function Cart({

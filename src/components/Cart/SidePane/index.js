@@ -1,8 +1,10 @@
 import React from 'react';
 import {
-  Segment, Header, Icon, Container, Button,
+  Segment, Header, Icon, Container,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+
+import CheckoutButton from '../CheckoutButton';
 
 function SidePane({
   total, color, currency, noOfItems,
@@ -30,7 +32,7 @@ function SidePane({
       </Container>
       {/* <Segment basic padded='very' textAlign='center' > */}
       <Container style={{ marginTop: '3rem' }}>
-        <Button fluid positive size="large">CHECKOUT</Button>
+        <CheckoutButton total={total} currency={currency} />
       </Container>
       {/* </Segment> */}
     </Segment>
