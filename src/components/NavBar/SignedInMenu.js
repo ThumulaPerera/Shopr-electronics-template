@@ -12,7 +12,7 @@ import ProfileLink from './ProfileLink';
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
 
 const SignedInMenu = ({
-  activeItem, handleItemClick, color, logo,
+  activeItem, handleItemClick, color, logo, displayName, displayPhoto,
 }) => {
   let { url } = useRouteMatch();
   url = applyUrlCorrection(url);
@@ -29,7 +29,13 @@ const SignedInMenu = ({
       <Menu.Menu position="right">
         <CartLink url={url} activeItem={activeItem} handleItemClick={handleItemClick} />
         <MyPurchasesLink url={url} activeItem={activeItem} handleItemClick={handleItemClick} />
-        <ProfileLink url={url} activeItem={activeItem} handleItemClick={handleItemClick} />
+        <ProfileLink
+          url={url}
+          activeItem={activeItem}
+          handleItemClick={handleItemClick}
+          displayName={displayName}
+          displayPhoto={displayPhoto}
+        />
         <FbSignOutButton />
       </Menu.Menu>
     </Menu>
@@ -43,6 +49,8 @@ SignedInMenu.propTypes = {
   handleItemClick: PropTypes.func.isRequired,
   color: PropTypes.string,
   logo: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
+  displayPhoto: PropTypes.string.isRequired,
 };
 
 SignedInMenu.defaultProps = {

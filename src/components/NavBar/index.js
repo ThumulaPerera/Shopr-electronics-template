@@ -32,6 +32,8 @@ class NavBar extends Component {
               handleItemClick={this.handleItemClick}
               color={color}
               logo={storeCustomization.logo ? storeCustomization.logo : ''}
+              displayName={auth.displayName}
+              displayPhoto={auth.photoURL}
             />
           )
           : (
