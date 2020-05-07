@@ -16,7 +16,7 @@ import getItemsAndIconByCategory from '../../helpers/getItemsAndIconByCategory';
 const ItemGrid = (props) => {
   let { items } = props;
   const {
-    categories, selectedCategory, url, currency,
+    categories, selectedCategory, url, currency, searchString,
   } = props;
   const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg';
   let icon;
@@ -67,7 +67,7 @@ const ItemGrid = (props) => {
           const amount = basePrice;
           const itemRating = rating ? calculateRating(rating) : null;
 
-          const minRequirementsToDisplay = name && basePrice;
+          const minRequirementsToDisplay = name && basePrice && name.search(new RegExp(searchString, 'i')) !== -1;
 
           if (!minRequirementsToDisplay) {
             return null;
@@ -94,9 +94,9 @@ const ItemGrid = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  items: get(state.firestore.data, 'sellerItems'),
   categories: get(state.firestore.data, 'sellerStore.categories'),
   currency: get(state.firestore.data, 'sellerStore.currency'),
+  items: get(state.firestore.data, 'sellerItems'),
 });
 
 function withHooks(Component) {
@@ -122,6 +122,7 @@ ItemGrid.propTypes = {
   categories: PropTypes.array.isRequired,
   items: PropTypes.object,
   currency: PropTypes.string.isRequired,
+  searchString: PropTypes.string.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
