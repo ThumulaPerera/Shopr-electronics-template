@@ -28,7 +28,7 @@ class CheckoutButton extends Component {
     const style = {
       label: 'pay',
       tagline: false,
-      size: 'medium',
+      size: 'responsive',
       shape: 'pill',
       color: 'gold',
     };
