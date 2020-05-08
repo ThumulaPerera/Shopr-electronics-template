@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Search, Label } from 'semantic-ui-react';
+import {
+  Grid, Search, Label, Segment,
+} from 'semantic-ui-react';
 import { useRouteMatch } from 'react-router-dom';
 import _, { get } from 'lodash';
 import { compose } from 'redux';
@@ -78,29 +80,35 @@ class BrowseProducts extends Component {
     }
 
     return (
-      <Grid columns={2} divided={false}>
-        <Grid.Row>
-          <Grid.Column width={3}>
-            <CategoryMenu
-              contextRef={contextRef}
-              handleCategoryClick={this.handleCategoryClick}
-              selectedCategory={selectedCategory}
-            />
-          </Grid.Column>
-          <Grid.Column width={13}>
-            <Search
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect}
-              onSearchChange={_.debounce(this.handleSearchChange, 500, {
-                leading: true,
-              })}
-              results={results}
-              value={value}
-              resultRenderer={resultRenderer}
-              {...this.props}
-            />
+      <div>
+        <Segment basic textAlign="center">
+          <Search
+            fluid
+            size="large"
+            loading={isLoading}
+            onResultSelect={this.handleResultSelect}
+            onSearchChange={_.debounce(this.handleSearchChange, 500, {
+              leading: true,
+            })}
+            results={results}
+            value={value}
+            resultRenderer={resultRenderer}
+            {...this.props}
+          />
+        </Segment>
+        <Grid columns={2} divided={false}>
+          <Grid.Row>
+            <Grid.Column width={3}>
+              <CategoryMenu
+                contextRef={contextRef}
+                handleCategoryClick={this.handleCategoryClick}
+                selectedCategory={selectedCategory}
+              />
+            </Grid.Column>
+            <Grid.Column width={13}>
 
-            {
+
+              {
                 selectedCategory === 'All'
                   ? categories.map(({ name }) => (
                     <ItemGrid
@@ -120,9 +128,10 @@ class BrowseProducts extends Component {
               }
 
 
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
     );
   }
 }
