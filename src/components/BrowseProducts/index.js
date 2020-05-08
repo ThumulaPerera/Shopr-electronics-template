@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Search, Label } from 'semantic-ui-react';
-import { useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import _, { get } from 'lodash';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -18,11 +18,18 @@ resultRenderer.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-const initialState = { isLoading: false, results: [], value: '' };
+const initialState = {
+  isLoading: false, results: [], value: '', selectedCategory: 'All',
+};
 class BrowseProducts extends Component {
   state = initialState;
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.name })
+  handleResultSelect = (e, { result }) => {
+    this.setState({
+      value: result.name,
+      selectedCategory: 'All',
+    });
+  }
 
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
@@ -32,7 +39,11 @@ class BrowseProducts extends Component {
       const { value } = this.state;
       const { items } = this.props;
 
-      if (value.length < 1) return this.setState(initialState);
+      if (value.length < 1) {
+        return this.setState({
+          isLoading: false, results: [], value: '',
+        });
+      }
 
       const re = new RegExp(_.escapeRegExp(value), 'i');
       const isMatch = (result) => re.test(result.name);
@@ -44,12 +55,19 @@ class BrowseProducts extends Component {
     }, 300);
   }
 
+  handleCategoryClick = (e, { name }) => this.setState({
+    selectedCategory: name,
+    value: '',
+  })
+
   render() {
     const {
       contextRef, categories, match,
     } = this.props;
-    const { isLoading, value, results } = this.state;
-    const { path, url } = match;
+    const {
+      isLoading, value, results, selectedCategory,
+    } = this.state;
+    const { url } = match;
 
     if (!isLoaded(categories)) {
       return <div>Loading...</div>;
@@ -63,7 +81,11 @@ class BrowseProducts extends Component {
       <Grid columns={2} divided={false}>
         <Grid.Row>
           <Grid.Column width={3}>
-            <CategoryMenu contextRef={contextRef} />
+            <CategoryMenu
+              contextRef={contextRef}
+              handleCategoryClick={this.handleCategoryClick}
+              selectedCategory={selectedCategory}
+            />
           </Grid.Column>
           <Grid.Column width={13}>
             <Search
@@ -77,23 +99,27 @@ class BrowseProducts extends Component {
               resultRenderer={resultRenderer}
               {...this.props}
             />
-            <Switch>
-              <Route exact path={`${path}/`}>
-                {
-                categories.map(({ name }) => (
-                  <ItemGrid
-                    selectedCategory={name}
-                    key={name}
-                    url={applyUrlCorrection(url)}
-                    searchString={value}
-                  />
-                ))
+
+            {
+                selectedCategory === 'All'
+                  ? categories.map(({ name }) => (
+                    <ItemGrid
+                      selectedCategory={name}
+                      key={name}
+                      url={applyUrlCorrection(url)}
+                      searchString={value}
+                    />
+                  ))
+                  : (
+                    <ItemGrid
+                      url={applyUrlCorrection(url)}
+                      selectedCategory={selectedCategory}
+                      searchString={value}
+                    />
+                  )
               }
-              </Route>
-              <Route path={`${path}/:category`}>
-                <ItemGrid url={applyUrlCorrection(url)} searchString={value} />
-              </Route>
-            </Switch>
+
+
           </Grid.Column>
         </Grid.Row>
       </Grid>
