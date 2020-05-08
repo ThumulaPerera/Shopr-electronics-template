@@ -41,7 +41,7 @@ const CategoryMenu = (props) => {
         <div style={{ overflow: 'auto', maxHeight: 500 }}>
           <Menu pointing secondary vertical color={color}>
             <Menu.Item
-              as="p"
+              as="a"
               name="All"
               active={selectedCategory === 'All'}
               onClick={handleCategoryClick}
@@ -50,7 +50,7 @@ const CategoryMenu = (props) => {
               const { name } = categories[key];
               return (
                 <Menu.Item
-                  as="p"
+                  as="a"
                   name={name}
                   active={selectedCategory === name}
                   onClick={handleCategoryClick}
