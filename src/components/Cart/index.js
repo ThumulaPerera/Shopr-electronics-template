@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import ItemTable from './ItemTable';
 import SidePane from './SidePane';
 import SignInToContinue from '../SignInToContinue';
-import { removeItem, editItemQuantity } from '../../actions/cartActions';
+import { removeItem, editItemQuantity, updateStock, resetStock, createOrderInDb } from '../../actions/cartActions';
 import calculateCartTotal from '../../helpers/calculateCartTotal';
 
 function Cart({
@@ -25,6 +25,9 @@ function Cart({
   match,
   removeItem,
   editItemQuantity,
+  updateStock,
+  resetStock,
+  createOrderInDb,
   changeInProgress,
   color,
   stockEnabled,
@@ -64,6 +67,11 @@ function Cart({
                 currency={currency}
                 color={color}
                 noOfItems={cart ? cart.length : 0}
+                updateStock={updateStock}
+                resetStock={resetStock}
+                createOrderInDb={createOrderInDb}
+                items={items}
+                cart={cart}
               />
             </Sticky>
           </Grid.Column>
@@ -88,6 +96,15 @@ const mapDispatchToProps = (dispatch, { firestore, match, auth }) => ({
   ),
   editItemQuantity: (itemIndex, newQuantity) => (
     dispatch(editItemQuantity(firestore, itemIndex, newQuantity, match.params.storeID, auth.uid))
+  ),
+  updateStock: (items, cart) => (
+    dispatch(updateStock(firestore, match.params.storeID, items, cart))
+  ),
+  resetStock: (items, cart) => (
+    dispatch(resetStock(firestore, match.params.storeID, items, cart))
+  ),
+  createOrderInDb: (items, cart) => (
+    dispatch(createOrderInDb(firestore, match.params.storeID, auth.uid, items, cart))
   ),
 });
 

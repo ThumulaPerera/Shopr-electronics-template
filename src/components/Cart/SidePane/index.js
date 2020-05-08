@@ -4,10 +4,12 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import CheckoutButton from '../CheckoutButton';
+// import CheckoutButton from '../PaypalCheckoutButton';
+// import CheckoutButton from '../CheckoutButton';
+import CheckoutButton from '../PaypalChkoutButton';
 
 function SidePane({
-  total, color, currency, noOfItems,
+  total, color, currency, noOfItems, updateStock, resetStock, createOrderInDb, items, cart
 }) {
   return (
     <Segment size="massive" style={{ marginRight: '2rem' }} color={color}>
@@ -32,7 +34,7 @@ function SidePane({
       </Container>
       {/* <Segment basic padded='very' textAlign='center' > */}
       <Container style={{ marginTop: '3rem' }}>
-        <CheckoutButton total={total} currency={currency} />
+        <CheckoutButton total={total} currency={currency} updateStock={updateStock} resetStock={resetStock} createOrderInDb={createOrderInDb} items={items} cart={cart} />
       </Container>
       {/* </Segment> */}
     </Segment>
