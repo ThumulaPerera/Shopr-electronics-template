@@ -14,10 +14,10 @@ import CategoryMenu from '../CategoryMenu';
 
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
 
-const resultRenderer = ({ name }) => <Label content={name} />;
+const resultRenderer = ({ title }) => <Label content={title} />;
 
 resultRenderer.propTypes = {
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 const initialState = {
@@ -28,7 +28,7 @@ class BrowseProducts extends Component {
 
   handleResultSelect = (e, { result }) => {
     this.setState({
-      value: result.name,
+      value: result.title,
       selectedCategory: 'All',
     });
   }
@@ -40,6 +40,7 @@ class BrowseProducts extends Component {
     setTimeout(() => {
       const { value } = this.state;
       const { items } = this.props;
+      const itemNames = items.map((item) => ({ title: item.name }));
 
       if (value.length < 1) {
         return this.setState({
@@ -48,11 +49,11 @@ class BrowseProducts extends Component {
       }
 
       const re = new RegExp(_.escapeRegExp(value), 'i');
-      const isMatch = (result) => re.test(result.name);
+      const isMatch = (result) => re.test(result.title);
 
       this.setState({
         isLoading: false,
-        results: _.filter(items, isMatch),
+        results: _.filter(itemNames, isMatch),
       });
     }, 300);
   }
@@ -93,7 +94,7 @@ class BrowseProducts extends Component {
             results={results}
             value={value}
             resultRenderer={resultRenderer}
-            {...this.props}
+            // {...this.props}
           />
         </Segment>
         <Grid columns={2} divided={false}>
