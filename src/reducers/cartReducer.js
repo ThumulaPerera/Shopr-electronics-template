@@ -4,6 +4,7 @@ const initState = {
   changeInProgress: false,
   deleteError: null,
   editError: null,
+  checkoutError: null,
 };
 
 const cartReducer = (state = initState, action) => {
@@ -53,6 +54,38 @@ const cartReducer = (state = initState, action) => {
       return {
         ...state,
         editError: action.error,
+        changeInProgress: false,
+      };
+
+    case CART_ACTION_TYPES.CHECKOUT_IN_PROGRESS:
+      console.log('checkout in progress');
+      return {
+        ...state,
+        checkoutError: null,
+        changeInProgress: true,
+      };
+
+    case CART_ACTION_TYPES.CHECKOUT_SUCCESS:
+      console.log('checkout success');
+      return {
+        ...state,
+        checkoutError: null,
+        changeInProgress: false,
+      };
+
+    case CART_ACTION_TYPES.CHECKOUT_CANCEL:
+      console.log('checkout cancelled');
+      return {
+        ...state,
+        checkoutError: null,
+        changeInProgress: false,
+      };
+
+    case CART_ACTION_TYPES.CHECKOUT_ERROR:
+      console.log('checkout error :', action.error);
+      return {
+        ...state,
+        checkoutError: action.error,
         changeInProgress: false,
       };
 

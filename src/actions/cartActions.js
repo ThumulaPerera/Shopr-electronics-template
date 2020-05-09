@@ -74,6 +74,8 @@ export const editItemQuantity = (firestore, itemIndex, newQantity, storeId, buye
 
 // eslint-disable-next-line no-unused-vars
 export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
+  dispatch({ type: CART_ACTION_TYPES.CHECKOUT_IN_PROGRESS });
+
   const batch = firestore.batch();
   // eslint-disable-next-line array-callback-return
   cart.map((cartItem) => {
@@ -91,13 +93,8 @@ export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
     batch.update(itemDocRef, { subItems });
   });
   batch.commit()
-    .then(() => {
-      // dispatch({ type: CART_ACTION_TYPES.EDIT_SUCCESS });
-      // toastr.success('Item quantity successfully changed');
-    })
     .catch((error) => {
-      // dispatch({ type: CART_ACTION_TYPES.EDIT_ERROR, error });
-      // toastr.error('Err in run transaction', error.message);
+      dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
       console.log(error);
     });
 };
@@ -123,12 +120,10 @@ export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
   });
   batch.commit()
     .then(() => {
-      // dispatch({ type: CART_ACTION_TYPES.EDIT_SUCCESS });
-      // toastr.success('Item quantity successfully changed');
+      dispatch({ type: CART_ACTION_TYPES.CHECKOUT_CANCEL });
     })
     .catch((error) => {
-      // dispatch({ type: CART_ACTION_TYPES.EDIT_ERROR, error });
-      // toastr.error('Err in run transaction', error.message);
+      dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
       console.log(error);
     });
 };
@@ -211,13 +206,14 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
 
   batch.commit()
     .then(() => {
-      // dispatch({ type: CART_ACTION_TYPES.EDIT_SUCCESS });
-      // toastr.success('Item quantity successfully changed');
+      dispatch({ type: CART_ACTION_TYPES.CHECKOUT_SUCCESS });
+      toastr.success('Checkout complete');
       console.log('done');
     })
     .catch((error) => {
-      // dispatch({ type: CART_ACTION_TYPES.EDIT_ERROR, error });
-      // toastr.error('Err in run transaction', error.message);
+      dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
+      // remove error message ?
+      toastr.error('Checkout failed', 'If money is deducted from your paypal account, please contact the store for a refund');
       console.log('error', error);
     });
 };

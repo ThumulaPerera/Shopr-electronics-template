@@ -9,7 +9,16 @@ import PropTypes from 'prop-types';
 import CheckoutButton from '../PaypalChkoutButton';
 
 function SidePane({
-  total, color, currency, noOfItems, updateStock, resetStock, createOrderInDb, items, cart
+  total,
+  color,
+  currency,
+  noOfItems,
+  updateStock,
+  resetStock,
+  createOrderInDb,
+  items,
+  cart,
+  stockEnabled,
 }) {
   return (
     <Segment size="massive" style={{ marginRight: '2rem' }} color={color}>
@@ -34,7 +43,16 @@ function SidePane({
       </Container>
       {/* <Segment basic padded='very' textAlign='center' > */}
       <Container style={{ marginTop: '3rem' }}>
-        <CheckoutButton total={total} currency={currency} updateStock={updateStock} resetStock={resetStock} createOrderInDb={createOrderInDb} items={items} cart={cart} />
+        <CheckoutButton
+          total={total}
+          currency={currency}
+          updateStock={updateStock}
+          resetStock={resetStock}
+          createOrderInDb={createOrderInDb}
+          items={items}
+          cart={cart}
+          stockEnabled={stockEnabled}
+        />
       </Container>
       {/* </Segment> */}
     </Segment>
@@ -47,6 +65,12 @@ SidePane.propTypes = {
   color: PropTypes.string,
   currency: PropTypes.string.isRequired,
   noOfItems: PropTypes.number.isRequired,
+  updateStock: PropTypes.func.isRequired,
+  resetStock: PropTypes.func.isRequired,
+  createOrderInDb: PropTypes.func.isRequired,
+  stockEnabled: PropTypes.bool.isRequired,
+  items: PropTypes.object.isRequired,
+  cart: PropTypes.array.isRequired,
 };
 
 SidePane.defaultProps = {

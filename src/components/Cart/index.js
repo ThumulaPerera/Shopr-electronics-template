@@ -14,7 +14,9 @@ import PropTypes from 'prop-types';
 import ItemTable from './ItemTable';
 import SidePane from './SidePane';
 import SignInToContinue from '../SignInToContinue';
-import { removeItem, editItemQuantity, updateStock, resetStock, createOrderInDb } from '../../actions/cartActions';
+import {
+  removeItem, editItemQuantity, updateStock, resetStock, createOrderInDb,
+} from '../../actions/cartActions';
 import calculateCartTotal from '../../helpers/calculateCartTotal';
 
 function Cart({
@@ -70,6 +72,7 @@ function Cart({
                 updateStock={updateStock}
                 resetStock={resetStock}
                 createOrderInDb={createOrderInDb}
+                stockEnabled={stockEnabled}
                 items={items}
                 cart={cart}
               />
@@ -137,6 +140,9 @@ Cart.propTypes = {
   changeInProgress: PropTypes.bool.isRequired,
   color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
+  updateStock: PropTypes.func.isRequired,
+  resetStock: PropTypes.func.isRequired,
+  createOrderInDb: PropTypes.func.isRequired,
 };
 
 Cart.defaultProps = {
