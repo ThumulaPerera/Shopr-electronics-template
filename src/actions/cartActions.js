@@ -2,6 +2,7 @@ import { toastr } from 'react-redux-toastr';
 
 import { CART_ACTION_TYPES } from '../constants/actionTypes';
 import calculateCartTotal from '../helpers/calculateCartTotal';
+import calculateDiscount from '../helpers/calculateDiscount';
 
 export const removeItem = (firestore, itemIndex, storeId, buyerId) => (dispatch) => {
   dispatch({ type: CART_ACTION_TYPES.DELETE_IN_PROGRESS });
@@ -71,9 +72,10 @@ export const editItemQuantity = (firestore, itemIndex, newQantity, storeId, buye
     });
 };
 
-// eslint-disable-next-line max-len
+// eslint-disable-next-line no-unused-vars
 export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
   const batch = firestore.batch();
+  // eslint-disable-next-line array-callback-return
   cart.map((cartItem) => {
     const { subItems } = items[cartItem.item];
     console.log(subItems);
@@ -100,9 +102,11 @@ export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
     });
 };
 
-// eslint-disable-next-line max-len
+
+// eslint-disable-next-line no-unused-vars
 export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
   const batch = firestore.batch();
+  // eslint-disable-next-line array-callback-return
   cart.map((cartItem) => {
     const { subItems } = items[cartItem.item];
     console.log(subItems);
@@ -129,20 +133,35 @@ export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
     });
 };
 
-// eslint-disable-next-line max-len
-export const createOrderInDb = (firestore, storeId, buyerId, items, cart) => (dispatch) => {
+// eslint-disable-next-line
+export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymentDetails) => (dispatch) => {
   const batch = firestore.batch();
-  cart.map((cartItem) => {
+
+  const date = firestore.Timestamp.now();
+  const shippingAddress = paymentDetails.purchase_units[0].shipping;
+
+  // to accomodate for existing item discounts
+  const discountedCart = cart.map((cartItem) => {
     const {
       item, subItem, noOfItems, unitPrice,
     } = cartItem;
-    // const { subItems } = items[cartItem.item];
-    // console.log(subItems);
-    // const newStock = subItems[cartItem.subItem].stock + cartItem.noOfItems;
-    // subItems[cartItem.subItem].stock = newStock;
+    return {
+      item,
+      subItem,
+      noOfItems,
+      unitPrice: unitPrice - calculateDiscount(unitPrice, items[item].discount),
+    };
+  });
+
+  // eslint-disable-next-line array-callback-return
+  discountedCart.map((cartItem) => {
+    const {
+      item, subItem, noOfItems, unitPrice,
+    } = cartItem;
+
     const purchase = {
-      date: null, // TODO include date
-      unitPrice, // TODO change later to accomodate discounted price
+      date,
+      unitPrice,
       noOfItems,
       subItem,
       buyer: buyerId,
@@ -161,16 +180,16 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart) => (di
 
   const order = {
     buyer: buyerId,
-    date: null, // TODO include date
-    orderItems: cart, // TODOchange this later to accomodate discounted price
+    date,
+    orderItems: discountedCart,
     orderStates: [
       {
-        date: null, // TODO include date
+        date,
         stateId: 0,
       },
     ],
     paymentMethod: 'paypal',
-    shippingAddress: null, // TODO get address from paypal data add here
+    shippingAddress,
     totalPrice: calculateCartTotal(items, cart),
   };
 
@@ -182,6 +201,14 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart) => (di
 
   batch.set(OrderDocRef, order);
 
+  const BuyerDocRef = firestore
+    .collection('Stores')
+    .doc(storeId)
+    .collection('Buyers')
+    .doc(buyerId);
+
+  batch.update(BuyerDocRef, { cart: [] });
+
   batch.commit()
     .then(() => {
       // dispatch({ type: CART_ACTION_TYPES.EDIT_SUCCESS });
@@ -191,6 +218,6 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart) => (di
     .catch((error) => {
       // dispatch({ type: CART_ACTION_TYPES.EDIT_ERROR, error });
       // toastr.error('Err in run transaction', error.message);
-      console.log(error);
+      console.log('error', error);
     });
 };

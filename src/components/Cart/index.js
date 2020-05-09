@@ -103,8 +103,8 @@ const mapDispatchToProps = (dispatch, { firestore, match, auth }) => ({
   resetStock: (items, cart) => (
     dispatch(resetStock(firestore, match.params.storeID, items, cart))
   ),
-  createOrderInDb: (items, cart) => (
-    dispatch(createOrderInDb(firestore, match.params.storeID, auth.uid, items, cart))
+  createOrderInDb: (items, cart, details) => (
+    dispatch(createOrderInDb(firestore, match.params.storeID, auth.uid, items, cart, details))
   ),
 });
 

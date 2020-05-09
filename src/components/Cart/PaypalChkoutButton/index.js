@@ -15,19 +15,17 @@ class PayPalChkoutButton extends Component {
       // Congratulation, it came here means everything's fine!
       console.log('The payment was succeeded!', details);
       console.log('data', data);
-      createOrderInDb(items, cart);
+      createOrderInDb(items, cart, details);
     };
 
     const onCancel = (data) => {
       // User pressed "cancel" or close Paypal's popup!
-      // resetStock(items, cart);
       resetStock(items, cart);
       console.log('The payment was cancelled!', data);
     };
 
     const onError = (err) => {
       // The main Paypal's script cannot be loaded or somethings block the loading of that script!
-      // resetStock(items, cart);
       resetStock(items, cart);
       console.log('Error!', err);
     };
