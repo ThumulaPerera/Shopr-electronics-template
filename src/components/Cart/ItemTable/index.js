@@ -113,8 +113,7 @@ class ItemTable extends Component {
                         >
                           Remove from cart
                         </Button>
-
-                        {stockEnabled && stock
+                        {stockEnabled && stock !== undefined && stock != null && stock !== 0
                                     && (
                                     <Container textAlign="justified" style={{ marginTop: '1rem' }}>
                                       <Message
