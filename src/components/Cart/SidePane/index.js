@@ -77,10 +77,13 @@ function SidePane({
                 header="Checkout disabled"
                 content={`${insufficientStockItems} item/s do not have sufficient quantity in stock`}
                 trigger={(
-                  <Button
-                    fluid
-                    content="Checkout"
-                  />
+                  <span>
+                    <Button
+                      fluid
+                      disabled
+                      content="Checkout"
+                    />
+                  </span>
                 )}
               />
 
