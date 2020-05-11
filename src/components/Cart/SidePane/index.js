@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-  Segment, Header, Icon, Container,
+  Segment, Header, Icon, Container, Button, Popup,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-// import CheckoutButton from '../PaypalCheckoutButton';
-// import CheckoutButton from '../CheckoutButton';
 import CheckoutButton from '../PaypalChkoutButton';
 
 function SidePane({
@@ -20,6 +18,23 @@ function SidePane({
   cart,
   stockEnabled,
 }) {
+  let checkoutDisabled = false;
+  let insufficientStockItems = 0;
+  if (!(total > 0) || !cart || !Array.isArray(cart)) {
+    checkoutDisabled = true;
+  }
+  cart.forEach((item) => {
+    const requestedStock = item.noOfItems;
+    const availableStock = items[item.item].subItems[item.subItem].stock;
+    if (!availableStock) {
+      checkoutDisabled = true;
+      insufficientStockItems += 1;
+    }
+    if (stockEnabled && availableStock && availableStock < requestedStock) {
+      checkoutDisabled = true;
+      insufficientStockItems += 1;
+    }
+  });
   return (
     <Segment size="massive" style={{ marginRight: '2rem' }} color={color}>
       <Header as="h2" textAlign="center">
@@ -43,16 +58,35 @@ function SidePane({
       </Container>
       {/* <Segment basic padded='very' textAlign='center' > */}
       <Container style={{ marginTop: '3rem' }}>
-        <CheckoutButton
-          total={total}
-          currency={currency}
-          updateStock={updateStock}
-          resetStock={resetStock}
-          createOrderInDb={createOrderInDb}
-          items={items}
-          cart={cart}
-          stockEnabled={stockEnabled}
-        />
+        {
+          !checkoutDisabled
+            ? (
+              <CheckoutButton
+                total={total}
+                currency={currency}
+                updateStock={updateStock}
+                resetStock={resetStock}
+                createOrderInDb={createOrderInDb}
+                items={items}
+                cart={cart}
+                stockEnabled={stockEnabled}
+              />
+            )
+            : (
+              <Popup
+                header="Checkout disabled"
+                content={`${insufficientStockItems} item/s do not have sufficient quantity in stock`}
+                trigger={(
+                  <Button
+                    fluid
+                    content="Checkout"
+                  />
+                )}
+              />
+
+            )
+        }
+
       </Container>
       {/* </Segment> */}
     </Segment>
