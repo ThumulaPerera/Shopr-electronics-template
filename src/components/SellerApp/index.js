@@ -15,12 +15,13 @@ import MyPurchases from '../MyPurchases';
 import Cart from '../Cart';
 import Profile from '../Profile';
 import ItemPage from '../ItemPage';
+import ChatBot from '../ChatBot';
 import NotFoundPage from '../NotFoundPage';
 import * as ROUTES from '../../constants/routes';
 
 function SellerApp({ sellerStore }) {
   const contextRef = createRef();
-  const { path } = useRouteMatch();
+  const { path, storeID } = useRouteMatch();
 
   if (!isLoaded(sellerStore)) {
     return <div>Loading...</div>;
@@ -34,6 +35,7 @@ function SellerApp({ sellerStore }) {
     <div className="App" ref={contextRef}>
       <NavBar contextRef={contextRef} />
       <ReduxToastr />
+      <ChatBot storeId={storeID} />
       <Switch>
         <Route
           path={`${path}${ROUTES.MY_PURCHASES_ROUTE}`}
