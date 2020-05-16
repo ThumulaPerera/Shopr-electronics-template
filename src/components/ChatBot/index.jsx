@@ -25,5 +25,9 @@ export default class ChatBot extends PureComponent {
 }
 
 ChatBot.propTypes = {
-  storeId: PropTypes.string.isRequired,
+  storeId: PropTypes.string,
+};
+
+ChatBot.defaultProps = {
+  storeId: undefined,
 };
