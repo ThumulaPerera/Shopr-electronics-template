@@ -26,7 +26,7 @@ function MyPurchases({
     <Segment basic>
       {
       orders && orders.map((order) => (
-        <div>
+        <div key={order.id}>
           <Order
             order={order}
             items={items}

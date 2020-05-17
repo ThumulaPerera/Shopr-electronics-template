@@ -32,7 +32,7 @@ class ItemsAccordian extends Component {
                     const item = items[itemId];
                     const { name } = item;
                     return (
-                      <div>
+                      <div key={itemId}>
                         <Accordion.Title
                           active={activeIndex === key}
                           index={key}
