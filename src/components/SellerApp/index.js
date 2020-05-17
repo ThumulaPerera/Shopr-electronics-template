@@ -72,6 +72,11 @@ const connectTo = ({ match }) => [
     collection: `/Stores/${match.params.storeID}/Items`,
     storeAs: 'sellerItems',
   },
+  {
+    collection: 'Config',
+    doc: 'config_main',
+    storeAs: 'config',
+  },
 ];
 
 const mapStateToProps = (state) => ({
