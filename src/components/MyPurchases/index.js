@@ -10,9 +10,10 @@ import { compose } from 'redux';
 
 import SignInToContinue from '../SignInToContinue';
 import Order from './Order';
+import { addReview } from '../../actions/reviewActions';
 
 function MyPurchases({
-  auth, items, currency, color, ratingEnabled, orders, orderStates,
+  auth, items, currency, color, ratingEnabled, orders, orderStates, addReview,
 }) {
   if (!auth.uid) {
     return <SignInToContinue />;
@@ -34,6 +35,7 @@ function MyPurchases({
             color={color}
             ratingEnabled={ratingEnabled}
             orderStates={orderStates}
+            addReview={addReview}
           />
           <Divider hidden />
         </div>
@@ -52,6 +54,12 @@ const mapStateToProps = (state) => ({
   orderStates: get(state.firestore.data, 'config.orderStates'),
 });
 
+const mapDispatchToProps = (dispatch, { firestore, match, auth }) => ({
+  addReview: (item, ratingValue, reviewValue) => (
+    dispatch(addReview(firestore, item, ratingValue, reviewValue, match.params.storeID, auth.uid))
+  ),
+});
+
 const connectTo = ({ match, auth }) => {
   if (!(isLoaded(auth))) {
     return [];
@@ -67,7 +75,7 @@ const connectTo = ({ match, auth }) => {
 export default compose(
   connect((state) => ({ auth: state.firebase.auth })),
   firestoreConnect(connectTo),
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 )(MyPurchases);
 
 MyPurchases.propTypes = {
@@ -78,6 +86,7 @@ MyPurchases.propTypes = {
   ratingEnabled: PropTypes.bool.isRequired,
   orders: PropTypes.array,
   orderStates: PropTypes.array,
+  addReview: PropTypes.func.isRequired,
 };
 
 MyPurchases.defaultProps = {

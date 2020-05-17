@@ -19,7 +19,7 @@ class ItemsAccordian extends Component {
     render() {
       const { activeIndex } = this.state;
       const {
-        orderItems, items, currency, ratingEnabled,
+        orderItems, orderState, items, currency, ratingEnabled, addReview,
       } = this.props;
 
       return (
@@ -29,7 +29,7 @@ class ItemsAccordian extends Component {
               {
                   orderItems.map((orderItem, key) => {
                     const itemId = orderItem.item;
-                    const item = items[itemId];
+                    const item = { ...items[itemId], id: itemId };
                     const { name } = item;
                     return (
                       <div key={itemId}>
@@ -45,8 +45,10 @@ class ItemsAccordian extends Component {
                           <PurchasedItem
                             item={item}
                             orderItem={orderItem}
+                            orderState={orderState}
                             currency={currency}
                             ratingEnabled={ratingEnabled}
+                            addReview={addReview}
                           />
                         </Accordion.Content>
                       </div>
@@ -66,6 +68,8 @@ ItemsAccordian.propTypes = {
   currency: PropTypes.string.isRequired,
   ratingEnabled: PropTypes.bool.isRequired,
   orderItems: PropTypes.array,
+  orderState: PropTypes.string.isRequired,
+  addReview: PropTypes.func.isRequired,
 };
 
 ItemsAccordian.defaultProps = {

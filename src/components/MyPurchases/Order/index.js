@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ItemsAccordian from '../ItemsAccordian';
 
 function Order({
-  order, items, currency, color, ratingEnabled, orderStates,
+  order, items, currency, color, ratingEnabled, orderStates, addReview,
 }) {
   const date = order.date.toDate().toString();
   const orderState = orderStates[order.orderStates[order.orderStates.length - 1].stateId];
@@ -30,9 +30,11 @@ function Order({
             </Item.Meta>
             <ItemsAccordian
               orderItems={orderItems}
+              orderState={orderState}
               items={items}
               currency={currency}
               ratingEnabled={ratingEnabled}
+              addReview={addReview}
             />
             <Divider />
             <Grid columns="2">
@@ -89,6 +91,7 @@ Order.propTypes = {
   ratingEnabled: PropTypes.bool.isRequired,
   order: PropTypes.object,
   orderStates: PropTypes.array,
+  addReview: PropTypes.func.isRequired,
 };
 
 Order.defaultProps = {

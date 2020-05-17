@@ -1,13 +1,14 @@
 import React from 'react';
-import { Item, Button, Grid } from 'semantic-ui-react';
+import { Item, Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import { defaultImgUrl } from '../../../constants/defaults';
 import ShowVariantsAccordian from '../../ShowVariantsAccordian';
+import ReviewFrom from '../ReviewForm';
 
 function PurchasedItem({
   // eslint-disable-next-line no-unused-vars
-  item, orderItem, currency, ratingEnabled,
+  item, orderItem, orderState, currency, ratingEnabled, addReview,
 }) {
   const { noOfItems, unitPrice } = orderItem;
   const subItemId = orderItem.subItem;
@@ -57,13 +58,11 @@ function PurchasedItem({
               </Item.Description>
             </Grid.Column>
           </Grid>
-          <Item.Extra>
-            <Button primary floated="right">
-              Buy tickets
-            </Button>
-          </Item.Extra>
         </Item.Content>
       </Item>
+      {ratingEnabled
+      /* && orderState === 'Delivered' */
+      && <ReviewFrom item={item} addReview={addReview} />}
     </Item.Group>
   );
 }
@@ -75,4 +74,6 @@ PurchasedItem.propTypes = {
   currency: PropTypes.string.isRequired,
   ratingEnabled: PropTypes.bool.isRequired,
   orderItem: PropTypes.object.isRequired,
+  orderState: PropTypes.string.isRequired,
+  addReview: PropTypes.func.isRequired,
 };

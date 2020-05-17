@@ -6,10 +6,12 @@ import { reducer as formReducer } from 'redux-form';
 
 import authReducer from './authReducer';
 import cartReducer from './cartReducer';
+import reviewReducer from './reviewReducer';
 
 const rootReducer = combineReducers({
   cart: cartReducer,
   auth: authReducer,
+  review: reviewReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer, // <- needed if using firestore
   toastr: toastrReducer, // <- Mounted at toastr.
