@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 import ItemCard from '../../ItemCard';
-import ShowVariantsAccordian from '../ShowVariantsAccordian';
+import ShowVariantsAccordian from '../../ShowVariantsAccordian';
 import QuantityForm from './QuantityForm';
 import calculateDiscount from '../../../helpers/calculateDiscount';
 import calculateRating from '../../../helpers/calculateRating';
