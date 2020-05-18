@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Icon, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import calculateDiscount from '../../helpers/calculateDiscount';
+import calculateDiscount from '../../../helpers/calculateDiscount';
 
 function CurrencyLabel({ currency, price, discount }) {
   const discountValue = calculateDiscount(price, discount);

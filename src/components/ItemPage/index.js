@@ -48,7 +48,7 @@ const ItemPage = ({
   return (
     <Segment basic padded>
       <Grid columns={2} relaxed="very" doubling stackable>
-        <Grid.Column width='11'>
+        <Grid.Column width="11">
           <Grid columns={2} relaxed="very" stackable>
             <Grid.Column>
               <Segment basic>
@@ -102,10 +102,10 @@ const ItemPage = ({
                       <Grid.Column textAlign="right" width={4}>
                         <p>
                           <b>
-                          {title}
-                          {' '}
-                          :
-                      </b>
+                            {title}
+                            {' '}
+                            :
+                          </b>
                         </p>
                       </Grid.Column>
                       <Grid.Column textAlign="left" width={12}>
@@ -120,7 +120,7 @@ const ItemPage = ({
             </Grid.Column>
           </Grid>
         </Grid.Column>
-        <Grid.Column width='5'>
+        <Grid.Column width="5">
           <Segment color={color}>
             <AddToCartForm
               item={item}
