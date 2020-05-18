@@ -18,7 +18,7 @@ import OutOfStockLabel from './OutOfStockLabel';
 import calculateRating from '../../helpers/calculateRating';
 import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
 import calculateDiscount from '../../helpers/calculateDiscount';
-import AddToCartForm from '../AddToCartForm';
+import AddToCartForm from './AddToCartForm';
 
 const ItemPage = ({
   item, selectedVariants, match, currency, stockEnabled, color,
