@@ -11,7 +11,7 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 
 import RatingDisplay from '../RatingDisplay';
-import CurrencyLabel from './CurrencyLabel';
+import CurrencyLabel from './PriceLabel';
 import InStockLabel from './InStockLabel';
 import OutOfStockLabel from './OutOfStockLabel';
 

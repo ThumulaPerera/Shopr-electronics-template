@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Icon, Label } from 'semantic-ui-react';
+import { Container, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import calculateDiscount from '../../../helpers/calculateDiscount';
@@ -9,20 +9,20 @@ function CurrencyLabel({ currency, price, discount }) {
 
   return (
     <Container textAlign="center">
-      <Label color="red" tag size="large">
-        {discountValue !== 0
-                    && (
-                    <p style={{ textDecoration: 'line-through', fontSize: '1rem' }}>
-                      {' '}
-                      <Icon name="money bill alternate outline" />
-                      {' '}
-                      {currency}
-                      {' '}
-                      {price.toFixed(2)}
-                      {' '}
-                    </p>
-                    )}
-        <p>
+      {discountValue !== 0
+        && (
+        <p style={{ textDecoration: 'line-through', fontSize: '1rem', marginBottom: '0px' }}>
+          {/* {' '}
+          <Icon name="money bill alternate outline" /> */}
+          {' '}
+          {currency}
+          {' '}
+          {price.toFixed(2)}
+          {' '}
+        </p>
+        )}
+      <p style={{ fontSize: '1.4rem', color: 'red' }}>
+        <b>
           {' '}
           <Icon name="money bill alternate outline" />
           {' '}
@@ -30,8 +30,8 @@ function CurrencyLabel({ currency, price, discount }) {
           {' '}
           {(price - discountValue).toFixed(2)}
           {' '}
-        </p>
-      </Label>
+        </b>
+      </p>
     </Container>
   );
 }
