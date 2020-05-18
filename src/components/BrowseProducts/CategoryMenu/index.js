@@ -3,9 +3,7 @@ import {
   Menu, Segment, Sticky, Header, Icon,
 } from 'semantic-ui-react';
 
-import { connect } from 'react-redux';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { get } from 'lodash';
+import { isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -16,14 +14,6 @@ const CategoryMenu = (props) => {
   const {
     categories, contextRef, storeCustomization, handleCategoryClick, selectedCategory,
   } = props;
-
-  if (!isLoaded(storeCustomization)) {
-    return <div>Loading...</div>;
-  }
-
-  if (!isLoaded(categories)) {
-    return <div>Loading...</div>;
-  }
 
   if (isEmpty(categories)) {
     return <div>No categories to display...</div>;
@@ -69,11 +59,6 @@ const CategoryMenu = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  categories: get(state.firestore.data, 'sellerStore.categories'),
-  storeCustomization: get(state.firestore.data, 'sellerStore.storeCustomization'),
-});
-
 function withHooks(Component) {
   return function WrappedComponent(props) {
     const { url } = useRouteMatch();
@@ -83,7 +68,6 @@ function withHooks(Component) {
 
 export default compose(
   withHooks,
-  connect(mapStateToProps),
 )(CategoryMenu);
 
 CategoryMenu.propTypes = {

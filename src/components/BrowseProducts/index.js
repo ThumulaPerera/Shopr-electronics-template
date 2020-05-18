@@ -75,7 +75,7 @@ class BrowseProducts extends Component {
 
   render() {
     const {
-      contextRef, categories, match,
+      contextRef, categories, match, items, currency, storeCustomization,
     } = this.props;
     const {
       isLoading, value, results, selectedCategory, width,
@@ -83,8 +83,13 @@ class BrowseProducts extends Component {
     const { url } = match;
     const contextRef1 = createRef();
     const stickSearchBar = width > Responsive.onlyMobile.maxWidth;
+    const { color } = storeCustomization;
 
-    if (!isLoaded(categories)) {
+    if (!(isLoaded(categories)
+          && isLoaded(items)
+          && isLoaded(currency)
+          && isLoaded(storeCustomization)
+    )) {
       return <div>Loading...</div>;
     }
 
@@ -106,15 +111,15 @@ class BrowseProducts extends Component {
             >
               <Segment
                 textAlign="center"
-                color="grey"
+                color={color}
                 inverted
                 tertiary
                 style={{ padding: '.5em', borderRadius: '0px' }}
               >
                 <Grid relaxed="very" padded="horizontally" stackable>
                   <Grid.Row columns={3}>
-                    <Grid.Column />
-                    <Grid.Column>
+                    <Grid.Column only="computer" computer="5" />
+                    <Grid.Column computer="6" tablet="8">
                       <Search
                         fluid
                         size="large"
@@ -128,10 +133,11 @@ class BrowseProducts extends Component {
                         resultRenderer={resultRenderer}
                       />
                     </Grid.Column>
-                    <Grid.Column>
+                    <Grid.Column computer="5" tablet="8">
                       <CategoryDropdown
                         handleCategoryClick={this.handleCategoryDropdownSelection}
                         selectedCategory={selectedCategory}
+                        categories={categories}
                       />
                     </Grid.Column>
                   </Grid.Row>
@@ -145,6 +151,8 @@ class BrowseProducts extends Component {
                     contextRef={contextRef}
                     handleCategoryClick={this.handleCategoryClick}
                     selectedCategory={selectedCategory}
+                    categories={categories}
+                    storeCustomization={storeCustomization}
                   />
                 </Grid.Column>
                 <Grid.Column computer={12} tablet={10}>
@@ -156,6 +164,9 @@ class BrowseProducts extends Component {
                       key={name}
                       url={applyUrlCorrection(url)}
                       searchString={value}
+                      categories={categories}
+                      currency={currency}
+                      items={items}
                     />
                   ))
                   : (
@@ -163,6 +174,9 @@ class BrowseProducts extends Component {
                       url={applyUrlCorrection(url)}
                       selectedCategory={selectedCategory}
                       searchString={value}
+                      categories={categories}
+                      currency={currency}
+                      items={items}
                     />
                   )
               }
@@ -178,6 +192,9 @@ class BrowseProducts extends Component {
                       key={name}
                       url={applyUrlCorrection(url)}
                       searchString={value}
+                      categories={categories}
+                      currency={currency}
+                      items={items}
                     />
                   ))
                   : (
@@ -185,6 +202,9 @@ class BrowseProducts extends Component {
                       url={applyUrlCorrection(url)}
                       selectedCategory={selectedCategory}
                       searchString={value}
+                      categories={categories}
+                      currency={currency}
+                      items={items}
                     />
                   )
               }
@@ -194,14 +214,15 @@ class BrowseProducts extends Component {
           </div>
         </Ref>
       </Responsive>
-
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   categories: get(state.firestore.data, 'sellerStore.categories'),
+  currency: get(state.firestore.data, 'sellerStore.currency'),
   items: get(state.firestore.ordered, 'sellerItems'),
+  storeCustomization: get(state.firestore.data, 'sellerStore.storeCustomization'),
 });
 
 function withHooks(Component) {
@@ -219,10 +240,15 @@ export default compose(
 BrowseProducts.propTypes = {
   contextRef: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  categories: PropTypes.array.isRequired,
+  categories: PropTypes.array,
   items: PropTypes.array,
+  currency: PropTypes.string,
+  storeCustomization: PropTypes.object,
 };
 
 BrowseProducts.defaultProps = {
   items: undefined,
+  categories: undefined,
+  currency: undefined,
+  storeCustomization: undefined,
 };

@@ -2,11 +2,7 @@ import React from 'react';
 import {
   Card, Segment, Header, Icon,
 } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
-import { get } from 'lodash';
-import { compose } from 'redux';
-import { useParams } from 'react-router-dom';
+import { isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 
 import ItemCard from '../../ItemCard';
@@ -19,17 +15,9 @@ const ItemGrid = (props) => {
     categories, selectedCategory, url, currency, searchString,
   } = props;
   const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg';
-  let icon;
-
-  if (!(isLoaded(items) && isLoaded(categories))) {
-    return <div>Loading...</div>;
-  }
-
-  if (isLoaded(items) && isLoaded(categories)) {
-    const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
-    items = filtered.itemsOfSelectedCategory;
-    icon = filtered.categoryIcon;
-  }
+  const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
+  items = filtered.itemsOfSelectedCategory;
+  const icon = filtered.categoryIcon;
 
   if (!items || isEmpty(items)) {
     return (
@@ -93,40 +81,13 @@ const ItemGrid = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  categories: get(state.firestore.data, 'sellerStore.categories'),
-  currency: get(state.firestore.data, 'sellerStore.currency'),
-  items: get(state.firestore.data, 'sellerItems'),
-});
-
-function withHooks(Component) {
-  return function WrappedComponent(props) {
-    const { storeID, category } = useParams();
-    return (
-      <Component
-        {...props}
-        storeID={storeID}
-        // eslint-disable-next-line
-        selectedCategory={category || props.selectedCategory}
-      />
-    );
-  };
-}
-
-export default compose(
-  withHooks,
-  connect(mapStateToProps),
-)(ItemGrid);
+export default ItemGrid;
 
 ItemGrid.propTypes = {
   categories: PropTypes.array.isRequired,
-  items: PropTypes.object,
+  items: PropTypes.array.isRequired,
   currency: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-};
-
-ItemGrid.defaultProps = {
-  items: undefined,
 };
