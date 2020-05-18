@@ -54,7 +54,7 @@ const ItemGrid = (props) => {
           {selectedCategory}
         </Header.Content>
       </Header>
-      <Card.Group itemsPerRow="4" doubling stackable>
+      <Card.Group itemsPerRow="3" stackable>
         {Object.keys(items).map((itemKey) => {
           const {
             name, photos, description, basePrice, rating, discount,

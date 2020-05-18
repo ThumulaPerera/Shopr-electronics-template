@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Menu, Segment, Sticky, Header, Icon,
+  Dropdown,
 } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import applyUrlCorrection from '../../../helpers/applyUrlCorrection';
 
 const CategoryMenu = (props) => {
   const {
-    categories, contextRef, storeCustomization, handleCategoryClick, selectedCategory,
+    categories, storeCustomization, handleCategoryClick, selectedCategory,
   } = props;
 
   if (!isLoaded(storeCustomization)) {
@@ -29,43 +29,25 @@ const CategoryMenu = (props) => {
     return <div>No categories to display...</div>;
   }
 
-  const color = storeCustomization.color ? storeCustomization.color : null;
+  // const color = storeCustomization.color ? storeCustomization.color : null;
+  const options = [];
+  options.push({ key: 'All', text: 'All', value: 'All' });
+  Object.keys(categories).map((key) => {
+    const { name } = categories[key];
+    options.push({ key: name, text: name, value: name });
+    return null;
+  });
 
   return (
-    <Sticky
-      context={contextRef}
-      offset={80}
-    >
-      <Segment padded basic>
-        <Header>
-          <Icon name="list alternate outline" />
-          <Header.Content>Categories</Header.Content>
-        </Header>
-        <div style={{ overflowY: 'auto', overflowX: 'visible', maxHeight: '70vh' }}>
-          <Menu secondary pointing vertical color={color}>
-            <Menu.Item
-              as="a"
-              name="All"
-              active={selectedCategory === 'All'}
-              onClick={handleCategoryClick}
-            />
-            {Object.keys(categories).map((key) => {
-              const { name } = categories[key];
-              return (
-                <Menu.Item
-                  as="a"
-                  name={name}
-                  active={selectedCategory === name}
-                  onClick={handleCategoryClick}
-                  key={key}
-                />
-              );
-            })}
-          </Menu>
-        </div>
-      </Segment>
-    </Sticky>
-
+    <Dropdown
+      onChange={handleCategoryClick}
+      options={options}
+      search
+      selection
+      value={selectedCategory}
+      scrolling
+      fluid
+    />
   );
 };
 
@@ -88,7 +70,6 @@ export default compose(
 
 CategoryMenu.propTypes = {
   categories: PropTypes.array.isRequired,
-  contextRef: PropTypes.object.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   handleCategoryClick: PropTypes.func.isRequired,
   storeCustomization: PropTypes.object.isRequired,

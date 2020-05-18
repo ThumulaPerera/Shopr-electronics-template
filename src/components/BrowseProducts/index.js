@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 
 import ItemGrid from './ItemGrid';
 import CategoryMenu from './CategoryMenu';
+import CategoryDropdown from './CategoryDropdown';
 
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
 
@@ -63,6 +64,11 @@ class BrowseProducts extends Component {
     value: '',
   })
 
+  handleCategoryDropdownSelection = (e, { value }) => this.setState({
+    selectedCategory: value,
+    value: '',
+  })
+
   render() {
     const {
       contextRef, categories, match,
@@ -83,32 +89,42 @@ class BrowseProducts extends Component {
     return (
       <div>
         <Segment basic textAlign="center">
-          <Search
-            fluid
-            size="large"
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, {
-              leading: true,
-            })}
-            results={results}
-            value={value}
-            resultRenderer={resultRenderer}
-            // {...this.props}
-          />
+          <Grid relaxed="very" padded="horizontally" stackable>
+            <Grid.Row columns={3}>
+              <Grid.Column>
+                <CategoryDropdown
+                  handleCategoryClick={this.handleCategoryDropdownSelection}
+                  selectedCategory={selectedCategory}
+                />
+              </Grid.Column>
+              <Grid.Column>
+                <Search
+                  fluid
+                  size="large"
+                  loading={isLoading}
+                  onResultSelect={this.handleResultSelect}
+                  onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                    leading: true,
+                  })}
+                  results={results}
+                  value={value}
+                  resultRenderer={resultRenderer}
+                />
+              </Grid.Column>
+              <Grid.Column />
+            </Grid.Row>
+          </Grid>
         </Segment>
-        <Grid columns={2} divided={false}>
-          <Grid.Row>
-            <Grid.Column width={3}>
+        <Grid>
+          <Grid.Row columns={2} only="computer">
+            <Grid.Column computer={4} tablet={6}>
               <CategoryMenu
                 contextRef={contextRef}
                 handleCategoryClick={this.handleCategoryClick}
                 selectedCategory={selectedCategory}
               />
             </Grid.Column>
-            <Grid.Column width={13}>
-
-
+            <Grid.Column computer={12} tablet={10}>
               {
                 selectedCategory === 'All'
                   ? categories.map(({ name }) => (
@@ -127,8 +143,28 @@ class BrowseProducts extends Component {
                     />
                   )
               }
-
-
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row only="tablet mobile">
+            <Grid.Column>
+              {
+                selectedCategory === 'All'
+                  ? categories.map(({ name }) => (
+                    <ItemGrid
+                      selectedCategory={name}
+                      key={name}
+                      url={applyUrlCorrection(url)}
+                      searchString={value}
+                    />
+                  ))
+                  : (
+                    <ItemGrid
+                      url={applyUrlCorrection(url)}
+                      selectedCategory={selectedCategory}
+                      searchString={value}
+                    />
+                  )
+              }
             </Grid.Column>
           </Grid.Row>
         </Grid>
