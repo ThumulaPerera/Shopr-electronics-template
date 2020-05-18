@@ -7,14 +7,25 @@ import PropTypes from 'prop-types';
 import { defaultImgUrl } from '../../../constants/defaults';
 import ShowVariantsAccordian from '../../ShowVariantsAccordian';
 import ReviewFrom from '../ReviewForm';
+import { ITEMS_ROUTE } from '../../../constants/routes';
 
 function PurchasedItem({
+  item,
+  orderItem,
   // eslint-disable-next-line no-unused-vars
-  item, orderItem, orderState, currency, ratingEnabled, addReview, changeInProgress, buyerId,
+  orderState,
+  currency,
+  ratingEnabled,
+  addReview,
+  changeInProgress,
+  buyerId,
+  url,
 }) {
   const { noOfItems, unitPrice } = orderItem;
   const subItemId = orderItem.subItem;
-  const { name, photos, subItems } = item;
+  const {
+    name, photos, subItems, id,
+  } = item;
   const subItem = subItems[subItemId];
   const variantArray = subItem.variants;
   const price = currency.concat(' ', unitPrice.toFixed(2).toString());
@@ -29,12 +40,13 @@ function PurchasedItem({
       imgUrl = photos[0].url;
     }
   }
+
   return (
     <Item.Group>
       <Item>
         <Item.Image src={imgUrl} />
         <Item.Content>
-          <Item.Header as="a">{name}</Item.Header>
+          <Item.Header as="a" href={`${url}${ITEMS_ROUTE}/${id}`}>{name}</Item.Header>
           <Grid columns="2">
             <Grid.Column>
               <ShowVariantsAccordian variantArray={variantArray} item={item} />
@@ -103,4 +115,5 @@ PurchasedItem.propTypes = {
   addReview: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
   buyerId: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };

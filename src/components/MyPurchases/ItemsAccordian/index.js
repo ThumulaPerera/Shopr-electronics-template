@@ -27,6 +27,7 @@ class ItemsAccordian extends Component {
         addReview,
         changeInProgress,
         buyerId,
+        url,
       } = this.props;
 
       return (
@@ -58,6 +59,7 @@ class ItemsAccordian extends Component {
                             addReview={addReview}
                             changeInProgress={changeInProgress}
                             buyerId={buyerId}
+                            url={url}
                           />
                         </Accordion.Content>
                       </div>
@@ -81,6 +83,7 @@ ItemsAccordian.propTypes = {
   addReview: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
   buyerId: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 ItemsAccordian.defaultProps = {

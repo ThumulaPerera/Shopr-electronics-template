@@ -13,7 +13,16 @@ import Order from './Order';
 import { addReview } from '../../actions/reviewActions';
 
 function MyPurchases({
-  auth, items, currency, color, ratingEnabled, orders, orderStates, addReview, changeInProgress,
+  auth,
+  items,
+  currency,
+  color,
+  ratingEnabled,
+  orders,
+  orderStates,
+  addReview,
+  changeInProgress,
+  match,
 }) {
   if (!auth.uid) {
     return <SignInToContinue />;
@@ -22,6 +31,9 @@ function MyPurchases({
   if (!isLoaded(orders)) {
     return <div>loading...</div>;
   }
+
+  const { storeID } = match.params;
+  const url = `/${storeID}`;
 
   return (
     <Segment basic>
@@ -38,6 +50,7 @@ function MyPurchases({
             addReview={addReview}
             changeInProgress={changeInProgress}
             buyerId={auth.uid}
+            url={url}
           />
           <Divider hidden />
         </div>
@@ -91,6 +104,7 @@ MyPurchases.propTypes = {
   orderStates: PropTypes.array,
   addReview: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 MyPurchases.defaultProps = {
