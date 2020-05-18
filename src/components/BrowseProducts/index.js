@@ -9,8 +9,8 @@ import { connect } from 'react-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 
-import ItemGrid from '../ItemGrid';
-import CategoryMenu from '../CategoryMenu';
+import ItemGrid from './ItemGrid';
+import CategoryMenu from './CategoryMenu';
 
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
 
@@ -97,7 +97,7 @@ class BrowseProducts extends Component {
             // {...this.props}
           />
         </Segment>
-        <Grid columns={2} divided={false}>
+        <Grid columns={2} divided={false} doubling>
           <Grid.Row>
             <Grid.Column width={3}>
               <CategoryMenu

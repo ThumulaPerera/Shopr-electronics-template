@@ -8,7 +8,7 @@ import { compose } from 'redux';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import applyUrlCorrection from '../../helpers/applyUrlCorrection';
+import applyUrlCorrection from '../../../helpers/applyUrlCorrection';
 
 const CategoryMenu = (props) => {
   const {

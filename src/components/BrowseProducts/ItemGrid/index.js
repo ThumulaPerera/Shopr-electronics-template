@@ -9,9 +9,9 @@ import { compose } from 'redux';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import ItemCard from '../ItemCard';
-import calculateRating from '../../helpers/calculateRating';
-import getItemsAndIconByCategory from '../../helpers/getItemsAndIconByCategory';
+import ItemCard from '../../ItemCard';
+import calculateRating from '../../../helpers/calculateRating';
+import getItemsAndIconByCategory from '../../../helpers/getItemsAndIconByCategory';
 
 const ItemGrid = (props) => {
   let { items } = props;
@@ -54,7 +54,7 @@ const ItemGrid = (props) => {
           {selectedCategory}
         </Header.Content>
       </Header>
-      <Card.Group itemsPerRow="4">
+      <Card.Group itemsPerRow="4" doubling stackable>
         {Object.keys(items).map((itemKey) => {
           const {
             name, photos, description, basePrice, rating, discount,
