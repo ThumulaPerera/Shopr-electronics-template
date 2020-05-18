@@ -45,7 +45,7 @@ const ItemGrid = (props) => {
       <Card.Group itemsPerRow="3" stackable>
         {Object.keys(items).map((itemKey) => {
           const {
-            name, photos, description, basePrice, rating, discount,
+            name, photos, description, basePrice, rating, discount, id,
           } = items[itemKey];
 
           // eslint-disable-next-line no-nested-ternary
@@ -63,8 +63,8 @@ const ItemGrid = (props) => {
 
           return (
             <ItemCard
-              key={itemKey}
-              id={itemKey}
+              key={id}
+              id={id}
               name={name}
               imageURL={imageURL}
               description={description}
