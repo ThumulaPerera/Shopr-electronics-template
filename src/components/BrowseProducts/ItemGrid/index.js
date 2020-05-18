@@ -33,7 +33,7 @@ const ItemGrid = (props) => {
 
   if (!items || isEmpty(items)) {
     return (
-      <Segment basic>
+      <Segment basic padded="very">
         <Header as="h2">
           <Header.Content>
             {icon ? <Icon name={icon} /> : null}
