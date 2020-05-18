@@ -74,14 +74,18 @@ const ItemPage = ({
                 {
                         baseDiscount
                           ? (
-                            <Label attached="top right" size="huge" color="red">
-                              {discount.percentage}
-                              {' '}
-                              % off
-                            </Label>
+                            <div>
+                              <Label attached="top right" size="huge" color="red">
+                                {discount.percentage}
+                                {' '}
+                                % off
+                              </Label>
+                              <Divider hidden />
+                            </div>
                           )
                           : null
                     }
+
                 <Header size="huge">{name}</Header>
 
                 <RatingDisplay rating={itemRating} />
@@ -99,7 +103,7 @@ const ItemPage = ({
                 <Grid columns={2}>
                   {attributes && attributes.map(({ title, attribute }) => (
                     <Grid.Row key={title}>
-                      <Grid.Column textAlign="right" width={4}>
+                      <Grid.Column textAlign="right" width={6}>
                         <p>
                           <b>
                             {title}
@@ -108,7 +112,7 @@ const ItemPage = ({
                           </b>
                         </p>
                       </Grid.Column>
-                      <Grid.Column textAlign="left" width={12}>
+                      <Grid.Column textAlign="left" width={10}>
                         <p>
                           {attribute}
                         </p>
