@@ -49,7 +49,7 @@ const ItemPage = ({
     <Segment basic padded>
       <Grid columns={2} relaxed="very" doubling stackable>
         <Grid.Column width="11">
-          <Grid columns={2} relaxed="very" stackable>
+          <Grid columns={2} relaxed="very" stackable reversed="mobile">
             <Grid.Column>
               <Segment basic>
                 <Carousel showArrows infiniteLoop showIndicators={false}>
