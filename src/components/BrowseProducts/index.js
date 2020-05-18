@@ -97,7 +97,7 @@ class BrowseProducts extends Component {
             // {...this.props}
           />
         </Segment>
-        <Grid columns={2} divided={false} doubling>
+        <Grid columns={2} divided={false}>
           <Grid.Row>
             <Grid.Column width={3}>
               <CategoryMenu
