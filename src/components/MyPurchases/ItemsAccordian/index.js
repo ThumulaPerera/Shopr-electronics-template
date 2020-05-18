@@ -19,7 +19,14 @@ class ItemsAccordian extends Component {
     render() {
       const { activeIndex } = this.state;
       const {
-        orderItems, orderState, items, currency, ratingEnabled, addReview,
+        orderItems,
+        orderState,
+        items,
+        currency,
+        ratingEnabled,
+        addReview,
+        changeInProgress,
+        buyerId,
       } = this.props;
 
       return (
@@ -49,6 +56,8 @@ class ItemsAccordian extends Component {
                             currency={currency}
                             ratingEnabled={ratingEnabled}
                             addReview={addReview}
+                            changeInProgress={changeInProgress}
+                            buyerId={buyerId}
                           />
                         </Accordion.Content>
                       </div>
@@ -70,6 +79,8 @@ ItemsAccordian.propTypes = {
   orderItems: PropTypes.array,
   orderState: PropTypes.string.isRequired,
   addReview: PropTypes.func.isRequired,
+  changeInProgress: PropTypes.bool.isRequired,
+  buyerId: PropTypes.string.isRequired,
 };
 
 ItemsAccordian.defaultProps = {

@@ -13,7 +13,7 @@ import Order from './Order';
 import { addReview } from '../../actions/reviewActions';
 
 function MyPurchases({
-  auth, items, currency, color, ratingEnabled, orders, orderStates, addReview,
+  auth, items, currency, color, ratingEnabled, orders, orderStates, addReview, changeInProgress,
 }) {
   if (!auth.uid) {
     return <SignInToContinue />;
@@ -36,6 +36,8 @@ function MyPurchases({
             ratingEnabled={ratingEnabled}
             orderStates={orderStates}
             addReview={addReview}
+            changeInProgress={changeInProgress}
+            buyerId={auth.uid}
           />
           <Divider hidden />
         </div>
@@ -52,6 +54,7 @@ const mapStateToProps = (state) => ({
   ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
   orders: get(state.firestore.ordered, 'orders'),
   orderStates: get(state.firestore.data, 'config.orderStates'),
+  changeInProgress: state.review.changeInProgress,
 });
 
 const mapDispatchToProps = (dispatch, { firestore, match, auth }) => ({
@@ -87,6 +90,7 @@ MyPurchases.propTypes = {
   orders: PropTypes.array,
   orderStates: PropTypes.array,
   addReview: PropTypes.func.isRequired,
+  changeInProgress: PropTypes.bool.isRequired,
 };
 
 MyPurchases.defaultProps = {
