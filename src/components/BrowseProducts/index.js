@@ -146,7 +146,7 @@ class BrowseProducts extends Component {
             </Sticky>
             <Grid>
               <Grid.Row columns={2} only="computer">
-                <Grid.Column computer={4} tablet={6}>
+                <Grid.Column computer={4}>
                   <CategoryMenu
                     contextRef={contextRef}
                     handleCategoryClick={this.handleCategoryClick}
@@ -155,7 +155,7 @@ class BrowseProducts extends Component {
                     storeCustomization={storeCustomization}
                   />
                 </Grid.Column>
-                <Grid.Column computer={12} tablet={10}>
+                <Grid.Column computer={12}>
                   {
                 selectedCategory === 'All'
                   ? categories.map(({ name }) => (
