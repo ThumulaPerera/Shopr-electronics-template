@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Accordion, Button, Icon, Grid,
+  Accordion, Button, Icon, Divider,
 } from 'semantic-ui-react';
 import { Form, Input } from 'semantic-ui-react-form-validator';
 import PropTypes from 'prop-types';
@@ -81,25 +81,21 @@ class QuantityForm extends Component {
           </Accordion.Title>
           <Accordion.Content active={activeIndex === 0}>
             <Form onSubmit={this.handleSubmit}>
-              <Grid>
-                <Grid.Row verticalAlign="middle">
-                  <Grid.Column width="10">
-                    <Input
-                      placeholder="quantity"
-                      name="quantity"
-                      value={quantity}
-                      onChange={this.handleQtyChange}
-                      width="16"
-                      type="number"
-                      validators={validators}
-                      errorMessages={errorMessages}
-                    />
-                  </Grid.Column>
-                  <Grid.Column width="6">
-                    <Button floated="right" content="Change" disabled={quantity === currentQuantity || changeInProgress} />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
+              <Input
+                placeholder="quantity"
+                name="quantity"
+                value={quantity}
+                onChange={this.handleQtyChange}
+                width="16"
+                type="number"
+                validators={validators}
+                errorMessages={errorMessages}
+              />
+              <Button
+                content="Change"
+                disabled={quantity === currentQuantity || changeInProgress}
+              />
+              <Divider hidden />
             </Form>
           </Accordion.Content>
         </Accordion>
