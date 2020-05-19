@@ -32,11 +32,17 @@ class ItemTable extends Component {
         changeInProgress,
         color,
         stockEnabled,
+        onComputerAndTablet,
       } = this.props;
       return (
         <Segment basic>
-          <Sticky context={contextRef} offset={75}>
-            <Table fixed textAlign="center" color={color}>
+          <Sticky context={contextRef} offset={72} active={onComputerAndTablet}>
+            <Table
+              fixed
+              textAlign="center"
+              color={color}
+              style={{ borderRadius: '0px' }}
+            >
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Item</Table.HeaderCell>
@@ -47,73 +53,73 @@ class ItemTable extends Component {
               </Table.Header>
             </Table>
           </Sticky>
-          <div style={{ maxHeight: '70vh', overflowY: 'scroll', marginTop: '.5rem' }}>
-            <Table basic="very" fixed textAlign="center">
-              <Table.Body>
-                {cart && cart.map((orderItem, index) => {
-                  const item = items[orderItem.item];
-                  const variantArray = item.subItems[orderItem.subItem].variants;
-                  const { price } = item.subItems[orderItem.subItem];
-                  const { stock } = item.subItems[orderItem.subItem];
-                  const quantity = orderItem.noOfItems;
+          {/* <div style={{ maxHeight: '70vh', overflowY: 'scroll', marginTop: '.5rem' }}> */}
+          <Table basic="very" fixed textAlign="center">
+            <Table.Body>
+              {cart && cart.map((orderItem, index) => {
+                const item = items[orderItem.item];
+                const variantArray = item.subItems[orderItem.subItem].variants;
+                const { price } = item.subItems[orderItem.subItem];
+                const { stock } = item.subItems[orderItem.subItem];
+                const quantity = orderItem.noOfItems;
 
-                  const {
-                    name, photos, discount, rating,
-                  } = item;
+                const {
+                  name, photos, discount, rating,
+                } = item;
 
-                  const discountValue = calculateDiscount(price, discount);
-                  const itemRating = rating ? calculateRating(rating) : null;
-                  // eslint-disable-next-line no-nested-ternary
-                  const imageURL = photos && photos[0]
-                    ? (photos[0].thumbnail ? photos[0].thumbnail : photos[0].url)
-                    : defaultImgUrl;
+                const discountValue = calculateDiscount(price, discount);
+                const itemRating = rating ? calculateRating(rating) : null;
+                // eslint-disable-next-line no-nested-ternary
+                const imageURL = photos && photos[0]
+                  ? (photos[0].thumbnail ? photos[0].thumbnail : photos[0].url)
+                  : defaultImgUrl;
 
-                  return (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <Table.Row key={index}>
-                      <Table.Cell style={{ padding: '1rem' }}>
-                        <ItemCard
-                          id={orderItem.item}
-                          name={name}
-                          currency={currency}
-                          price={price}
-                          url={url}
-                          imageURL={imageURL}
-                          discount={discount}
-                          rating={itemRating}
-                          tiny
-                        />
-                      </Table.Cell>
-                      <Table.Cell verticalAlign="top" textAlign="left">
-                        <ShowVariantsAccordian variantArray={variantArray} item={item} />
-                      </Table.Cell>
-                      <Table.Cell textAlign="center">
-                        <p>
-                          <b>
-                            x
-                            {quantity}
-                          </b>
-                        </p>
-                        <QuantityForm
-                          index={index}
-                          editItemQuantity={editItemQuantity}
-                          removeItem={removeItem}
-                          currentQuantity={quantity}
-                          stockEnabled={stockEnabled}
-                          stock={stock}
-                          changeInProgress={changeInProgress}
-                        />
-                        <br />
-                        <Button
-                          onClick={() => this.deleteFromCart(index)}
-                          disabled={changeInProgress}
-                          basic
-                          negative
-                          fluid
-                        >
-                          Remove from cart
-                        </Button>
-                        {stockEnabled && stock !== undefined && stock != null && stock !== 0
+                return (
+                // eslint-disable-next-line react/no-array-index-key
+                  <Table.Row key={index}>
+                    <Table.Cell style={{ padding: '1rem' }} verticalAlign="top">
+                      <ItemCard
+                        id={orderItem.item}
+                        name={name}
+                        currency={currency}
+                        price={price}
+                        url={url}
+                        imageURL={imageURL}
+                        discount={discount}
+                        rating={itemRating}
+                        tiny
+                      />
+                    </Table.Cell>
+                    <Table.Cell verticalAlign="top" textAlign="left">
+                      <ShowVariantsAccordian variantArray={variantArray} item={item} />
+                    </Table.Cell>
+                    <Table.Cell textAlign="center" verticalAlign="top">
+                      <p>
+                        <b>
+                          x
+                          {quantity}
+                        </b>
+                      </p>
+                      <QuantityForm
+                        index={index}
+                        editItemQuantity={editItemQuantity}
+                        removeItem={removeItem}
+                        currentQuantity={quantity}
+                        stockEnabled={stockEnabled}
+                        stock={stock}
+                        changeInProgress={changeInProgress}
+                      />
+                      <br />
+                      <Button
+                        onClick={() => this.deleteFromCart(index)}
+                        disabled={changeInProgress}
+                        basic
+                        negative
+                        fluid
+                      >
+                        Remove from cart
+                      </Button>
+                      {stockEnabled && stock !== undefined && stock != null && stock !== 0
                                     && (
                                     <Container textAlign="justified" style={{ marginTop: '1rem' }}>
                                       <Message
@@ -125,7 +131,7 @@ class ItemTable extends Component {
                                       />
                                     </Container>
                                     )}
-                        {stockEnabled && !stock
+                      {stockEnabled && !stock
                                     && (
                                     <Container textAlign="justified" style={{ marginTop: '1rem' }}>
                                       <Message
@@ -137,7 +143,7 @@ class ItemTable extends Component {
                                       />
                                     </Container>
                                     )}
-                        {!stockEnabled && !stock
+                      {!stockEnabled && !stock
                                     && (
                                     <Container textAlign="justified" style={{ marginTop: '1rem' }}>
                                       <Message
@@ -149,20 +155,20 @@ class ItemTable extends Component {
                                     </Container>
                                     )}
 
-                      </Table.Cell>
-                      <Table.Cell>
-                        <b>
-                          {currency}
-                          {' '}
-                          {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}
-                        </b>
-                      </Table.Cell>
-                    </Table.Row>
-                  );
-                })}
-              </Table.Body>
-            </Table>
-          </div>
+                    </Table.Cell>
+                    <Table.Cell verticalAlign="top">
+                      <b>
+                        {currency}
+                        {' '}
+                        {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}
+                      </b>
+                    </Table.Cell>
+                  </Table.Row>
+                );
+              })}
+            </Table.Body>
+          </Table>
+          {/* </div> */}
         </Segment>
       );
     }
@@ -181,6 +187,7 @@ ItemTable.propTypes = {
   changeInProgress: PropTypes.bool.isRequired,
   color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
+  onComputerAndTablet: PropTypes.bool.isRequired,
 };
 
 ItemTable.defaultProps = {

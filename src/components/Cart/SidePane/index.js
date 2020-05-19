@@ -56,7 +56,6 @@ function SidePane({
           {total.toFixed(2)}
         </Header>
       </Container>
-      {/* <Segment basic padded='very' textAlign='center' > */}
       <Container style={{ marginTop: '3rem' }}>
         {
           !checkoutDisabled
@@ -91,7 +90,6 @@ function SidePane({
         }
 
       </Container>
-      {/* </Segment> */}
     </Segment>
   );
 }
