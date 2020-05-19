@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {
-  Form, Container, Message,
+  Form, Container, Message, Button, Icon,
 } from 'semantic-ui-react';
 import { isEmpty, withFirestore } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -112,10 +112,15 @@ function AddToCartForm({
 
         <Container textAlign="center">
           <Form.Button
+            fluid={false}
+            animated="vertical"
             primary
             disabled={addToCartDisabled || submitting}
           >
-            Add To Cart
+            <Button.Content visible>Add To Cart</Button.Content>
+            <Button.Content hidden>
+              <Icon name="shop" />
+            </Button.Content>
           </Form.Button>
         </Container>
         <Message
