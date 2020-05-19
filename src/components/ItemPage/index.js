@@ -125,7 +125,7 @@ const ItemPage = ({
           </Grid>
         </Grid.Column>
         <Grid.Column width="5">
-          <Segment color={color}>
+          <Segment color={color} secondary>
             <AddToCartForm
               item={item}
               selectedSubItem={selectedSubItem}
