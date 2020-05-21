@@ -20,7 +20,9 @@ function Order({
 }) {
   const date = order.date.toDate().toString();
   const orderState = orderStates[order.orderStates[order.orderStates.length - 1].stateId];
-  const { paymentMethod, totalPrice, orderItems } = order;
+  const {
+    paymentMethod, totalPrice, orderItems, id,
+  } = order;
   const total = currency.concat(' ', totalPrice.toFixed(2).toString());
   let shippingAddress = order.shippingAddress.name.full_name;
   const addressFields = ['address_line_1', 'admin_area_1', 'admin_area_2', 'country_code', 'postal_code'];
@@ -33,9 +35,16 @@ function Order({
     <Segment color={color}>
       <Item.Group>
         <Item>
+
           <Item.Content>
+            <h4>
+              Order ID :
+              {' '}
+              {id}
+            </h4>
+            <Divider />
             <Item.Meta>
-              <h4><b>Order Items</b></h4>
+              <h4>Order Items</h4>
             </Item.Meta>
             <ItemsAccordian
               orderItems={orderItems}
