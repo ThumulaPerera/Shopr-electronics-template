@@ -134,6 +134,7 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
 
   const date = firestore.Timestamp.now();
   const shippingAddress = paymentDetails.purchase_units[0].shipping;
+  const { id } = paymentDetails;
 
   // to accomodate for existing item discounts
   const discountedCart = cart.map((cartItem) => {
@@ -192,7 +193,7 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
     .collection('Stores')
     .doc(storeId)
     .collection('Orders')
-    .doc();
+    .doc(id);
 
   batch.set(OrderDocRef, order);
 
