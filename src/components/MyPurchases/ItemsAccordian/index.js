@@ -40,7 +40,8 @@ class ItemsAccordian extends Component {
                     const item = { ...items[itemId], id: itemId };
                     const { name } = item;
                     return (
-                      <div key={itemId}>
+                      // eslint-disable-next-line react/no-array-index-key
+                      <div key={key}>
                         <Accordion.Title
                           active={activeIndex === key}
                           index={key}
