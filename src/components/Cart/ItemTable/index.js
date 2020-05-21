@@ -30,6 +30,7 @@ class ItemTable extends Component {
         removeItem,
         editItemQuantity,
         changeInProgress,
+        checkoutInProgress,
         color,
         stockEnabled,
         onComputerAndTablet,
@@ -119,41 +120,49 @@ class ItemTable extends Component {
                       >
                         Remove from cart
                       </Button>
-                      {stockEnabled && stock !== undefined && stock != null && stock !== 0
-                                    && (
-                                    <Container textAlign="justified" style={{ marginTop: '1rem' }}>
-                                      <Message
-                                        warning
-                                        icon="warning"
-                                        hidden={stock >= quantity}
-                                        header="Selected quantity no longer in stock"
-                                        content={`Only ${stock} item/s are available in stock. Change the quantity or remove this item from cart before checking out`}
-                                      />
-                                    </Container>
-                                    )}
-                      {stockEnabled && !stock
-                                    && (
-                                    <Container textAlign="justified" style={{ marginTop: '1rem' }}>
-                                      <Message
-                                        warning
-                                        icon="warning"
-                                        hidden={stock >= quantity}
-                                        header="Item no longer in stock"
-                                        content="Remove this item from cart before checking out"
-                                      />
-                                    </Container>
-                                    )}
-                      {!stockEnabled && !stock
-                                    && (
-                                    <Container textAlign="justified" style={{ marginTop: '1rem' }}>
-                                      <Message
-                                        warning
-                                        icon="warning"
-                                        header="Item no longer in stock"
-                                        content="Remove this item from cart before checking out"
-                                      />
-                                    </Container>
-                                    )}
+                      {stockEnabled
+                      && stock !== undefined
+                      && stock != null
+                      && stock !== 0
+                      && !checkoutInProgress
+                      && (
+                      <Container textAlign="justified" style={{ marginTop: '1rem' }}>
+                        <Message
+                          warning
+                          icon="warning"
+                          hidden={stock >= quantity}
+                          header="Selected quantity no longer in stock"
+                          content={`Only ${stock} item/s in stock. Change the quantity or remove this item before checking out`}
+                        />
+                      </Container>
+                      )}
+                      {stockEnabled
+                      && !stock
+                      && !checkoutInProgress
+                      && (
+                      <Container textAlign="justified" style={{ marginTop: '1rem' }}>
+                        <Message
+                          warning
+                          icon="warning"
+                          hidden={stock >= quantity}
+                          header="Item no longer in stock"
+                          content="Remove this item from cart before checking out"
+                        />
+                      </Container>
+                      )}
+                      {!stockEnabled
+                      && !stock
+                      && !checkoutInProgress
+                      && (
+                      <Container textAlign="justified" style={{ marginTop: '1rem' }}>
+                        <Message
+                          warning
+                          icon="warning"
+                          header="Item no longer in stock"
+                          content="Remove this item from cart before checking out"
+                        />
+                      </Container>
+                      )}
 
                     </Table.Cell>
                     <Table.Cell verticalAlign="top">
@@ -185,6 +194,7 @@ ItemTable.propTypes = {
   removeItem: PropTypes.func.isRequired,
   editItemQuantity: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
+  checkoutInProgress: PropTypes.bool.isRequired,
   color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
   onComputerAndTablet: PropTypes.bool.isRequired,

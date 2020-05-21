@@ -2,6 +2,7 @@ import { CART_ACTION_TYPES } from '../constants/actionTypes';
 
 const initState = {
   changeInProgress: false,
+  checkoutInProgress: false,
   deleteError: null,
   editError: null,
   checkoutError: null,
@@ -63,6 +64,7 @@ const cartReducer = (state = initState, action) => {
         ...state,
         checkoutError: null,
         changeInProgress: true,
+        checkoutInProgress: true,
       };
 
     case CART_ACTION_TYPES.CHECKOUT_SUCCESS:
@@ -71,6 +73,7 @@ const cartReducer = (state = initState, action) => {
         ...state,
         checkoutError: null,
         changeInProgress: false,
+        checkoutInProgress: false,
       };
 
     case CART_ACTION_TYPES.CHECKOUT_CANCEL:
@@ -79,6 +82,7 @@ const cartReducer = (state = initState, action) => {
         ...state,
         checkoutError: null,
         changeInProgress: false,
+        checkoutInProgress: false,
       };
 
     case CART_ACTION_TYPES.CHECKOUT_ERROR:
@@ -87,6 +91,7 @@ const cartReducer = (state = initState, action) => {
         ...state,
         checkoutError: action.error,
         changeInProgress: false,
+        checkoutInProgress: false,
       };
 
     default: return state;

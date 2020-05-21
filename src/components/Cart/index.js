@@ -31,6 +31,7 @@ function Cart({
   resetStock,
   createOrderInDb,
   changeInProgress,
+  checkoutInProgress,
   color,
   stockEnabled,
 }) {
@@ -68,6 +69,7 @@ function Cart({
                 editItemQuantity={editItemQuantity}
                 contextRef={contextRef}
                 changeInProgress={changeInProgress}
+                checkoutInProgress={checkoutInProgress}
                 color={color}
                 stockEnabled={stockEnabled}
                 onComputerAndTablet={onComputerAndTablet}
@@ -82,6 +84,7 @@ function Cart({
                   noOfItems={cart ? cart.length : 0}
                   updateStock={updateStock}
                   resetStock={resetStock}
+                  checkoutInProgress={checkoutInProgress}
                   createOrderInDb={createOrderInDb}
                   stockEnabled={stockEnabled}
                   items={items}
@@ -100,6 +103,7 @@ function Cart({
               editItemQuantity={editItemQuantity}
               contextRef={contextRef}
               changeInProgress={changeInProgress}
+              checkoutInProgress={checkoutInProgress}
               color={color}
               stockEnabled={stockEnabled}
               onComputerAndTablet={onComputerAndTablet}
@@ -116,6 +120,7 @@ function Cart({
                 updateStock={updateStock}
                 resetStock={resetStock}
                 createOrderInDb={createOrderInDb}
+                checkoutInProgress={checkoutInProgress}
                 stockEnabled={stockEnabled}
                 items={items}
                 cart={cart}
@@ -135,6 +140,7 @@ const mapStateToProps = (state) => ({
   cart: get(state.firestore.data, 'buyer.cart'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
   changeInProgress: state.cart.changeInProgress,
+  checkoutInProgress: state.cart.checkoutInProgress,
 });
 
 const mapDispatchToProps = (dispatch, { firestore, match, auth }) => ({
@@ -182,6 +188,7 @@ Cart.propTypes = {
   removeItem: PropTypes.func.isRequired,
   editItemQuantity: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
+  checkoutInProgress: PropTypes.bool.isRequired,
   color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
   updateStock: PropTypes.func.isRequired,

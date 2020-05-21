@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Segment, Header, Icon, Container, Button, Popup,
+  Segment, Header, Icon, Container, Button, Popup, Divider,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -13,6 +13,7 @@ function SidePane({
   noOfItems,
   updateStock,
   resetStock,
+  checkoutInProgress,
   createOrderInDb,
   items,
   cart,
@@ -56,9 +57,12 @@ function SidePane({
           {total.toFixed(2)}
         </Header>
       </Container>
+
       <Container style={{ marginTop: '3rem' }}>
+        <Divider />
         {
           !checkoutDisabled
+          || checkoutInProgress
             ? (
               <CheckoutButton
                 total={total}
@@ -88,7 +92,6 @@ function SidePane({
 
             )
         }
-
       </Container>
     </Segment>
   );
@@ -102,6 +105,7 @@ SidePane.propTypes = {
   noOfItems: PropTypes.number.isRequired,
   updateStock: PropTypes.func.isRequired,
   resetStock: PropTypes.func.isRequired,
+  checkoutInProgress: PropTypes.bool.isRequired,
   createOrderInDb: PropTypes.func.isRequired,
   stockEnabled: PropTypes.bool.isRequired,
   items: PropTypes.object.isRequired,
