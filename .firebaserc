@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "electronics-template"
+    "default": "electronics-template",
+    "production": "ecom-cse"
   }
 }

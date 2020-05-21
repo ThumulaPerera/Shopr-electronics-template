@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "electronics-shopr",
     "public": "build",
     "ignore": [
       "firebase.json",
