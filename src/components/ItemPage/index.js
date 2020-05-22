@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Segment, Grid, Header, Container, Divider, Image, Label,
+  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon,
 } from 'semantic-ui-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -23,6 +23,16 @@ import AddToCartForm from './AddToCartForm';
 const ItemPage = ({
   item, selectedVariants, match, currency, stockEnabled, color,
 }) => {
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const handleClick = (e, titleProps) => {
+    const { index } = titleProps;
+    const newIndex = activeIndex === index ? -1 : index;
+
+    setActiveIndex(newIndex);
+  };
+
+
   if (!(isLoaded(item))) {
     return <div>Loading...</div>;
   }
@@ -100,26 +110,38 @@ const ItemPage = ({
 
                 <Divider />
 
-                <Grid columns={2}>
-                  {attributes && attributes.map(({ title, attribute }) => (
-                    <Grid.Row key={title}>
-                      <Grid.Column textAlign="right" width={6}>
-                        <p>
-                          <b>
-                            {title}
-                            {' '}
-                            :
-                          </b>
-                        </p>
-                      </Grid.Column>
-                      <Grid.Column textAlign="left" width={10}>
-                        <p>
-                          {attribute}
-                        </p>
-                      </Grid.Column>
-                    </Grid.Row>
-                  ))}
-                </Grid>
+                <Accordion>
+                  <Accordion.Title
+                    active={activeIndex === 0}
+                    index={0}
+                    onClick={handleClick}
+                  >
+                    <Icon name="dropdown" />
+                    Attributes
+                  </Accordion.Title>
+                  <Accordion.Content active={activeIndex === 0}>
+                    <Grid columns={2}>
+                      {attributes && attributes.map(({ title, attribute }) => (
+                        <Grid.Row key={title}>
+                          <Grid.Column textAlign="right" width={6}>
+                            <p>
+                              <b>
+                                {title}
+                                {' '}
+                                :
+                              </b>
+                            </p>
+                          </Grid.Column>
+                          <Grid.Column textAlign="left" width={10}>
+                            <p>
+                              {attribute}
+                            </p>
+                          </Grid.Column>
+                        </Grid.Row>
+                      ))}
+                    </Grid>
+                  </Accordion.Content>
+                </Accordion>
               </Segment>
             </Grid.Column>
           </Grid>
