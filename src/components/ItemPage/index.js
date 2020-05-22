@@ -19,9 +19,10 @@ import calculateRating from '../../helpers/calculateRating';
 import getCorrespondingSubItem from '../../helpers/getCorrespondingSubItem';
 import calculateDiscount from '../../helpers/calculateDiscount';
 import AddToCartForm from './AddToCartForm';
+import ReviewDisplay from './ReviewDisplay';
 
 const ItemPage = ({
-  item, selectedVariants, match, currency, stockEnabled, color,
+  item, selectedVariants, match, currency, stockEnabled, ratingEnabled, color,
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
 
@@ -43,10 +44,10 @@ const ItemPage = ({
   }
 
   const {
-    name, photos, rating, description, attributes, basePrice, discount,
+    name, photos, rating, description, attributes, basePrice, discount, reviews,
   } = item;
   const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg';
-  const itemRating = rating ? calculateRating(rating) : null;
+  const itemRating = rating ? calculateRating(rating) : 0;
   const baseDiscount = calculateDiscount(basePrice, discount);
   let selectedSubItem = {};
 
@@ -98,7 +99,7 @@ const ItemPage = ({
 
                 <Header size="huge">{name}</Header>
 
-                <RatingDisplay rating={itemRating} />
+                {ratingEnabled && <RatingDisplay rating={itemRating} />}
 
                 <Divider />
 
@@ -142,6 +143,27 @@ const ItemPage = ({
                     </Grid>
                   </Accordion.Content>
                 </Accordion>
+
+                {ratingEnabled
+                && (
+                <div>
+                  <Divider />
+
+                  <Accordion>
+                    <Accordion.Title
+                      active={activeIndex === 1}
+                      index={1}
+                      onClick={handleClick}
+                    >
+                      <Icon name="dropdown" />
+                      Ratings & Reviews
+                    </Accordion.Title>
+                    <Accordion.Content active={activeIndex === 1}>
+                      <ReviewDisplay rating={itemRating} reviews={reviews} />
+                    </Accordion.Content>
+                  </Accordion>
+                </div>
+                )}
               </Segment>
             </Grid.Column>
           </Grid>
@@ -210,6 +232,7 @@ const mapStateToProps = (state, { match }) => ({
   selectedVariants: get(state.form.addToCart, 'values'),
   currency: get(state.firestore.data, 'sellerStore.currency'),
   stockEnabled: get(state.firestore.data, 'sellerStore.enableInventoryManagement'),
+  ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
 });
 
@@ -223,6 +246,7 @@ ItemPage.propTypes = {
   match: PropTypes.object.isRequired,
   currency: PropTypes.string.isRequired,
   stockEnabled: PropTypes.bool.isRequired,
+  ratingEnabled: PropTypes.bool.isRequired,
   color: PropTypes.string,
 };
 
