@@ -72,7 +72,18 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, { firestore, match, auth }) => ({
   addReview: (item, ratingValue, reviewValue) => (
-    dispatch(addReview(firestore, item, ratingValue, reviewValue, match.params.storeID, auth.uid))
+    dispatch(
+      addReview(
+        firestore,
+        item,
+        ratingValue,
+        reviewValue,
+        match.params.storeID,
+        auth.uid,
+        auth.displayName,
+        auth.photoURL,
+      ),
+    )
   ),
 });
 

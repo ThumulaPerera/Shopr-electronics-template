@@ -4,7 +4,7 @@ import { toastr } from 'react-redux-toastr';
 import { REVIEW_ACTION_TYPES } from '../constants/actionTypes';
 
 // eslint-disable-next-line max-len
-export const addReview = (firestore, item, ratingValue, reviewValue, storeId, buyerId) => (dispatch) => {
+export const addReview = (firestore, item, ratingValue, reviewValue, storeId, buyerId, buyerName, buyerImg) => (dispatch) => {
   dispatch({ type: REVIEW_ACTION_TYPES.REVIEW_IN_PROGRESS });
 
   const { id } = item;
@@ -24,6 +24,8 @@ export const addReview = (firestore, item, ratingValue, reviewValue, storeId, bu
     buyer: buyerId,
     comment: reviewValue,
     rating: ratingValue,
+    buyerName,
+    buyerImg,
   };
 
   if (!reviews) {
