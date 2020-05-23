@@ -18,14 +18,27 @@ export const signInWithFb = (currentStore, firestore) => (dispatch, getState, { 
       .doc(currentStore)
       .collection('Buyers')
       .doc(socialAuthUser.user.uid)
-      .set({
-        displayName: socialAuthUser.profile.displayName,
-        email: socialAuthUser.profile.email,
-        avatarUrl: socialAuthUser.profile.avatarUrl,
-      },
-      {
-        merge: true,
-      }))
+      .get()
+      .then((dataSnapshot) => {
+        const cart = dataSnapshot.get('cart');
+        return cart || [];
+      })
+      .then((cart) => (firestore
+        .collection('Stores')
+        .doc(currentStore)
+        .collection('Buyers')
+        .doc(socialAuthUser.user.uid)
+        .set({
+          displayName: socialAuthUser.profile.displayName,
+          email: socialAuthUser.profile.email,
+          avatarUrl: socialAuthUser.profile.avatarUrl,
+          cart,
+        },
+        {
+          merge: true,
+        }))))
+
+
     .then(() => {
       dispatch({ type: AUTH_ACTION_TYPES.LOGIN_SUCCESS });
     })
