@@ -29,7 +29,7 @@ function ReviewDisplay({ rating, reviews }) {
               <small>
                 {noOfRatings}
                 {' '}
-                product ratings
+                {noOfRatings === 1 ? 'product rating' : 'product ratings'}
               </small>
             </Statistic>
           </Grid.Column>
