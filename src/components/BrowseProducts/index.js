@@ -11,16 +11,20 @@ import PropTypes from 'prop-types';
 // import { StickyContainer, Sticky } from 'react-sticky';
 
 import ItemGrid from './ItemGrid';
+import SearchResultsGrid from './SearchResultsGrid';
 import CategoryMenu from './CategoryMenu';
 import CategoryDropdown from './CategoryDropdown';
 
 import applyUrlCorrection from '../../helpers/applyUrlCorrection';
+
+// component to display reaserch results as drop down
 
 const resultRenderer = ({ title }) => <Label content={title} />;
 
 resultRenderer.propTypes = {
   title: PropTypes.string.isRequired,
 };
+
 
 const initialState = {
   isLoading: false, results: [], value: '', selectedCategory: 'All',
@@ -36,7 +40,7 @@ class BrowseProducts extends Component {
   }
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value });
+    this.setState({ isLoading: true, value, selectedCategory: 'All' });
 
     // eslint-disable-next-line consistent-return
     setTimeout(() => {
@@ -71,7 +75,6 @@ class BrowseProducts extends Component {
   })
 
   handleOnResponsiveUpdate = (e, { width }) => this.setState({ width })
-
 
   render() {
     const {
@@ -157,19 +160,24 @@ class BrowseProducts extends Component {
                 </Grid.Column>
                 <Grid.Column computer={12}>
                   {
-                selectedCategory === 'All'
-                  ? categories.map(({ name }) => (
-                    <ItemGrid
-                      selectedCategory={name}
-                      key={name}
-                      url={applyUrlCorrection(url)}
-                      searchString={value}
-                      categories={categories}
-                      currency={currency}
-                      items={items}
-                    />
-                  ))
-                  : (
+                    selectedCategory === 'All'
+                    && value === ''
+                    && categories.map(({ name }) => (
+                      <ItemGrid
+                        selectedCategory={name}
+                        key={name}
+                        url={applyUrlCorrection(url)}
+                        searchString={value}
+                        categories={categories}
+                        currency={currency}
+                        items={items}
+                      />
+                    ))
+                  }
+                  {
+                    selectedCategory !== 'All'
+                    && value === ''
+                    && (
                     <ItemGrid
                       url={applyUrlCorrection(url)}
                       selectedCategory={selectedCategory}
@@ -178,26 +186,43 @@ class BrowseProducts extends Component {
                       currency={currency}
                       items={items}
                     />
-                  )
-              }
+                    )
+                  }
+                  {
+                    value !== ''
+                    && (
+                    <SearchResultsGrid
+                      url={applyUrlCorrection(url)}
+                      searchString={value}
+                      currency={currency}
+                      items={items}
+                    />
+                    )
+                  }
+
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row only="tablet mobile">
                 <Grid.Column>
                   {
-                selectedCategory === 'All'
-                  ? categories.map(({ name }) => (
-                    <ItemGrid
-                      selectedCategory={name}
-                      key={name}
-                      url={applyUrlCorrection(url)}
-                      searchString={value}
-                      categories={categories}
-                      currency={currency}
-                      items={items}
-                    />
-                  ))
-                  : (
+                    selectedCategory === 'All'
+                    && value === ''
+                    && categories.map(({ name }) => (
+                      <ItemGrid
+                        selectedCategory={name}
+                        key={name}
+                        url={applyUrlCorrection(url)}
+                        searchString={value}
+                        categories={categories}
+                        currency={currency}
+                        items={items}
+                      />
+                    ))
+                  }
+                  {
+                    selectedCategory !== 'All'
+                    && value === ''
+                    && (
                     <ItemGrid
                       url={applyUrlCorrection(url)}
                       selectedCategory={selectedCategory}
@@ -206,8 +231,19 @@ class BrowseProducts extends Component {
                       currency={currency}
                       items={items}
                     />
-                  )
-              }
+                    )
+                  }
+                  {
+                    value !== ''
+                    && (
+                    <SearchResultsGrid
+                      url={applyUrlCorrection(url)}
+                      searchString={value}
+                      currency={currency}
+                      items={items}
+                    />
+                    )
+                  }
                 </Grid.Column>
               </Grid.Row>
             </Grid>

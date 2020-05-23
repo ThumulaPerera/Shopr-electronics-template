@@ -1,52 +1,39 @@
 import React from 'react';
 import {
-  Card, Segment, Header, Icon,
+  Card, Segment,
 } from 'semantic-ui-react';
 import { isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
 
 import ItemCard from '../../ItemCard';
 import calculateRating from '../../../helpers/calculateRating';
-import getItemsAndIconByCategory from '../../../helpers/getItemsAndIconByCategory';
 
 const ItemGrid = (props) => {
-  let { items } = props;
   const {
-    categories, selectedCategory, url, currency,
+    items, url, currency, searchString,
   } = props;
   const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg';
-  const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
-  items = filtered.itemsOfSelectedCategory;
-  const icon = filtered.categoryIcon;
+
 
   if (!items || isEmpty(items)) {
-    return (
-      <Segment basic padded="very">
-        <Header as="h2">
-          <Header.Content>
-            {icon ? <Icon name={icon} /> : null}
-            {selectedCategory}
-          </Header.Content>
-        </Header>
-        <div>No items to display....</div>
-      </Segment>
-    );
+    return null;
+  }
+
+  const filteredItems = items.filter((item) => (
+    item.name.search(new RegExp(searchString, 'i')) !== -1
+  ));
+
+  if (!filteredItems || isEmpty(filteredItems)) {
+    return null;
   }
 
   return (
-
     <Segment basic padded="very">
-      <Header as="h2">
-        <Header.Content>
-          {icon ? <Icon name={icon} /> : null}
-          {selectedCategory}
-        </Header.Content>
-      </Header>
       <Card.Group itemsPerRow="3" stackable>
-        {Object.keys(items).map((itemKey) => {
+        {Object.keys(filteredItems).map((itemKey) => {
           const {
             name, photos, description, basePrice, rating, discount, id,
-          } = items[itemKey];
+          } = filteredItems[itemKey];
 
           // eslint-disable-next-line no-nested-ternary
           const imageURL = photos && photos[0]
@@ -84,9 +71,8 @@ const ItemGrid = (props) => {
 export default ItemGrid;
 
 ItemGrid.propTypes = {
-  categories: PropTypes.array.isRequired,
   items: PropTypes.array.isRequired,
   currency: PropTypes.string.isRequired,
-  selectedCategory: PropTypes.string.isRequired,
+  searchString: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
