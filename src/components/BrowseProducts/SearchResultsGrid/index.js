@@ -7,13 +7,12 @@ import PropTypes from 'prop-types';
 
 import ItemCard from '../../ItemCard';
 import calculateRating from '../../../helpers/calculateRating';
+import { defaultImgUrl } from '../../../constants/defaults';
 
 const ItemGrid = (props) => {
   const {
     items, url, currency, searchString,
   } = props;
-  const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg';
-
 
   if (!items || isEmpty(items)) {
     return null;

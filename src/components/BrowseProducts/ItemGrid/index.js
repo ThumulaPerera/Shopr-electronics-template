@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
 import ItemCard from '../../ItemCard';
 import calculateRating from '../../../helpers/calculateRating';
 import getItemsAndIconByCategory from '../../../helpers/getItemsAndIconByCategory';
+import { defaultImgUrl } from '../../../constants/defaults';
 
 const ItemGrid = (props) => {
   let { items } = props;
   const {
     categories, selectedCategory, url, currency,
   } = props;
-  const defaultImgUrl = 'https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg';
   const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
   items = filtered.itemsOfSelectedCategory;
   const icon = filtered.categoryIcon;
