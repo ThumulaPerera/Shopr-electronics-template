@@ -1,11 +1,11 @@
 import React, { createRef, useState } from 'react';
 import { compose } from 'redux';
 import {
-  isLoaded, firestoreConnect, withFirestore,
+  isLoaded, isEmpty, firestoreConnect, withFirestore,
 } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import {
-  Grid, Loader, Ref, Sticky, Responsive,
+  Grid, Loader, Ref, Sticky, Responsive, Segment, Header, Button, Divider,
 } from 'semantic-ui-react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
@@ -49,6 +49,32 @@ function Cart({
 
   if (!(isLoaded(items) && isLoaded(currency) && isLoaded(cart))) {
     return <Loader />;
+  }
+
+  if (!cart || isEmpty(cart)) {
+    return (
+      <Segment
+        basic
+        textAlign="center"
+        style={{ marginTop: '5em' }}
+      >
+        <Header
+          as="h2"
+          style={{ fontSize: '1.3em', fontWeight: 'normal' }}
+        >
+          You don&apos;t have any items in your cart
+        </Header>
+        <Divider hidden />
+        <Button
+          as="a"
+          href={`/${match.params.storeID}`}
+          primary
+          size="big"
+        >
+          Start shopping
+        </Button>
+      </Segment>
+    );
   }
 
   return (

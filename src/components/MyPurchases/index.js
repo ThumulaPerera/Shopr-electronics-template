@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { Segment, Divider } from 'semantic-ui-react';
 import {
-  isLoaded, firestoreConnect,
+  Segment, Divider, Header, Button,
+} from 'semantic-ui-react';
+import {
+  isLoaded, isEmpty, firestoreConnect,
 } from 'react-redux-firebase';
 import { compose } from 'redux';
 
@@ -34,6 +36,32 @@ function MyPurchases({
 
   const { storeID } = match.params;
   const url = `/${storeID}`;
+
+  if (!orders || isEmpty(orders)) {
+    return (
+      <Segment
+        basic
+        textAlign="center"
+        style={{ marginTop: '5em' }}
+      >
+        <Header
+          as="h2"
+          style={{ fontSize: '1.3em', fontWeight: 'normal' }}
+        >
+          You don&apos;t have any purchases
+        </Header>
+        <Divider hidden />
+        <Button
+          as="a"
+          href={url}
+          primary
+          size="big"
+        >
+          Start shopping
+        </Button>
+      </Segment>
+    );
+  }
 
   return (
     <Segment basic>
