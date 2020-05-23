@@ -49,12 +49,14 @@ class PayPalChkoutButton extends Component {
         updateStock(items, cart);
       }
       return actions.order.create({
-        purchase_units: [{
-          amount: {
-            currency_code: currency,
-            value: total,
+        purchase_units: [
+          {
+            amount: {
+              currency_code: currency,
+              value: total,
+            },
           },
-        }],
+        ],
       // application_context: {
       //   shipping_preference: "NO_SHIPPING" // default is "GET_FROM_FILE"
       // }
@@ -72,6 +74,7 @@ class PayPalChkoutButton extends Component {
         options={{
           clientId,
           locale,
+          currency,
           disableFunding: 'card',
         }}
       />
