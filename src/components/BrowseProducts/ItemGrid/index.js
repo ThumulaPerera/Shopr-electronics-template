@@ -13,7 +13,7 @@ import { defaultImgUrl } from '../../../constants/defaults';
 const ItemGrid = (props) => {
   let { items } = props;
   const {
-    categories, selectedCategory, url, currency,
+    categories, selectedCategory, url, currency, ratingEnabled,
   } = props;
   const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
   items = filtered.itemsOfSelectedCategory;
@@ -73,6 +73,7 @@ const ItemGrid = (props) => {
               rating={itemRating}
               discount={discount}
               url={url}
+              ratingEnabled={ratingEnabled}
             />
           );
         })}
@@ -89,4 +90,5 @@ ItemGrid.propTypes = {
   currency: PropTypes.string.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  ratingEnabled: PropTypes.bool.isRequired,
 };

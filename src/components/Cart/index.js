@@ -34,6 +34,7 @@ function Cart({
   checkoutInProgress,
   color,
   stockEnabled,
+  ratingEnabled,
 }) {
   const [width, setWidth] = useState();
 
@@ -98,6 +99,7 @@ function Cart({
                 checkoutInProgress={checkoutInProgress}
                 color={color}
                 stockEnabled={stockEnabled}
+                ratingEnabled={ratingEnabled}
                 onComputerAndTablet={onComputerAndTablet}
               />
             </Grid.Column>
@@ -132,6 +134,7 @@ function Cart({
               checkoutInProgress={checkoutInProgress}
               color={color}
               stockEnabled={stockEnabled}
+              ratingEnabled={ratingEnabled}
               onComputerAndTablet={onComputerAndTablet}
             />
           </Grid.Row>
@@ -163,6 +166,7 @@ const mapStateToProps = (state) => ({
   items: get(state.firestore.data, 'sellerItems'),
   currency: get(state.firestore.data, 'sellerStore.currency'),
   stockEnabled: get(state.firestore.data, 'sellerStore.enableInventoryManagement'),
+  ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
   cart: get(state.firestore.data, 'buyer.cart'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
   changeInProgress: state.cart.changeInProgress,
@@ -217,6 +221,7 @@ Cart.propTypes = {
   checkoutInProgress: PropTypes.bool.isRequired,
   color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
+  ratingEnabled: PropTypes.bool.isRequired,
   updateStock: PropTypes.func.isRequired,
   resetStock: PropTypes.func.isRequired,
   createOrderInDb: PropTypes.func.isRequired,

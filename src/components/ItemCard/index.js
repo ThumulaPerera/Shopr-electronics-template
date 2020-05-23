@@ -17,6 +17,7 @@ const ItemCard = ({
   currency,
   price,
   rating,
+  ratingEnabled,
   url,
   history,
   tiny,
@@ -78,7 +79,7 @@ const ItemCard = ({
           </p>
         </span>
       </Card.Content>
-      {rating !== null && (
+      {ratingEnabled && rating !== null && (
       <Card.Content extra textAlign="center">
         <RatingDisplay rating={rating} />
       </Card.Content>
@@ -97,6 +98,7 @@ ItemCard.propTypes = {
   currency: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
+  ratingEnabled: PropTypes.bool.isRequired,
   url: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   tiny: PropTypes.bool,

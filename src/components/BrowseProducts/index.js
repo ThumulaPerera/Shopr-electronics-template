@@ -78,7 +78,7 @@ class BrowseProducts extends Component {
 
   render() {
     const {
-      contextRef, categories, match, items, currency, storeCustomization,
+      contextRef, categories, match, items, currency, storeCustomization, ratingEnabled,
     } = this.props;
     const {
       isLoading, value, results, selectedCategory, width,
@@ -171,6 +171,7 @@ class BrowseProducts extends Component {
                         categories={categories}
                         currency={currency}
                         items={items}
+                        ratingEnabled={ratingEnabled}
                       />
                     ))
                   }
@@ -185,6 +186,7 @@ class BrowseProducts extends Component {
                       categories={categories}
                       currency={currency}
                       items={items}
+                      ratingEnabled={ratingEnabled}
                     />
                     )
                   }
@@ -196,6 +198,7 @@ class BrowseProducts extends Component {
                       searchString={value}
                       currency={currency}
                       items={items}
+                      ratingEnabled={ratingEnabled}
                     />
                     )
                   }
@@ -216,6 +219,7 @@ class BrowseProducts extends Component {
                         categories={categories}
                         currency={currency}
                         items={items}
+                        ratingEnabled={ratingEnabled}
                       />
                     ))
                   }
@@ -230,6 +234,7 @@ class BrowseProducts extends Component {
                       categories={categories}
                       currency={currency}
                       items={items}
+                      ratingEnabled={ratingEnabled}
                     />
                     )
                   }
@@ -241,6 +246,7 @@ class BrowseProducts extends Component {
                       searchString={value}
                       currency={currency}
                       items={items}
+                      ratingEnabled={ratingEnabled}
                     />
                     )
                   }
@@ -257,6 +263,7 @@ class BrowseProducts extends Component {
 const mapStateToProps = (state) => ({
   categories: get(state.firestore.data, 'sellerStore.categories'),
   currency: get(state.firestore.data, 'sellerStore.currency'),
+  ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
   items: get(state.firestore.ordered, 'sellerItems'),
   storeCustomization: get(state.firestore.data, 'sellerStore.storeCustomization'),
 });
@@ -280,6 +287,7 @@ BrowseProducts.propTypes = {
   items: PropTypes.array,
   currency: PropTypes.string,
   storeCustomization: PropTypes.object,
+  ratingEnabled: PropTypes.bool,
 };
 
 BrowseProducts.defaultProps = {
@@ -287,4 +295,5 @@ BrowseProducts.defaultProps = {
   categories: undefined,
   currency: undefined,
   storeCustomization: undefined,
+  ratingEnabled: undefined,
 };

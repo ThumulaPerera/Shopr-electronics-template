@@ -33,6 +33,7 @@ class ItemTable extends Component {
         checkoutInProgress,
         color,
         stockEnabled,
+        ratingEnabled,
         onComputerAndTablet,
       } = this.props;
       return (
@@ -88,6 +89,7 @@ class ItemTable extends Component {
                         imageURL={imageURL}
                         discount={discount}
                         rating={itemRating}
+                        ratingEnabled={ratingEnabled}
                         tiny
                       />
                     </Table.Cell>
@@ -197,6 +199,7 @@ ItemTable.propTypes = {
   checkoutInProgress: PropTypes.bool.isRequired,
   color: PropTypes.string,
   stockEnabled: PropTypes.bool.isRequired,
+  ratingEnabled: PropTypes.bool.isRequired,
   onComputerAndTablet: PropTypes.bool.isRequired,
 };
 

@@ -11,7 +11,7 @@ import { defaultImgUrl } from '../../../constants/defaults';
 
 const ItemGrid = (props) => {
   const {
-    items, url, currency, searchString,
+    items, url, currency, searchString, ratingEnabled,
   } = props;
 
   if (!items || isEmpty(items)) {
@@ -59,6 +59,7 @@ const ItemGrid = (props) => {
               rating={itemRating}
               discount={discount}
               url={url}
+              ratingEnabled={ratingEnabled}
             />
           );
         })}
@@ -74,4 +75,5 @@ ItemGrid.propTypes = {
   currency: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  ratingEnabled: PropTypes.bool.isRequired,
 };
