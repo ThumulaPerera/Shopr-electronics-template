@@ -99,14 +99,13 @@ class ItemTable extends Component {
                       <ShowVariantsAccordian variantArray={variantArray} item={item} />
                     </Table.Cell>
                     <Table.Cell textAlign="center" verticalAlign="top">
-                      <p>
-                        <h4>
-                          x
-                          {' '}
-                          {quantity}
-                          {' '}
+                      <h4>
+                        x
+                        {' '}
+                        {quantity}
+                        {' '}
 
-                          {stockEnabled
+                        {stockEnabled
                       && stock !== undefined
                       && stock != null
                       && stock !== 0
@@ -123,7 +122,7 @@ class ItemTable extends Component {
                           position="top center"
                         />
                       )}
-                          {stockEnabled
+                        {stockEnabled
                       && !stock
                       && !checkoutInProgress
                       && visible
@@ -137,7 +136,7 @@ class ItemTable extends Component {
                           position="top center"
                         />
                       )}
-                          {!stockEnabled
+                        {!stockEnabled
                       && !stock
                       && !checkoutInProgress
                       && visible
@@ -151,7 +150,7 @@ class ItemTable extends Component {
                           position="top center"
                         />
                       )}
-                          {(!visible
+                        {(!visible
                       || deleted)
                       && (
                         <Popup
@@ -162,8 +161,7 @@ class ItemTable extends Component {
                           position="top center"
                         />
                       )}
-                        </h4>
-                      </p>
+                      </h4>
                       <QuantityForm
                         index={index}
                         editItemQuantity={editItemQuantity}
