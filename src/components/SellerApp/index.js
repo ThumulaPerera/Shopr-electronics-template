@@ -42,7 +42,10 @@ function SellerApp({ sellerStore }) {
         timeOut={4000}
         newestOnTop={false}
       />
-      <ChatBot storeId={storeID} />
+      {
+        sellerStore[0].enableChatbot
+        && <ChatBot storeID={storeID} />
+      }
       <Switch>
         <Route
           path={`${path}${ROUTES.MY_PURCHASES_ROUTE}`}
