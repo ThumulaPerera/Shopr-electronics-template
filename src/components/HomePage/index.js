@@ -92,7 +92,7 @@ function HomePage() {
               <Segment basic textAlign="center" style={{ paddingTop: '6em' }}>
                 <Button
                   as="a"
-                  href="https://ecom-cse.web.app/"
+                  href="https://www.shopr.cf/"
                   primary
                   size="massive"
                 >
