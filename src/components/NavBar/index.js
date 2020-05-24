@@ -23,7 +23,7 @@ class NavBar extends Component {
     const { activeItem, width } = this.state;
 
     if (!isLoaded(storeCustomization)) {
-      return <Loader />;
+      return <Loader active />;
     }
 
     const color = storeCustomization.color ? storeCustomization.color : null;

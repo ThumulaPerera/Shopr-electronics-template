@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import ReduxToastr from 'react-redux-toastr';
 import PropTypes from 'prop-types';
+import { Loader } from 'semantic-ui-react';
 
 import NavBar from '../NavBar';
 import BrowseProducts from '../BrowseProducts';
@@ -24,7 +25,7 @@ function SellerApp({ sellerStore }) {
   const { path, storeID } = useRouteMatch();
 
   if (!isLoaded(sellerStore)) {
-    return <div>Loading...</div>;
+    return <Loader active size="large" />;
   }
 
   if (isEmpty(sellerStore)) {

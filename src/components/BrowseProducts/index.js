@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import {
-  Grid, Search, Label, Segment, Sticky, Ref, Responsive,
+  Grid, Search, Label, Segment, Sticky, Ref, Responsive, Loader,
 } from 'semantic-ui-react';
 import { useRouteMatch } from 'react-router-dom';
 import _, { get } from 'lodash';
@@ -93,7 +93,7 @@ class BrowseProducts extends Component {
           && isLoaded(currency)
           && isLoaded(storeCustomization)
     )) {
-      return <div>Loading...</div>;
+      return <Loader active size="large" />;
     }
 
     if (isEmpty(categories)) {

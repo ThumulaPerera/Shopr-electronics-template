@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon,
+  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon, Loader,
 } from 'semantic-ui-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -35,7 +35,7 @@ const ItemPage = ({
 
 
   if (!(isLoaded(item))) {
-    return <div>Loading...</div>;
+    return <Loader active size="large" />;
   }
 
   // TODO handle is empty

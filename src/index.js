@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider, useSelector } from 'react-redux';
 import { ReactReduxFirebaseProvider, isLoaded } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore'; // <- needed if using firestore
+import { Loader } from 'semantic-ui-react';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
@@ -15,7 +16,7 @@ import firebase, { rrfConfig } from './config/firebaseConfig';
 
 function AuthIsLoaded({ children }) {
   const auth = useSelector((state) => state.firebase.auth);
-  if (!isLoaded(auth)) return <div>Loading...</div>;
+  if (!isLoaded(auth)) return <Loader active size="large" />;
   return children;
 }
 

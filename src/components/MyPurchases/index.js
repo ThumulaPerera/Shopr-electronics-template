@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import {
-  Segment, Divider, Header, Button,
+  Segment, Divider, Header, Button, Loader,
 } from 'semantic-ui-react';
 import {
   isLoaded, isEmpty, firestoreConnect,
@@ -31,7 +31,7 @@ function MyPurchases({
   }
 
   if (!isLoaded(orders)) {
-    return <div>loading...</div>;
+    return <Loader active size="large" />;
   }
 
   const { storeID } = match.params;

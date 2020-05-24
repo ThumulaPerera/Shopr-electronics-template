@@ -49,7 +49,7 @@ function Cart({
   }
 
   if (!(isLoaded(items) && isLoaded(currency) && isLoaded(cart))) {
-    return <Loader />;
+    return <Loader active size="large" />;
   }
 
   if (!cart || isEmpty(cart)) {
