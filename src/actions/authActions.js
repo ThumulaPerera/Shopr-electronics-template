@@ -8,11 +8,14 @@ export const signInWithFb = (currentStore, firestore) => (dispatch, getState, { 
 
   console.log('curerent store :', currentStore);
 
-  firebase.login({
-    provider: 'facebook',
-    type: 'popup',
-    // scopes: ['email'] // not required
-  })
+  firebase
+    .auth()
+    .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    .then(() => firebase.login({
+      provider: 'facebook',
+      type: 'popup',
+      // scopes: ['email'] // not required
+    }))
     .then((socialAuthUser) => firestore
       .collection('Stores')
       .doc(currentStore)
