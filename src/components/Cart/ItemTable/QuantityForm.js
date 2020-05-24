@@ -4,6 +4,7 @@ import {
 } from 'semantic-ui-react';
 import { Form, Input } from 'semantic-ui-react-form-validator';
 import PropTypes from 'prop-types';
+import { toastr } from 'react-redux-toastr';
 
 class QuantityForm extends Component {
     state = {
@@ -20,15 +21,17 @@ class QuantityForm extends Component {
         index, editItemQuantity, removeItem, currentQuantity,
       } = this.props;
       if (quantity === 0) {
-        const confirmed = window.confirm('Remove item from cart?');
-        if (confirmed) {
-          removeItem(index);
-        }
+        const toastrConfirmOptions = {
+          onOk: () => removeItem(index),
+          onCancel: () => (null),
+        };
+        toastr.confirm('Remove item from cart?', toastrConfirmOptions);
       } else {
-        const confirmed = window.confirm(`Change the quantity to ${quantity} ?`);
-        if (confirmed) {
-          editItemQuantity(index, quantity);
-        }
+        const toastrConfirmOptions = {
+          onOk: () => editItemQuantity(index, quantity),
+          onCancel: () => (null),
+        };
+        toastr.confirm(`Change the quantity to ${quantity} ?`, toastrConfirmOptions);
       }
       this.setState({ activeIndex: -1, quantity: currentQuantity });
     }

@@ -3,6 +3,7 @@ import {
   Table, Segment, Sticky, Button, Popup, Icon, Divider,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { toastr } from 'react-redux-toastr';
 
 import ItemCard from '../../ItemCard';
 import ShowVariantsAccordian from '../../ShowVariantsAccordian';
@@ -12,11 +13,12 @@ import calculateRating from '../../../helpers/calculateRating';
 
 class ItemTable extends Component {
     deleteFromCart = (index) => {
-      const confirmed = window.confirm('Remove item from cart?');
-      if (confirmed) {
-        const { removeItem } = this.props;
-        removeItem(index);
-      }
+      const { removeItem } = this.props;
+      const toastrConfirmOptions = {
+        onOk: () => removeItem(index),
+        onCancel: () => (null),
+      };
+      toastr.confirm('Remove item from cart?', toastrConfirmOptions);
     }
 
     render() {
