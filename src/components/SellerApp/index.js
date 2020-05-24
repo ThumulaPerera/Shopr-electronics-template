@@ -39,6 +39,8 @@ function SellerApp({ sellerStore }) {
         position="bottom-left"
         transitionIn="fadeIn"
         transitionOut="fadeOut"
+        timeOut={4000}
+        newestOnTop={false}
       />
       <ChatBot storeId={storeID} />
       <Switch>
