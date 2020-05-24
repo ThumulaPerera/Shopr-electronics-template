@@ -97,7 +97,7 @@ ItemCard.propTypes = {
   description: PropTypes.string,
   currency: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   ratingEnabled: PropTypes.bool.isRequired,
   url: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
@@ -109,4 +109,5 @@ ItemCard.defaultProps = {
   description: '',
   tiny: false,
   discount: null,
+  rating: null,
 };
