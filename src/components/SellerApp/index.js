@@ -28,7 +28,7 @@ function SellerApp({ sellerStore }) {
     return <Loader active size="large" />;
   }
 
-  if (isEmpty(sellerStore)) {
+  if (isEmpty(sellerStore) || !sellerStore[0].verified) {
     return <NotFoundPage />;
   }
 
