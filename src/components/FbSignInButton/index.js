@@ -8,9 +8,16 @@ import PropTypes from 'prop-types';
 
 import { signInWithFb } from '../../actions/authActions';
 
-function FbSignInButton({ signIn }) {
+function FbSignInButton({ signIn, fluid }) {
   return (
-    <Button color="facebook" icon labelPosition="right" onClick={signIn} style={{ borderRadius: '0px' }}>
+    <Button
+      fluid={fluid}
+      color="facebook"
+      icon
+      labelPosition="right"
+      onClick={signIn}
+      style={{ borderRadius: '0px' }}
+    >
       Sign In With Facebook
       <Icon name="facebook" size="large" />
     </Button>
@@ -36,4 +43,9 @@ export default compose(
 
 FbSignInButton.propTypes = {
   signIn: PropTypes.func.isRequired,
+  fluid: PropTypes.bool,
+};
+
+FbSignInButton.defaultProps = {
+  fluid: false,
 };
