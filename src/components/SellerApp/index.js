@@ -32,9 +32,13 @@ function SellerApp({ sellerStore }) {
   }
 
   return (
-    <div className="App" ref={contextRef} >
+    <div className="App" ref={contextRef}>
       <NavBar contextRef={contextRef} />
-      <ReduxToastr />
+      <ReduxToastr
+        position="bottom-left"
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+      />
       <ChatBot storeId={storeID} />
       <Switch>
         <Route
