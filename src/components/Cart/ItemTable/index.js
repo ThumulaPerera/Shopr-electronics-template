@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Table, Container, Segment, Sticky, Button, Message,
+  Table, Segment, Sticky, Button, Popup, Icon, Divider,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -98,10 +98,52 @@ class ItemTable extends Component {
                     </Table.Cell>
                     <Table.Cell textAlign="center" verticalAlign="top">
                       <p>
-                        <b>
+                        <h4>
                           x
+                          {' '}
                           {quantity}
-                        </b>
+                          {' '}
+
+                          {stockEnabled
+                      && stock !== undefined
+                      && stock != null
+                      && stock !== 0
+                      && !checkoutInProgress
+                      && stock < quantity
+                      && (
+                        <Popup
+                          trigger={<Icon size="large" color="red" name="warning" />}
+                          header="Selected quantity no longer in stock"
+                          content={`Only ${stock} item/s in stock. Change the quantity or remove this item before checking out`}
+                          size="small"
+                          position="top center"
+                        />
+                      )}
+                          {stockEnabled
+                      && !stock
+                      && !checkoutInProgress
+                      && (
+                        <Popup
+                          trigger={<Icon size="large" color="red" name="warning" />}
+                          header="Item no longer in stock"
+                          content="Remove this item from cart before checking out"
+                          size="small"
+                          position="top center"
+                        />
+                      )}
+                          {!stockEnabled
+                      && !stock
+                      && !checkoutInProgress
+                      && (
+                        <Popup
+                          trigger={<Icon size="large" color="red" name="warning" />}
+                          header="Item no longer in stock"
+                          content="Remove this item from cart before checking out"
+                          size="small"
+                          position="top center"
+                        />
+                      )}
+                        </h4>
                       </p>
                       <QuantityForm
                         index={index}
@@ -122,57 +164,16 @@ class ItemTable extends Component {
                       >
                         Remove from cart
                       </Button>
-                      {stockEnabled
-                      && stock !== undefined
-                      && stock != null
-                      && stock !== 0
-                      && !checkoutInProgress
-                      && (
-                      <Container textAlign="justified" style={{ marginTop: '1rem' }}>
-                        <Message
-                          warning
-                          icon="warning"
-                          hidden={stock >= quantity}
-                          header="Selected quantity no longer in stock"
-                          content={`Only ${stock} item/s in stock. Change the quantity or remove this item before checking out`}
-                        />
-                      </Container>
-                      )}
-                      {stockEnabled
-                      && !stock
-                      && !checkoutInProgress
-                      && (
-                      <Container textAlign="justified" style={{ marginTop: '1rem' }}>
-                        <Message
-                          warning
-                          icon="warning"
-                          hidden={stock >= quantity}
-                          header="Item no longer in stock"
-                          content="Remove this item from cart before checking out"
-                        />
-                      </Container>
-                      )}
-                      {!stockEnabled
-                      && !stock
-                      && !checkoutInProgress
-                      && (
-                      <Container textAlign="justified" style={{ marginTop: '1rem' }}>
-                        <Message
-                          warning
-                          icon="warning"
-                          header="Item no longer in stock"
-                          content="Remove this item from cart before checking out"
-                        />
-                      </Container>
-                      )}
+
 
                     </Table.Cell>
                     <Table.Cell verticalAlign="top">
-                      <b>
+                      <Divider hidden />
+                      <h4>
                         {currency}
                         {' '}
                         {(quantity * (price - discountValue).toFixed(2)).toFixed(2)}
-                      </b>
+                      </h4>
                     </Table.Cell>
                   </Table.Row>
                 );
