@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon, Loader,
+  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon, Button,
 } from 'semantic-ui-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -34,13 +34,34 @@ const ItemPage = ({
   };
 
 
-  if (!(isLoaded(item))) {
-    return <Loader active size="large" />;
-  }
-
   // TODO handle is empty
-  if (isEmpty(item)) {
-    return <div>No item...</div>;
+  if (!item || item.deleted || !item.visible) {
+    return (
+      <Segment
+        basic
+        textAlign="center"
+        style={{ marginTop: '5em' }}
+      >
+        <Header
+          as="h2"
+          style={{ fontSize: '1.3em', fontWeight: 'normal' }}
+        >
+          Sorry, this product isn’t available.
+          <br />
+          <br />
+          The link you followed may be broken or the product may have been removed.
+        </Header>
+        <Divider hidden />
+        <Button
+          as="a"
+          href={`/${match.params.storeID}`}
+          primary
+          size="big"
+        >
+          Go back to shopping
+        </Button>
+      </Segment>
+    );
   }
 
   const {

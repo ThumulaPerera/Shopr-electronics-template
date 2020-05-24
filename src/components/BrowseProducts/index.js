@@ -46,7 +46,14 @@ class BrowseProducts extends Component {
     setTimeout(() => {
       const { value } = this.state;
       const { items } = this.props;
-      const itemNames = items.map((item) => ({ title: item.name }));
+      let itemsToDisplay = [];
+      if (items && Array.isArray(items)) {
+        itemsToDisplay = items.filter((item) => (
+          item.visible && !item.deleted
+        ));
+      }
+
+      const itemNames = itemsToDisplay.map((item) => ({ title: item.name }));
 
       if (value.length < 1) {
         return this.setState({
@@ -99,6 +106,15 @@ class BrowseProducts extends Component {
     if (isEmpty(categories)) {
       return <div>No categories to display...</div>;
     }
+
+    let itemsToDisplay = [];
+    if (items && Array.isArray(items)) {
+      itemsToDisplay = items.filter((item) => (
+        item.visible && !item.deleted
+      ));
+    }
+
+    console.log(itemsToDisplay);
 
     return (
       <Responsive
@@ -170,7 +186,7 @@ class BrowseProducts extends Component {
                         searchString={value}
                         categories={categories}
                         currency={currency}
-                        items={items}
+                        items={itemsToDisplay}
                         ratingEnabled={ratingEnabled}
                       />
                     ))
@@ -185,7 +201,7 @@ class BrowseProducts extends Component {
                       searchString={value}
                       categories={categories}
                       currency={currency}
-                      items={items}
+                      items={itemsToDisplay}
                       ratingEnabled={ratingEnabled}
                     />
                     )
@@ -197,7 +213,7 @@ class BrowseProducts extends Component {
                       url={applyUrlCorrection(url)}
                       searchString={value}
                       currency={currency}
-                      items={items}
+                      items={itemsToDisplay}
                       ratingEnabled={ratingEnabled}
                     />
                     )
@@ -218,7 +234,7 @@ class BrowseProducts extends Component {
                         searchString={value}
                         categories={categories}
                         currency={currency}
-                        items={items}
+                        items={itemsToDisplay}
                         ratingEnabled={ratingEnabled}
                       />
                     ))
@@ -233,7 +249,7 @@ class BrowseProducts extends Component {
                       searchString={value}
                       categories={categories}
                       currency={currency}
-                      items={items}
+                      items={itemsToDisplay}
                       ratingEnabled={ratingEnabled}
                     />
                     )
@@ -245,7 +261,7 @@ class BrowseProducts extends Component {
                       url={applyUrlCorrection(url)}
                       searchString={value}
                       currency={currency}
-                      items={items}
+                      items={itemsToDisplay}
                       ratingEnabled={ratingEnabled}
                     />
                     )

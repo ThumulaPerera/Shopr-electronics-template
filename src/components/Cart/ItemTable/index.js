@@ -68,7 +68,7 @@ class ItemTable extends Component {
                 const quantity = orderItem.noOfItems;
 
                 const {
-                  name, photos, discount, rating,
+                  name, photos, discount, rating, deleted, visible,
                 } = item;
 
                 const discountValue = calculateDiscount(price, discount);
@@ -112,6 +112,8 @@ class ItemTable extends Component {
                       && stock !== 0
                       && !checkoutInProgress
                       && stock < quantity
+                      && visible
+                      && !deleted
                       && (
                         <Popup
                           trigger={<Icon size="large" color="red" name="warning" />}
@@ -124,6 +126,8 @@ class ItemTable extends Component {
                           {stockEnabled
                       && !stock
                       && !checkoutInProgress
+                      && visible
+                      && !deleted
                       && (
                         <Popup
                           trigger={<Icon size="large" color="red" name="warning" />}
@@ -136,10 +140,23 @@ class ItemTable extends Component {
                           {!stockEnabled
                       && !stock
                       && !checkoutInProgress
+                      && visible
+                      && !deleted
                       && (
                         <Popup
                           trigger={<Icon size="large" color="red" name="warning" />}
                           header="Item no longer in stock"
+                          content="Remove this item from cart before checking out"
+                          size="small"
+                          position="top center"
+                        />
+                      )}
+                          {(!visible
+                      || deleted)
+                      && (
+                        <Popup
+                          trigger={<Icon size="large" color="red" name="warning" />}
+                          header="This item is no longer for sale"
                           content="Remove this item from cart before checking out"
                           size="small"
                           position="top center"

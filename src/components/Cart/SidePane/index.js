@@ -21,21 +21,37 @@ function SidePane({
 }) {
   let checkoutDisabled = false;
   let insufficientStockItems = 0;
+  let deletedItems = 0;
   if (!(total > 0) || !cart || !Array.isArray(cart)) {
     checkoutDisabled = true;
   }
   cart.forEach((item) => {
     const requestedStock = item.noOfItems;
     const availableStock = items[item.item].subItems[item.subItem].stock;
-    if (!availableStock) {
+    const { deleted, visible } = items[item.item];
+    if (!availableStock && visible && !deleted) {
       checkoutDisabled = true;
       insufficientStockItems += 1;
     }
-    if (stockEnabled && availableStock && availableStock < requestedStock) {
+    if (stockEnabled && availableStock && availableStock < requestedStock && visible && !deleted) {
       checkoutDisabled = true;
       insufficientStockItems += 1;
+    }
+    if (!visible || deleted) {
+      checkoutDisabled = true;
+      deletedItems += 1;
     }
   });
+
+  const disabledPopupContent = (
+    <div>
+      {insufficientStockItems ? `${insufficientStockItems} item/s do not have sufficient quantity in stock` : null}
+      <br />
+      {deletedItems ? `${deletedItems} item/s are no longer for sale` : null}
+    </div>
+  );
+
+
   return (
     <Segment size="massive" style={{ marginRight: '2rem' }} color={color}>
       <Header as="h2" textAlign="center">
@@ -78,7 +94,7 @@ function SidePane({
             : (
               <Popup
                 header="Checkout disabled"
-                content={`${insufficientStockItems} item/s do not have sufficient quantity in stock`}
+                content={disabledPopupContent}
                 trigger={(
                   <span>
                     <Button
