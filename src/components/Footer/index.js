@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Segment, Container, Grid, List, Header,
+  Segment, Container, Grid, List, Header, Image,
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -22,7 +22,7 @@ function Footer({ sellerStore }) {
       <Container>
         <Grid divided inverted={inverted} stackable>
           <Grid.Row>
-            <Grid.Column width={3}>
+            <Grid.Column width={5}>
               <Header inverted={inverted} as="h4" content="About" />
               <List link inverted={inverted}>
                 <List.Item as="a">Sitemap</List.Item>
@@ -31,7 +31,7 @@ function Footer({ sellerStore }) {
                 <List.Item as="a">Gazebo Plans</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={3}>
+            <Grid.Column width={5}>
               <Header inverted={inverted} as="h4" content={storeName} />
               <List link inverted={inverted}>
                 <List.Item as="a">Banana Pre-Order</List.Item>
@@ -40,10 +40,25 @@ function Footer({ sellerStore }) {
                 <List.Item as="a">Favorite X-Men</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={7}>
+            <Grid.Column width={6}>
               <Header as="h4" inverted={inverted}>
-                Footer Header
+                Powered by
               </Header>
+              <Image size="medium" src={`${process.env.PUBLIC_URL}/assets/tusk_logo.png`} />
+              {
+                inverted
+                  ? (
+                    <p>
+                      © 2020-2021 TUSK TM. All rights reserved.
+                    </p>
+                  )
+                  : (
+                    <p style={{ color: 'black' }}>
+                      © 2020-2021 TUSK TM. All rights reserved.
+                    </p>
+                  )
+              }
+
             </Grid.Column>
           </Grid.Row>
         </Grid>
