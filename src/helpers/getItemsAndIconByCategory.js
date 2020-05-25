@@ -1,5 +1,5 @@
 export default function getItemsAndIconByCategory(items, categories, selectedCategory) {
-  let itemsOfSelectedCategory = {};
+  const itemsOfSelectedCategory = [];
   let selectedCategoryID; let
     categoryIcon;
 
@@ -17,7 +17,7 @@ export default function getItemsAndIconByCategory(items, categories, selectedCat
         const item = items[key];
         const itemCategoryID = item.category;
         if (itemCategoryID === selectedCategoryID) {
-          itemsOfSelectedCategory = { ...itemsOfSelectedCategory, [key]: item };
+          itemsOfSelectedCategory.push(item);
         }
         return null;
       });
