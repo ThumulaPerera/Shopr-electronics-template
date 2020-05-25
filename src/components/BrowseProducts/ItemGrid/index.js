@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Card, Segment, Header, Icon,
+  Card, Segment, Header, Icon, Pagination,
 } from 'semantic-ui-react';
 import { isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
@@ -9,15 +9,40 @@ import ItemCard from '../../ItemCard';
 import calculateRating from '../../../helpers/calculateRating';
 import getItemsAndIconByCategory from '../../../helpers/getItemsAndIconByCategory';
 import { defaultImgUrl } from '../../../constants/defaults';
+import paginate from '../../../helpers/paginate';
+
 
 const ItemGrid = (props) => {
+  const [activePage, setActivePage] = useState(1);
+  const [prevCategory, setPrevCategory] = useState(null);
+
   let { items } = props;
   const {
     categories, selectedCategory, url, currency, ratingEnabled,
   } = props;
+
+  const handlePaginationChange = (e, { activePage }) => setActivePage(activePage);
+
+  // set the number of items to display per row in card group
+  const itemsPerRow = 3;
+
+  // set the number of items to display per page (make sure this is a multiple of items per row)
+  const itemsPerPage = itemsPerRow * 1;
+
   const filtered = getItemsAndIconByCategory(items, categories, selectedCategory);
   items = filtered.itemsOfSelectedCategory;
   const icon = filtered.categoryIcon;
+
+  const noOfPages = Math.ceil(items.length / itemsPerPage);
+
+  // reset active page to 1 when selected category is changed
+  if (selectedCategory !== prevCategory) {
+    setActivePage(1);
+    setPrevCategory(selectedCategory);
+  }
+
+
+  items = paginate(items, activePage, itemsPerPage);
 
   if (!items || isEmpty(items)) {
     return (
@@ -42,7 +67,14 @@ const ItemGrid = (props) => {
           {selectedCategory}
         </Header.Content>
       </Header>
-      <Card.Group itemsPerRow="3" stackable>
+      <Segment basic textAlign="center">
+        <Pagination
+          activePage={activePage}
+          onPageChange={handlePaginationChange}
+          totalPages={noOfPages}
+        />
+      </Segment>
+      <Card.Group itemsPerRow={itemsPerRow} stackable>
         {Object.keys(items).map((itemKey) => {
           const {
             name, photos, description, basePrice, rating, discount, id,
@@ -54,12 +86,6 @@ const ItemGrid = (props) => {
             : defaultImgUrl;
           const amount = basePrice;
           const itemRating = rating ? calculateRating(rating) : null;
-
-          const minRequirementsToDisplay = name && basePrice;
-
-          if (!minRequirementsToDisplay) {
-            return null;
-          }
 
           return (
             <ItemCard
