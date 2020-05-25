@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  Card, Icon, Image, Label,
+  Card, Icon, Image, Label, Placeholder,
 } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -23,6 +23,14 @@ const ItemCard = ({
   tiny,
   discount,
 }) => {
+  const [loading, setLoading] = useState(true);
+
+  const onLoad = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  };
+
   const onClick = () => {
     history.push(`${url}${ITEMS_ROUTE}/${id}`);
   };
@@ -33,19 +41,37 @@ const ItemCard = ({
   return (
     <Card onClick={onClick} raised>
       {
-                discountValue
-                  ? (
-                    <Label attached="top right" color="red">
-                      {discount.percentage}
-                      {' '}
-                      % off
-                    </Label>
-                  )
-                  : null
-            }
-      {tiny
-        ? <img src={imageURL} height="100px" style={{ objectFit: 'contain' }} alt="" />
-        : <Image src={imageURL} wrapped ui={false} />}
+        discountValue
+          ? (
+            <Label attached="top right" color="red">
+              {discount.percentage}
+              {' '}
+              % off
+            </Label>
+          )
+          : null
+      }
+
+
+      {tiny && <img src={imageURL} height="100px" style={{ objectFit: 'contain' }} alt="" />}
+
+      {!tiny
+      && loading
+      && (
+      <div>
+        <Placeholder>
+          <Placeholder.Image rectangular />
+        </Placeholder>
+        <Image src={imageURL} hidden onLoad={onLoad} />
+      </div>
+      )}
+
+      {!tiny
+      && !loading
+      && (
+        <Image src={imageURL} wrapped ui={false} />
+      )}
+
       <Card.Content>
         <Card.Header textAlign="center">{name}</Card.Header>
         {description && (
