@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon, Button,
+  Segment, Grid, Header, Container, Divider, Image, Label, Accordion, Icon, Button, Placeholder,
 } from 'semantic-ui-react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
@@ -25,6 +25,7 @@ const ItemPage = ({
   item, selectedVariants, match, currency, stockEnabled, ratingEnabled, color,
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [loading, setLoading] = useState(true);
 
   const handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -33,8 +34,12 @@ const ItemPage = ({
     setActiveIndex(newIndex);
   };
 
+  const onLoad = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  };
 
-  // TODO handle is empty
   if (!item || item.deleted || !item.visible) {
     return (
       <Segment
@@ -84,21 +89,45 @@ const ItemPage = ({
           <Grid columns={2} relaxed="very" stackable reversed="mobile">
             <Grid.Column>
               <Segment basic>
-                <Carousel showArrows infiniteLoop showIndicators={false}>
-                  {photos && photos.map((photo, key) => (
-                    // eslint-disable-next-line react/no-array-index-key
-                    <div key={key}>
-                      <img src={photo.url} alt="" />
-                      {/* <p className="legend">{photo.title}</p> */}
-                    </div>
-                  ))}
-                </Carousel>
-                {(!photos || photos.length === 0)
-                        && (
-                        <div>
-                          <Image src={defaultImgUrl} />
+                {
+                  photos
+                  && Array.isArray(photos)
+                  && photos.length > 0
+                  && loading
+                  && (
+                  <div>
+                    <Placeholder>
+                      <Placeholder.Image rectangular />
+                    </Placeholder>
+                    <Image src={photos[0].url} hidden onLoad={onLoad} />
+                  </div>
+                  )
+                }
+                {
+                  photos
+                  && Array.isArray(photos)
+                  && photos.length > 0
+                  && !loading
+                  && (
+                    <Carousel showArrows infiniteLoop showIndicators={false}>
+                      {photos && photos.map((photo, key) => (
+                        // eslint-disable-next-line react/no-array-index-key
+                        <div key={key}>
+                          <img src={photo.url} alt="" />
+                          {/* <p className="legend">{photo.title}</p> */}
                         </div>
-                        )}
+                      ))}
+                    </Carousel>
+                  )
+                }
+                {
+                  (!photos || photos.length === 0)
+                  && (
+                  <div>
+                    <Image src={defaultImgUrl} />
+                  </div>
+                  )
+                }
               </Segment>
             </Grid.Column>
             <Grid.Column>
