@@ -44,7 +44,7 @@ function Footer({ sellerStore }) {
               <Header as="h4" inverted={inverted}>
                 Powered by
               </Header>
-              <Image size="medium" src={`${process.env.PUBLIC_URL}/assets/tusk_logo.png`} />
+              <Image size="small" src={`${process.env.PUBLIC_URL}/assets/tusk_logo.png`} />
               {
                 inverted
                   ? (
