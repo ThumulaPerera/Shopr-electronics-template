@@ -9,6 +9,7 @@ import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import ReduxToastr from 'react-redux-toastr';
 import PropTypes from 'prop-types';
 import { Loader } from 'semantic-ui-react';
+import { Helmet } from 'react-helmet';
 
 import NavBar from '../NavBar';
 import Footer from '../Footer';
@@ -35,6 +36,11 @@ function SellerApp({ sellerStore }) {
 
   return (
     <div className="App" ref={contextRef}>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{sellerStore[0].storeName}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div style={{ minHeight: '100vh' }}>
         <NavBar contextRef={contextRef} />
         <ReduxToastr
