@@ -4,12 +4,10 @@ import {
 } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
-import { oopsImgUrl } from '../../constants/defaults';
-
 function NotFoundPage() {
   return (
     <Segment basic textAlign="center" padded="very">
-      <Image src={oopsImgUrl} centered />
+      <Image src={`${process.env.PUBLIC_URL}/assets/oops.png`} centered />
       <Header size="huge">
         404
         <Header.Subheader>
