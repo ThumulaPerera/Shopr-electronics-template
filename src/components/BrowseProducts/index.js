@@ -27,7 +27,10 @@ resultRenderer.propTypes = {
 
 
 const initialState = {
-  isLoading: false, results: [], value: '', selectedCategory: 'All',
+  isLoading: false,
+  results: [],
+  value: '',
+  selectedCategory: 'All',
 };
 class BrowseProducts extends Component {
   state = initialState;
@@ -49,7 +52,7 @@ class BrowseProducts extends Component {
       let itemsToDisplay = [];
       if (items && Array.isArray(items)) {
         itemsToDisplay = items.filter((item) => (
-          item.visible && !item.deleted
+          item.visible && !item.deleted && item.name && item.basePrice
         ));
       }
 
@@ -109,7 +112,7 @@ class BrowseProducts extends Component {
     let itemsToDisplay = [];
     if (items && Array.isArray(items)) {
       itemsToDisplay = items.filter((item) => (
-        item.visible && !item.deleted
+        item.visible && !item.deleted && item.name && item.basePrice
       ));
     }
 
