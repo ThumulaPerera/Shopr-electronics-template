@@ -1,6 +1,6 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import {
-  Grid, Search, Label, Segment, Sticky, Ref, Responsive, Loader,
+  Grid, Search, Label, Segment, Sticky, Responsive, Loader,
 } from 'semantic-ui-react';
 import { useRouteMatch } from 'react-router-dom';
 import _, { get } from 'lodash';
@@ -91,7 +91,6 @@ class BrowseProducts extends Component {
       isLoading, value, results, selectedCategory, width,
     } = this.state;
     const { url } = match;
-    const contextRef1 = createRef();
     const stickSearchBar = width > Responsive.onlyMobile.maxWidth;
     const { color } = storeCustomization;
 
@@ -114,68 +113,65 @@ class BrowseProducts extends Component {
       ));
     }
 
-    console.log(itemsToDisplay);
-
     return (
       <Responsive
         fireOnMount
         onUpdate={this.handleOnResponsiveUpdate}
       >
-        <Ref innerRef={contextRef1}>
-          <div>
-            <Sticky
-              context={contextRef1}
-              offset={72}
-              active={stickSearchBar}
+        <div>
+          <Sticky
+            context={contextRef}
+            offset={72}
+            active={stickSearchBar}
+          >
+            <Segment
+              textAlign="center"
+              color={color}
+              inverted
+              tertiary
+              style={{ padding: '.5em', borderRadius: '0px' }}
             >
-              <Segment
-                textAlign="center"
-                color={color}
-                inverted
-                tertiary
-                style={{ padding: '.5em', borderRadius: '0px' }}
-              >
-                <Grid relaxed="very" padded="horizontally" stackable>
-                  <Grid.Row columns={3}>
-                    <Grid.Column only="computer" computer="5" />
-                    <Grid.Column computer="6" tablet="8">
-                      <Search
-                        fluid
-                        size="large"
-                        loading={isLoading}
-                        onResultSelect={this.handleResultSelect}
-                        onSearchChange={_.debounce(this.handleSearchChange, 500, {
-                          leading: true,
-                        })}
-                        results={results}
-                        value={value}
-                        resultRenderer={resultRenderer}
-                      />
-                    </Grid.Column>
-                    <Grid.Column computer="5" tablet="8">
-                      <CategoryDropdown
-                        handleCategoryClick={this.handleCategoryDropdownSelection}
-                        selectedCategory={selectedCategory}
-                        categories={categories}
-                      />
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              </Segment>
-            </Sticky>
-            <Grid>
-              <Grid.Row columns={2} only="computer">
-                <Grid.Column computer={4}>
-                  <CategoryMenu
-                    contextRef={contextRef}
-                    handleCategoryClick={this.handleCategoryClick}
-                    selectedCategory={selectedCategory}
-                    categories={categories}
-                    storeCustomization={storeCustomization}
-                  />
-                </Grid.Column>
-                <Grid.Column computer={12}>
-                  {
+              <Grid relaxed="very" padded="horizontally" stackable>
+                <Grid.Row columns={3}>
+                  <Grid.Column only="computer" computer="5" />
+                  <Grid.Column computer="6" tablet="8">
+                    <Search
+                      fluid
+                      size="large"
+                      loading={isLoading}
+                      onResultSelect={this.handleResultSelect}
+                      onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                        leading: true,
+                      })}
+                      results={results}
+                      value={value}
+                      resultRenderer={resultRenderer}
+                    />
+                  </Grid.Column>
+                  <Grid.Column computer="5" tablet="8">
+                    <CategoryDropdown
+                      handleCategoryClick={this.handleCategoryDropdownSelection}
+                      selectedCategory={selectedCategory}
+                      categories={categories}
+                    />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Segment>
+          </Sticky>
+          <Grid>
+            <Grid.Row columns={2} only="computer">
+              <Grid.Column computer={4}>
+                <CategoryMenu
+                  contextRef={contextRef}
+                  handleCategoryClick={this.handleCategoryClick}
+                  selectedCategory={selectedCategory}
+                  categories={categories}
+                  storeCustomization={storeCustomization}
+                />
+              </Grid.Column>
+              <Grid.Column computer={12}>
+                {
                     selectedCategory === 'All'
                     && value === ''
                     && categories.map(({ name }) => (
@@ -191,7 +187,7 @@ class BrowseProducts extends Component {
                       />
                     ))
                   }
-                  {
+                {
                     selectedCategory !== 'All'
                     && value === ''
                     && (
@@ -206,7 +202,7 @@ class BrowseProducts extends Component {
                     />
                     )
                   }
-                  {
+                {
                     value !== ''
                     && (
                     <SearchResultsGrid
@@ -219,11 +215,11 @@ class BrowseProducts extends Component {
                     )
                   }
 
-                </Grid.Column>
-              </Grid.Row>
-              <Grid.Row only="tablet mobile">
-                <Grid.Column>
-                  {
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row only="tablet mobile">
+              <Grid.Column>
+                {
                     selectedCategory === 'All'
                     && value === ''
                     && categories.map(({ name }) => (
@@ -239,7 +235,7 @@ class BrowseProducts extends Component {
                       />
                     ))
                   }
-                  {
+                {
                     selectedCategory !== 'All'
                     && value === ''
                     && (
@@ -254,7 +250,7 @@ class BrowseProducts extends Component {
                     />
                     )
                   }
-                  {
+                {
                     value !== ''
                     && (
                     <SearchResultsGrid
@@ -266,11 +262,10 @@ class BrowseProducts extends Component {
                     />
                     )
                   }
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </div>
-        </Ref>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </div>
       </Responsive>
     );
   }

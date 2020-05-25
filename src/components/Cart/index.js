@@ -1,11 +1,11 @@
-import React, { createRef, useState } from 'react';
+import React, { useState } from 'react';
 import { compose } from 'redux';
 import {
   isLoaded, isEmpty, firestoreConnect, withFirestore,
 } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import {
-  Grid, Loader, Ref, Sticky, Responsive, Segment, Header, Button, Divider,
+  Grid, Loader, Sticky, Responsive, Segment, Header, Button, Divider,
 } from 'semantic-ui-react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
@@ -35,14 +35,13 @@ function Cart({
   color,
   stockEnabled,
   ratingEnabled,
+  contextRef,
 }) {
   const [width, setWidth] = useState();
 
   const handleOnUpdate = (e, { width }) => setWidth(width);
 
   const onComputerAndTablet = width > Responsive.onlyMobile.maxWidth;
-
-  const contextRef = createRef();
 
   if (!auth.uid) {
     return <SignInToContinue icon="shopping cart" />;
@@ -83,45 +82,9 @@ function Cart({
       fireOnMount
       onUpdate={handleOnUpdate}
     >
-      <Ref innerRef={contextRef}>
-        <Grid stackable>
-          <Grid.Row only="computer">
-            <Grid.Column computer="11" tablet="16">
-              <ItemTable
-                items={items}
-                currency={currency}
-                cart={cart}
-                url={`/${match.params.storeID}`}
-                removeItem={removeItem}
-                editItemQuantity={editItemQuantity}
-                contextRef={contextRef}
-                changeInProgress={changeInProgress}
-                checkoutInProgress={checkoutInProgress}
-                color={color}
-                stockEnabled={stockEnabled}
-                ratingEnabled={ratingEnabled}
-                onComputerAndTablet={onComputerAndTablet}
-              />
-            </Grid.Column>
-            <Grid.Column computer="5" tablet="16">
-              <Sticky context={contextRef} offset={200}>
-                <SidePane
-                  total={calculateCartTotal(items, cart)}
-                  currency={currency}
-                  color={color}
-                  noOfItems={cart ? cart.length : 0}
-                  updateStock={updateStock}
-                  resetStock={resetStock}
-                  checkoutInProgress={checkoutInProgress}
-                  createOrderInDb={createOrderInDb}
-                  stockEnabled={stockEnabled}
-                  items={items}
-                  cart={cart}
-                />
-              </Sticky>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row only="tablet mobile">
+      <Grid stackable>
+        <Grid.Row only="computer">
+          <Grid.Column computer="11">
             <ItemTable
               items={items}
               currency={currency}
@@ -137,10 +100,9 @@ function Cart({
               ratingEnabled={ratingEnabled}
               onComputerAndTablet={onComputerAndTablet}
             />
-          </Grid.Row>
-          <Grid.Row only="tablet mobile" columns={2}>
-            <Grid.Column />
-            <Grid.Column>
+          </Grid.Column>
+          <Grid.Column computer="5">
+            <Sticky context={contextRef} offset={100} pushing>
               <SidePane
                 total={calculateCartTotal(items, cart)}
                 currency={currency}
@@ -148,16 +110,53 @@ function Cart({
                 noOfItems={cart ? cart.length : 0}
                 updateStock={updateStock}
                 resetStock={resetStock}
-                createOrderInDb={createOrderInDb}
                 checkoutInProgress={checkoutInProgress}
+                createOrderInDb={createOrderInDb}
                 stockEnabled={stockEnabled}
                 items={items}
                 cart={cart}
               />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Ref>
+            </Sticky>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row only="tablet mobile">
+          <ItemTable
+            items={items}
+            currency={currency}
+            cart={cart}
+            url={`/${match.params.storeID}`}
+            removeItem={removeItem}
+            editItemQuantity={editItemQuantity}
+            contextRef={contextRef}
+            changeInProgress={changeInProgress}
+            checkoutInProgress={checkoutInProgress}
+            color={color}
+            stockEnabled={stockEnabled}
+            ratingEnabled={ratingEnabled}
+            onComputerAndTablet={onComputerAndTablet}
+          />
+        </Grid.Row>
+        <Divider />
+        <Grid.Row only="tablet mobile" columns={2}>
+          <Grid.Column />
+          <Grid.Column>
+            <SidePane
+              total={calculateCartTotal(items, cart)}
+              currency={currency}
+              color={color}
+              noOfItems={cart ? cart.length : 0}
+              updateStock={updateStock}
+              resetStock={resetStock}
+              createOrderInDb={createOrderInDb}
+              checkoutInProgress={checkoutInProgress}
+              stockEnabled={stockEnabled}
+              items={items}
+              cart={cart}
+            />
+          </Grid.Column>
+        </Grid.Row>
+        <Divider hidden />
+      </Grid>
     </Responsive>
   );
 }
@@ -225,6 +224,7 @@ Cart.propTypes = {
   updateStock: PropTypes.func.isRequired,
   resetStock: PropTypes.func.isRequired,
   createOrderInDb: PropTypes.func.isRequired,
+  contextRef: PropTypes.object.isRequired,
 };
 
 Cart.defaultProps = {

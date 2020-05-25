@@ -55,7 +55,7 @@ function SellerApp({ sellerStore }) {
           />
           <Route
             path={`${path}${ROUTES.CART_ROUTE}`}
-            component={Cart}
+            render={(props) => <Cart {...props} contextRef={contextRef} />}
           />
           <Route
             path={`${path}${ROUTES.PROFILE_ROUTE}`}
@@ -71,7 +71,7 @@ function SellerApp({ sellerStore }) {
           />
         </Switch>
       </div>
-      <Footer />
+      <Footer sellerStore={sellerStore[0]} />
     </div>
   );
 }

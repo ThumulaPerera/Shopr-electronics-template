@@ -25,13 +25,14 @@ const CategoryMenu = (props) => {
     <Sticky
       context={contextRef}
       offset={140}
+      pushing
     >
       <Segment padded basic>
         <Header>
           <Icon name="list alternate outline" />
           <Header.Content>Categories</Header.Content>
         </Header>
-        <div style={{ overflowY: 'auto', overflowX: 'visible', maxHeight: '60vh' }}>
+        <div style={{ overflowY: 'auto', overflowX: 'visible', maxHeight: '40vh' }}>
           <Menu secondary pointing vertical color={color}>
             <Menu.Item
               as="a"
