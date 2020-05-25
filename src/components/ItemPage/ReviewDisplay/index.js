@@ -100,7 +100,7 @@ function ReviewDisplay({ rating, reviews }) {
             buyerName, buyerImg, rating, comment,
           } = review;
           return (
-            <Comment>
+            <Comment key={buyerName}>
               <Comment.Avatar as="a" src={buyerImg} />
               <Comment.Content>
                 <Comment.Author as="a">{buyerName}</Comment.Author>
@@ -121,6 +121,11 @@ function ReviewDisplay({ rating, reviews }) {
 export default ReviewDisplay;
 
 ReviewDisplay.propTypes = {
-  rating: PropTypes.number.isRequired,
-  reviews: PropTypes.array.isRequired,
+  rating: PropTypes.number,
+  reviews: PropTypes.array,
+};
+
+ReviewDisplay.defaultProps = {
+  rating: null,
+  reviews: null,
 };
