@@ -8,6 +8,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 // import { StickyContainer, Sticky } from 'react-sticky';
 
 import ItemGrid from './ItemGrid';
@@ -88,7 +89,7 @@ class BrowseProducts extends Component {
 
   render() {
     const {
-      contextRef, categories, match, items, currency, storeCustomization, ratingEnabled,
+      contextRef, categories, match, items, currency, storeCustomization, ratingEnabled, storeName,
     } = this.props;
     const {
       isLoading, value, results, selectedCategory, width,
@@ -106,7 +107,18 @@ class BrowseProducts extends Component {
     }
 
     if (isEmpty(categories)) {
-      return <div>No categories to display...</div>;
+      return (
+        <div>
+          <Helmet>
+            <title>
+              Products -
+              {' '}
+              {storeName}
+            </title>
+          </Helmet>
+          No categories to display...
+        </div>
+      );
     }
 
     let itemsToDisplay = [];
@@ -121,6 +133,13 @@ class BrowseProducts extends Component {
         fireOnMount
         onUpdate={this.handleOnResponsiveUpdate}
       >
+        <Helmet>
+          <title>
+            Products -
+            {' '}
+            {storeName}
+          </title>
+        </Helmet>
         <div>
           <Sticky
             context={contextRef}
@@ -278,6 +297,7 @@ const mapStateToProps = (state) => ({
   categories: get(state.firestore.data, 'sellerStore.categories'),
   currency: get(state.firestore.data, 'sellerStore.currency'),
   ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
+  storeName: get(state.firestore.data, 'sellerStore.storeName'),
   items: get(state.firestore.ordered, 'sellerItems'),
   storeCustomization: get(state.firestore.data, 'sellerStore.storeCustomization'),
 });
@@ -302,6 +322,7 @@ BrowseProducts.propTypes = {
   currency: PropTypes.string,
   storeCustomization: PropTypes.object,
   ratingEnabled: PropTypes.bool,
+  storeName: PropTypes.string,
 };
 
 BrowseProducts.defaultProps = {
@@ -310,4 +331,5 @@ BrowseProducts.defaultProps = {
   currency: undefined,
   storeCustomization: undefined,
   ratingEnabled: undefined,
+  storeName: undefined,
 };

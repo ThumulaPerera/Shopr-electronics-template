@@ -37,9 +37,7 @@ function SellerApp({ sellerStore }) {
   return (
     <div className="App" ref={contextRef}>
       <Helmet>
-        <meta charSet="utf-8" />
         <title>{sellerStore[0].storeName}</title>
-        <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <div style={{ minHeight: '100vh' }}>
         <NavBar contextRef={contextRef} />

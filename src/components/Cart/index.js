@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-
+import { Helmet } from 'react-helmet';
 
 import ItemTable from './ItemTable';
 import SidePane from './SidePane';
@@ -36,6 +36,7 @@ function Cart({
   stockEnabled,
   ratingEnabled,
   contextRef,
+  storeName,
 }) {
   const [width, setWidth] = useState();
 
@@ -58,6 +59,13 @@ function Cart({
         textAlign="center"
         style={{ marginTop: '5em' }}
       >
+        <Helmet>
+          <title>
+            Cart -
+            {' '}
+            {storeName}
+          </title>
+        </Helmet>
         <Header
           as="h2"
           style={{ fontSize: '1.3em', fontWeight: 'normal' }}
@@ -82,6 +90,13 @@ function Cart({
       fireOnMount
       onUpdate={handleOnUpdate}
     >
+      <Helmet>
+        <title>
+          Cart -
+          {' '}
+          {storeName}
+        </title>
+      </Helmet>
       <Grid stackable>
         <Grid.Row only="computer">
           <Grid.Column computer="11">
@@ -166,6 +181,7 @@ const mapStateToProps = (state) => ({
   currency: get(state.firestore.data, 'sellerStore.currency'),
   stockEnabled: get(state.firestore.data, 'sellerStore.enableInventoryManagement'),
   ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
+  storeName: get(state.firestore.data, 'sellerStore.storeName'),
   cart: get(state.firestore.data, 'buyer.cart'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
   changeInProgress: state.cart.changeInProgress,
@@ -225,10 +241,12 @@ Cart.propTypes = {
   resetStock: PropTypes.func.isRequired,
   createOrderInDb: PropTypes.func.isRequired,
   contextRef: PropTypes.object.isRequired,
+  storeName: PropTypes.string,
 };
 
 Cart.defaultProps = {
   cart: undefined,
   color: 'black',
   items: undefined,
+  storeName: undefined,
 };

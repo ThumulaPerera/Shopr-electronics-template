@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 import RatingDisplay from '../RatingDisplay';
 import CurrencyLabel from './PriceLabel';
@@ -22,7 +23,7 @@ import AddToCartForm from './AddToCartForm';
 import ReviewDisplay from './ReviewDisplay';
 
 const ItemPage = ({
-  item, selectedVariants, match, currency, stockEnabled, ratingEnabled, color,
+  item, selectedVariants, match, currency, stockEnabled, ratingEnabled, color, storeName,
 }) => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [loading, setLoading] = useState(true);
@@ -47,6 +48,13 @@ const ItemPage = ({
         textAlign="center"
         style={{ marginTop: '5em' }}
       >
+        <Helmet>
+          <title>
+            Item -
+            {' '}
+            {storeName}
+          </title>
+        </Helmet>
         <Header
           as="h2"
           style={{ fontSize: '1.3em', fontWeight: 'normal' }}
@@ -84,6 +92,15 @@ const ItemPage = ({
 
   return (
     <Segment basic padded>
+      <Helmet>
+        <title>
+          {name}
+          {' '}
+          -
+          {' '}
+          {storeName}
+        </title>
+      </Helmet>
       <Grid columns={2} relaxed="very" doubling stackable>
         <Grid.Column width="11">
           <Grid columns={2} relaxed="very" stackable reversed="mobile">
@@ -284,6 +301,7 @@ const mapStateToProps = (state, { match }) => ({
   stockEnabled: get(state.firestore.data, 'sellerStore.enableInventoryManagement'),
   ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
+  storeName: get(state.firestore.data, 'sellerStore.storeName'),
 });
 
 export default compose(
@@ -298,9 +316,11 @@ ItemPage.propTypes = {
   stockEnabled: PropTypes.bool.isRequired,
   ratingEnabled: PropTypes.bool.isRequired,
   color: PropTypes.string,
+  storeName: PropTypes.string,
 };
 
 ItemPage.defaultProps = {
   selectedVariants: undefined,
   color: null,
+  storeName: undefined,
 };

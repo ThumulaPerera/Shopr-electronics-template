@@ -9,6 +9,7 @@ import {
   isLoaded, isEmpty, firestoreConnect,
 } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { Helmet } from 'react-helmet';
 
 import SignInToContinue from '../SignInToContinue';
 import Order from './Order';
@@ -25,6 +26,7 @@ function MyPurchases({
   addReview,
   changeInProgress,
   match,
+  storeName,
 }) {
   if (!auth.uid) {
     return <SignInToContinue />;
@@ -44,6 +46,13 @@ function MyPurchases({
         textAlign="center"
         style={{ marginTop: '5em' }}
       >
+        <Helmet>
+          <title>
+            Purchases -
+            {' '}
+            {storeName}
+          </title>
+        </Helmet>
         <Header
           as="h2"
           style={{ fontSize: '1.3em', fontWeight: 'normal' }}
@@ -65,6 +74,13 @@ function MyPurchases({
 
   return (
     <Segment basic>
+      <Helmet>
+        <title>
+          Purchases -
+          {' '}
+          {storeName}
+        </title>
+      </Helmet>
       {
       orders && orders.map((order) => (
         <div key={order.id}>
@@ -93,6 +109,7 @@ const mapStateToProps = (state) => ({
   currency: get(state.firestore.data, 'sellerStore.currency'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
   ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
+  storeName: get(state.firestore.data, 'sellerStore.storeName'),
   orders: get(state.firestore.ordered, 'orders'),
   orderStates: get(state.firestore.data, 'config.orderStates'),
   changeInProgress: state.review.changeInProgress,
@@ -144,6 +161,7 @@ MyPurchases.propTypes = {
   addReview: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
   match: PropTypes.object.isRequired,
+  storeName: PropTypes.string,
 };
 
 MyPurchases.defaultProps = {
@@ -151,4 +169,5 @@ MyPurchases.defaultProps = {
   items: undefined,
   orders: undefined,
   orderStates: undefined,
+  storeName: undefined,
 };
