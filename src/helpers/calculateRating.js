@@ -1,4 +1,4 @@
-/* //calculate rating using reviws
+/* //calculate rating using reviews
 
 export default function calculateRating(reviews){
     let totalRating = 0;
@@ -10,9 +10,18 @@ export default function calculateRating(reviews){
     //the rendering component automatically maps that float to an int by flooring
 } */
 
+
 /* calculate rating using rating */
-export default function calculateRating({ totalRating, ratingCount }) {
-  return ratingCount ? totalRating / ratingCount : 0;
-  // just a float value is returned here
-  // the rendering component automatically maps that float to an int by flooring
+
+// takes in rating object as input
+// returns a float
+// returns 0 for any invalid input
+export default function calculateRating(rating) {
+  if (!rating || !rating.totalRating || !rating.ratingCount) {
+    return 0;
+  }
+  const { totalRating, ratingCount } = rating;
+  return Number.isInteger(totalRating) && Number.isInteger(ratingCount)
+    ? totalRating / ratingCount
+    : 0;
 }
