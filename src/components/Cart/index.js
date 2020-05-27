@@ -10,6 +10,7 @@ import {
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { toastr } from 'react-redux-toastr';
 
 import ItemTable from './ItemTable';
 import SidePane from './SidePane';
@@ -85,6 +86,14 @@ function Cart({
     );
   }
 
+  let cartTotal;
+  try {
+    cartTotal = calculateCartTotal(items, cart);
+  } catch (err) {
+    toastr.error('Error', 'Something wrong with the items in the cart. Try clearing the cart and readding items');
+    cartTotal = 0;
+  }
+
   return (
     <Responsive
       fireOnMount
@@ -119,7 +128,7 @@ function Cart({
           <Grid.Column computer="5">
             <Sticky context={contextRef} offset={100} pushing>
               <SidePane
-                total={calculateCartTotal(items, cart)}
+                total={cartTotal}
                 currency={currency}
                 color={color}
                 noOfItems={cart ? cart.length : 0}
@@ -156,7 +165,7 @@ function Cart({
           <Grid.Column />
           <Grid.Column>
             <SidePane
-              total={calculateCartTotal(items, cart)}
+              total={cartTotal}
               currency={currency}
               color={color}
               noOfItems={cart ? cart.length : 0}
