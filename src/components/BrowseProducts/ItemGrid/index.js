@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {
+  useState, Component,
+} from 'react';
 import {
   Card, Segment, Header, Icon, Pagination,
 } from 'semantic-ui-react';
@@ -59,7 +61,6 @@ const ItemGrid = (props) => {
   }
 
   return (
-
     <Segment basic padded="very">
       <Header as="h2">
         <Header.Content>
@@ -108,7 +109,27 @@ const ItemGrid = (props) => {
   );
 };
 
-export default ItemGrid;
+
+function withScrollToTop(OriginalReactComponent) {
+  return class extends Component {
+    componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+
+    componentDidUpdate() {
+      window.scrollTo(0, 0);
+    }
+
+    render() {
+      // return original react component with additional props
+      return (
+        <OriginalReactComponent {...this.props} />
+      );
+    }
+  };
+}
+
+export default withScrollToTop(ItemGrid);
 
 ItemGrid.propTypes = {
   categories: PropTypes.array.isRequired,

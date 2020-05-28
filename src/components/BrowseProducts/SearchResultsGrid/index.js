@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Card, Segment,
 } from 'semantic-ui-react';
@@ -68,7 +68,26 @@ const ItemGrid = (props) => {
   );
 };
 
-export default ItemGrid;
+function withScrollToTop(OriginalReactComponent) {
+  return class extends Component {
+    componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+
+    componentDidUpdate() {
+      window.scrollTo(0, 0);
+    }
+
+    render() {
+      // return original react component with additional props
+      return (
+        <OriginalReactComponent {...this.props} />
+      );
+    }
+  };
+}
+
+export default withScrollToTop(ItemGrid);
 
 ItemGrid.propTypes = {
   items: PropTypes.array.isRequired,
