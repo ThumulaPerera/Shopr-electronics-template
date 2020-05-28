@@ -80,7 +80,7 @@ function HomePage() {
               <List size="huge">
                 {
                     messageList.map((message) => (
-                      <List.Item>
+                      <List.Item key={message}>
                         <Icon name="check" />
                         <List.Content>
                           <List.Header>{message}</List.Header>
