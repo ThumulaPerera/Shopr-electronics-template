@@ -38,6 +38,7 @@ function Cart({
   ratingEnabled,
   contextRef,
   storeName,
+  merchantId,
 }) {
   const [width, setWidth] = useState();
 
@@ -139,6 +140,7 @@ function Cart({
                 stockEnabled={stockEnabled}
                 items={items}
                 cart={cart}
+                merchantId={merchantId}
               />
             </Sticky>
           </Grid.Column>
@@ -176,6 +178,7 @@ function Cart({
               stockEnabled={stockEnabled}
               items={items}
               cart={cart}
+              merchantId={merchantId}
             />
           </Grid.Column>
         </Grid.Row>
@@ -191,6 +194,7 @@ const mapStateToProps = (state) => ({
   stockEnabled: get(state.firestore.data, 'sellerStore.enableInventoryManagement'),
   ratingEnabled: get(state.firestore.data, 'sellerStore.enableRating'),
   storeName: get(state.firestore.data, 'sellerStore.storeName'),
+  merchantId: get(state.firestore.data, 'sellerStore.merchantId'),
   cart: get(state.firestore.data, 'buyer.cart'),
   color: get(state.firestore.data, 'sellerStore.storeCustomization.color'),
   changeInProgress: state.cart.changeInProgress,
@@ -251,6 +255,7 @@ Cart.propTypes = {
   createOrderInDb: PropTypes.func.isRequired,
   contextRef: PropTypes.object.isRequired,
   storeName: PropTypes.string,
+  merchantId: PropTypes.string,
 };
 
 Cart.defaultProps = {
@@ -258,4 +263,5 @@ Cart.defaultProps = {
   color: 'black',
   items: undefined,
   storeName: undefined,
+  merchantId: undefined,
 };

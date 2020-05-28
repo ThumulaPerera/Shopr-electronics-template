@@ -10,7 +10,15 @@ class PayPalChkoutButton extends Component {
     const locale = 'en_US';
 
     const {
-      currency, total, updateStock, resetStock, createOrderInDb, items, cart, stockEnabled,
+      currency,
+      total,
+      updateStock,
+      resetStock,
+      createOrderInDb,
+      items,
+      cart,
+      stockEnabled,
+      merchantId,
     } = this.props;
 
     const style = {
@@ -73,6 +81,7 @@ class PayPalChkoutButton extends Component {
         style={style}
         options={{
           clientId,
+          merchantId,
           locale,
           currency,
           disableFunding: 'card',
@@ -93,4 +102,5 @@ PayPalChkoutButton.propTypes = {
   stockEnabled: PropTypes.bool.isRequired,
   items: PropTypes.object.isRequired,
   cart: PropTypes.array.isRequired,
+  merchantId: PropTypes.string.isRequired,
 };

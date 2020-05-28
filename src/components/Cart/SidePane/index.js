@@ -18,6 +18,7 @@ function SidePane({
   items,
   cart,
   stockEnabled,
+  merchantId,
 }) {
   let checkoutDisabled = false;
   let insufficientStockItems = 0;
@@ -89,6 +90,7 @@ function SidePane({
                 items={items}
                 cart={cart}
                 stockEnabled={stockEnabled}
+                merchantId={merchantId}
               />
             )
             : (
@@ -126,6 +128,7 @@ SidePane.propTypes = {
   stockEnabled: PropTypes.bool.isRequired,
   items: PropTypes.object.isRequired,
   cart: PropTypes.array.isRequired,
+  merchantId: PropTypes.string.isRequired,
 };
 
 SidePane.defaultProps = {
