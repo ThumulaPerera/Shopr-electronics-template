@@ -1,0 +1,403 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot renders 1`] = `
+<div
+  className="ui basic center aligned segment"
+  style={
+    Object {
+      "paddingBottom": 0,
+    }
+  }
+>
+  <h1
+    className="ui header"
+    style={
+      Object {
+        "fontSize": "3em",
+        "fontWeight": "normal",
+        "marginBottom": 0,
+        "marginTop": ".1em",
+      }
+    }
+  >
+    SHOPR
+  </h1>
+  <h2
+    className="ui header"
+    style={
+      Object {
+        "fontSize": "1.5em",
+        "fontWeight": "normal",
+        "marginTop": "0.5em",
+      }
+    }
+  >
+    Your one stop shop to build your E-Commerce Website
+  </h2>
+  <div
+    className="ui basic very padded segment"
+    style={
+      Object {
+        "paddingBottom": 0,
+      }
+    }
+  >
+    <div
+      className="ui doubling stackable two column grid"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="column"
+        >
+          <div
+            className="ui basic segment"
+            style={
+              Object {
+                "marginBottom": "0",
+                "paddingBottom": "0",
+                "paddingLeft": "4em",
+                "paddingRight": "4em",
+                "paddingTop": "0",
+              }
+            }
+          >
+            <div
+              className="ui header"
+            >
+              Electronics Shop Template
+            </div>
+            <div
+              className="carousel-root"
+              tabIndex="0"
+            >
+              <div
+                className="carousel carousel-slider"
+                style={
+                  Object {
+                    "width": "100%",
+                  }
+                }
+              >
+                <button
+                  aria-label="previous slide / item"
+                  className="control-arrow control-prev"
+                  onClick={[Function]}
+                  type="button"
+                />
+                <div
+                  className="slider-wrapper axis-horizontal"
+                  style={Object {}}
+                >
+                  <ul
+                    className="slider animated"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "MozTransform": "translate3d(-100%,0,0)",
+                        "MozTransitionDuration": "350ms",
+                        "MsTransform": "translate3d(-100%,0,0)",
+                        "MsTransitionDuration": "350ms",
+                        "OTransform": "translate3d(-100%,0,0)",
+                        "OTransitionDuration": "350ms",
+                        "WebkitTransform": "translate3d(-100%,0,0)",
+                        "WebkitTransitionDuration": "350ms",
+                        "msTransform": "translate3d(-100%,0,0)",
+                        "msTransitionDuration": "350ms",
+                        "transform": "translate3d(-100%,0,0)",
+                        "transitionDuration": "350ms",
+                      }
+                    }
+                  >
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Forders%20page.jpg?alt=media&token=7293f018-0fbd-4eb7-8c47-af0ded528358"
+                      />
+                    </li>
+                    <li
+                      className="slide selected"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fbrowse%20products%20page.jpg?alt=media&token=1b13816e-ff59-4482-8301-e30d52a89162"
+                      />
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fitem%20page.jpg?alt=media&token=54839d86-7da3-419d-a5a8-19343289051b"
+                      />
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fcart%20page.jpg?alt=media&token=7cd2aed4-52a6-42a1-a154-a078e3f4861b"
+                      />
+                    </li>
+                    <li
+                      className="slide"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Forders%20page.jpg?alt=media&token=7293f018-0fbd-4eb7-8c47-af0ded528358"
+                      />
+                    </li>
+                    <li
+                      className="slide selected"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fbrowse%20products%20page.jpg?alt=media&token=1b13816e-ff59-4482-8301-e30d52a89162"
+                      />
+                    </li>
+                  </ul>
+                </div>
+                <button
+                  aria-label="next slide / item"
+                  className="control-arrow control-next"
+                  onClick={[Function]}
+                  type="button"
+                />
+              </div>
+              <div
+                className="carousel"
+              >
+                <div
+                  className="thumbs-wrapper axis-vertical"
+                >
+                  <button
+                    aria-label="previous slide / item"
+                    className="control-arrow control-prev control-disabled"
+                    onClick={[Function]}
+                    type="button"
+                  />
+                  <ul
+                    className="thumbs animated"
+                    onMouseDown={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                    style={
+                      Object {
+                        "MozTransform": "translate3d(0px,0,0)",
+                        "MozTransitionDuration": "350ms",
+                        "MsTransform": "translate3d(0px,0,0)",
+                        "MsTransitionDuration": "350ms",
+                        "OTransform": "translate3d(0px,0,0)",
+                        "OTransitionDuration": "350ms",
+                        "WebkitTransform": "translate3d(0px,0,0)",
+                        "WebkitTransitionDuration": "350ms",
+                        "msTransform": "translate3d(0px,0,0)",
+                        "msTransitionDuration": "350ms",
+                        "transform": "translate3d(0px,0,0)",
+                        "transitionDuration": "350ms",
+                      }
+                    }
+                  >
+                    <li
+                      aria-label="slide item 1"
+                      className="thumb"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <img
+                        alt=""
+                        onLoad={[Function]}
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fbrowse%20products%20page.jpg?alt=media&token=1b13816e-ff59-4482-8301-e30d52a89162"
+                      />
+                    </li>
+                    <li
+                      aria-label="slide item 2"
+                      className="thumb"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fitem%20page.jpg?alt=media&token=54839d86-7da3-419d-a5a8-19343289051b"
+                      />
+                    </li>
+                    <li
+                      aria-label="slide item 3"
+                      className="thumb"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fcart%20page.jpg?alt=media&token=7cd2aed4-52a6-42a1-a154-a078e3f4861b"
+                      />
+                    </li>
+                    <li
+                      aria-label="slide item 4"
+                      className="thumb"
+                      onClick={[Function]}
+                      onKeyDown={[Function]}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <img
+                        alt=""
+                        src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Forders%20page.jpg?alt=media&token=7293f018-0fbd-4eb7-8c47-af0ded528358"
+                      />
+                    </li>
+                  </ul>
+                  <button
+                    aria-label="next slide / item"
+                    className="control-arrow control-next control-disabled"
+                    onClick={[Function]}
+                    type="button"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="left aligned column"
+        >
+          <h1
+            className="ui header"
+            style={
+              Object {
+                "fontSize": "1.5em",
+                "fontWeight": "normal",
+              }
+            }
+          >
+            with SHOPR you can now
+          </h1>
+          <div
+            className="ui huge list"
+            role="list"
+          >
+            <div
+              className="item"
+              onClick={[Function]}
+              role="listitem"
+            >
+              <i
+                aria-hidden="true"
+                className="check icon"
+                onClick={[Function]}
+              />
+              <div
+                className="content"
+              >
+                <div
+                  className="header"
+                >
+                  Create a custom website using our built-in templates
+                </div>
+              </div>
+            </div>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="listitem"
+            >
+              <i
+                aria-hidden="true"
+                className="check icon"
+                onClick={[Function]}
+              />
+              <div
+                className="content"
+              >
+                <div
+                  className="header"
+                >
+                  Sell your products online
+                </div>
+              </div>
+            </div>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="listitem"
+            >
+              <i
+                aria-hidden="true"
+                className="check icon"
+                onClick={[Function]}
+              />
+              <div
+                className="content"
+              >
+                <div
+                  className="header"
+                >
+                  Manage Inventory
+                </div>
+              </div>
+            </div>
+            <div
+              className="item"
+              onClick={[Function]}
+              role="listitem"
+            >
+              <i
+                aria-hidden="true"
+                className="check icon"
+                onClick={[Function]}
+              />
+              <div
+                className="content"
+              >
+                <div
+                  className="header"
+                >
+                  Integrate your website with your Facebook Page
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="ui basic center aligned segment"
+            style={
+              Object {
+                "paddingTop": "6em",
+              }
+            }
+          >
+            <a
+              className="ui massive primary button"
+              href="https://www.shopr.cf/"
+              onClick={[Function]}
+              role="button"
+            >
+              Get Started
+              <i
+                aria-hidden="true"
+                className="right arrow icon"
+                onClick={[Function]}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

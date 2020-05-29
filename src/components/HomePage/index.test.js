@@ -3,6 +3,7 @@ import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { shallow } from 'enzyme';
 import ReactDOM from 'react-dom';
+import renderer from 'react-test-renderer';
 
 import {
   Header, List, Icon, Button,
@@ -12,6 +13,7 @@ import HomePage from './index';
 
 
 afterEach(cleanup);
+
 test('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<HomePage />, div);
@@ -96,4 +98,11 @@ test('renders get started button', () => {
 test('get started button has correct redirect url', () => {
   render(<HomePage />);
   expect(document.querySelector('a').getAttribute('href')).toBe('https://www.shopr.cf/');
+});
+
+// snapshot test
+test('snapshot renders', () => {
+  const component = renderer.create(<HomePage />);
+  const tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
 });
