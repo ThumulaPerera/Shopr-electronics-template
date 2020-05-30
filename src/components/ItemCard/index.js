@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   Card, Icon, Image, Label, Placeholder,
 } from 'semantic-ui-react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 
 import RatingDisplay from '../RatingDisplay';

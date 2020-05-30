@@ -19,7 +19,10 @@ const CategoryMenu = (props) => {
     return <div>No categories to display...</div>;
   }
 
-  const color = storeCustomization.color ? storeCustomization.color : null;
+  let color;
+  if (storeCustomization) {
+    color = storeCustomization.color;
+  }
 
   return (
     <Sticky

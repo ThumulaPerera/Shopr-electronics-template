@@ -1,0 +1,1520 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render with given state from Redux store 1`] = `
+<div>
+  <div>
+    <div
+      className=""
+    >
+      <div
+        style={Object {}}
+      />
+      <div
+        className="ui sticky"
+      >
+        <div
+          className="ui inverted tertiary center aligned segment"
+          style={
+            Object {
+              "borderRadius": "0px",
+              "padding": ".5em",
+            }
+          }
+        >
+          <div
+            className="ui stackable horizontally padded very relaxed grid"
+          >
+            <div
+              className="three column row"
+            >
+              <div
+                className="computer only five wide computer column"
+              />
+              <div
+                className="six wide computer eight wide tablet column"
+              >
+                <div
+                  className="ui large fluid search"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                >
+                  <div
+                    className="ui icon input"
+                  >
+                    <input
+                      autoComplete="off"
+                      className="prompt"
+                      onChange={[Function]}
+                      onClick={[Function]}
+                      tabIndex="0"
+                      type="text"
+                      value=""
+                    />
+                    <i
+                      aria-hidden="true"
+                      className="search icon"
+                      onClick={[Function]}
+                    />
+                  </div>
+                  <div
+                    className="results transition"
+                  >
+                    <div
+                      className="message empty"
+                    >
+                      <div
+                        className="header"
+                      >
+                        No results found.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="five wide computer eight wide tablet column"
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui fluid search selection scrolling dropdown"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="combobox"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    autoComplete="off"
+                    className="search"
+                    onChange={[Function]}
+                    style={
+                      Object {
+                        "width": undefined,
+                      }
+                    }
+                    tabIndex={0}
+                    type="text"
+                    value=""
+                  />
+                  <div
+                    aria-atomic={true}
+                    aria-live="polite"
+                    className="text"
+                    role="alert"
+                  >
+                    All
+                  </div>
+                  <i
+                    aria-hidden="true"
+                    className="dropdown icon"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="menu transition"
+                    role="listbox"
+                  >
+                    <div
+                      aria-checked={true}
+                      aria-selected={true}
+                      className="active selected item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        All
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        category 0
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        category 1
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        category 2
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        category 3
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        category 4
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ui grid"
+    >
+      <div
+        className="computer only two column row"
+      >
+        <div
+          className="four wide computer column"
+        >
+          <div
+            className=""
+          >
+            <div
+              style={Object {}}
+            />
+            <div
+              className="ui sticky"
+            >
+              <div
+                className="ui basic padded segment"
+              >
+                <div
+                  className="ui header"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="list alternate outline icon"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="content"
+                  >
+                    Categories
+                  </div>
+                </div>
+                <div
+                  style={
+                    Object {
+                      "maxHeight": "40vh",
+                      "overflowX": "visible",
+                      "overflowY": "auto",
+                    }
+                  }
+                >
+                  <div
+                    className="ui pointing secondary vertical menu"
+                  >
+                    <a
+                      className="active item"
+                      onClick={[Function]}
+                    >
+                      All
+                    </a>
+                    <a
+                      className="item"
+                      onClick={[Function]}
+                    >
+                      Category 0
+                    </a>
+                    <a
+                      className="item"
+                      onClick={[Function]}
+                    >
+                      Category 1
+                    </a>
+                    <a
+                      className="item"
+                      onClick={[Function]}
+                    >
+                      Category 2
+                    </a>
+                    <a
+                      className="item"
+                      onClick={[Function]}
+                    >
+                      Category 3
+                    </a>
+                    <a
+                      className="item"
+                      onClick={[Function]}
+                    >
+                      Category 4
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="twelve wide computer column"
+        >
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 0
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={0}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={0}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            />
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 1
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={0}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={0}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            />
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 2
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={true}
+                  aria-disabled={false}
+                  className="active item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="pageItem"
+                  value={1}
+                >
+                  1
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={1}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={1}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            >
+              <a
+                className="ui raised card"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="ui placeholder"
+                  >
+                    <div
+                      className="rectangular image"
+                    />
+                  </div>
+                  <img
+                    className="ui hidden image"
+                    onLoad={[Function]}
+                    src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div
+                    className="center aligned header"
+                  >
+                    dolor
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    Velit cillum veniam proident in deserunt voluptate cillum. Exercitation velit cillum id commodo aliq...
+                  </div>
+                </div>
+                <div
+                  className="extra center aligned content"
+                >
+                  <span
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                  >
+                    <p>
+                       
+                      <i
+                        aria-hidden="true"
+                        className="money bill alternate outline icon"
+                        onClick={[Function]}
+                      />
+                       
+                      USD
+                       
+                      1684.05
+                       
+                    </p>
+                  </span>
+                </div>
+              </a>
+              <a
+                className="ui raised card"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="ui placeholder"
+                  >
+                    <div
+                      className="rectangular image"
+                    />
+                  </div>
+                  <img
+                    className="ui hidden image"
+                    onLoad={[Function]}
+                    src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div
+                    className="center aligned header"
+                  >
+                    ipsum
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    Id fugiat consectetur proident nisi sunt quis sint duis minim adipisicing duis. Do enim amet do sit ...
+                  </div>
+                </div>
+                <div
+                  className="extra center aligned content"
+                >
+                  <span
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                  >
+                    <p>
+                       
+                      <i
+                        aria-hidden="true"
+                        className="money bill alternate outline icon"
+                        onClick={[Function]}
+                      />
+                       
+                      USD
+                       
+                      3172.05
+                       
+                    </p>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 3
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={true}
+                  aria-disabled={false}
+                  className="active item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="pageItem"
+                  value={1}
+                >
+                  1
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={1}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={1}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            >
+              <a
+                className="ui raised card"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="ui placeholder"
+                  >
+                    <div
+                      className="rectangular image"
+                    />
+                  </div>
+                  <img
+                    className="ui hidden image"
+                    onLoad={[Function]}
+                    src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div
+                    className="center aligned header"
+                  >
+                    excepteur
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    Irure eiusmod officia cupidatat veniam. Exercitation anim laborum cupidatat tempor irure do. Ut ad s...
+                  </div>
+                </div>
+                <div
+                  className="extra center aligned content"
+                >
+                  <span
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                  >
+                    <p>
+                       
+                      <i
+                        aria-hidden="true"
+                        className="money bill alternate outline icon"
+                        onClick={[Function]}
+                      />
+                       
+                      USD
+                       
+                      2468.80
+                       
+                    </p>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 4
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={0}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={0}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="tablet only mobile only row"
+      >
+        <div
+          className="column"
+        >
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 0
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={0}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={0}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            />
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 1
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={0}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={0}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            />
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 2
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={true}
+                  aria-disabled={false}
+                  className="active item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="pageItem"
+                  value={1}
+                >
+                  1
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={1}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={1}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            >
+              <a
+                className="ui raised card"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="ui placeholder"
+                  >
+                    <div
+                      className="rectangular image"
+                    />
+                  </div>
+                  <img
+                    className="ui hidden image"
+                    onLoad={[Function]}
+                    src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div
+                    className="center aligned header"
+                  >
+                    dolor
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    Velit cillum veniam proident in deserunt voluptate cillum. Exercitation velit cillum id commodo aliq...
+                  </div>
+                </div>
+                <div
+                  className="extra center aligned content"
+                >
+                  <span
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                  >
+                    <p>
+                       
+                      <i
+                        aria-hidden="true"
+                        className="money bill alternate outline icon"
+                        onClick={[Function]}
+                      />
+                       
+                      USD
+                       
+                      1684.05
+                       
+                    </p>
+                  </span>
+                </div>
+              </a>
+              <a
+                className="ui raised card"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="ui placeholder"
+                  >
+                    <div
+                      className="rectangular image"
+                    />
+                  </div>
+                  <img
+                    className="ui hidden image"
+                    onLoad={[Function]}
+                    src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div
+                    className="center aligned header"
+                  >
+                    ipsum
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    Id fugiat consectetur proident nisi sunt quis sint duis minim adipisicing duis. Do enim amet do sit ...
+                  </div>
+                </div>
+                <div
+                  className="extra center aligned content"
+                >
+                  <span
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                  >
+                    <p>
+                       
+                      <i
+                        aria-hidden="true"
+                        className="money bill alternate outline icon"
+                        onClick={[Function]}
+                      />
+                       
+                      USD
+                       
+                      3172.05
+                       
+                    </p>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 3
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={true}
+                  aria-disabled={false}
+                  className="active item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="pageItem"
+                  value={1}
+                >
+                  1
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={1}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={1}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            >
+              <a
+                className="ui raised card"
+                onClick={[Function]}
+              >
+                <div>
+                  <div
+                    className="ui placeholder"
+                  >
+                    <div
+                      className="rectangular image"
+                    />
+                  </div>
+                  <img
+                    className="ui hidden image"
+                    onLoad={[Function]}
+                    src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                  />
+                </div>
+                <div
+                  className="content"
+                >
+                  <div
+                    className="center aligned header"
+                  >
+                    excepteur
+                  </div>
+                  <div
+                    className="description"
+                  >
+                    Irure eiusmod officia cupidatat veniam. Exercitation anim laborum cupidatat tempor irure do. Ut ad s...
+                  </div>
+                </div>
+                <div
+                  className="extra center aligned content"
+                >
+                  <span
+                    style={
+                      Object {
+                        "color": "red",
+                      }
+                    }
+                  >
+                    <p>
+                       
+                      <i
+                        aria-hidden="true"
+                        className="money bill alternate outline icon"
+                        onClick={[Function]}
+                      />
+                       
+                      USD
+                       
+                      2468.80
+                       
+                    </p>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div
+            className="ui basic very padded segment"
+          >
+            <h2
+              className="ui header"
+            >
+              <div
+                className="content"
+              >
+                category 4
+              </div>
+            </h2>
+            <div
+              className="ui basic center aligned segment"
+            >
+              <div
+                aria-label="Pagination Navigation"
+                className="ui pagination menu"
+                role="navigation"
+              >
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="First item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="firstItem"
+                  value={1}
+                >
+                  «
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Previous item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="prevItem"
+                  value={1}
+                >
+                  ⟨
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Next item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="nextItem"
+                  value={0}
+                >
+                  ⟩
+                </a>
+                <a
+                  aria-current={false}
+                  aria-disabled={false}
+                  aria-label="Last item"
+                  className="item"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  tabIndex={0}
+                  type="lastItem"
+                  value={0}
+                >
+                  »
+                </a>
+              </div>
+            </div>
+            <div
+              className="ui stackable three cards"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -96,7 +96,10 @@ class BrowseProducts extends Component {
     } = this.state;
     const { url } = match;
     const stickSearchBar = width > Responsive.onlyMobile.maxWidth;
-    const { color } = storeCustomization;
+    let color;
+    if (storeCustomization) {
+      color = storeCustomization.color;
+    }
 
     if (!(isLoaded(categories)
           && isLoaded(items)
