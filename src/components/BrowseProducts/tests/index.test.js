@@ -52,8 +52,5 @@ beforeEach(() => {
 afterEach(cleanup);
 
 it('should render with given state from Redux store', () => {
-  // mock fn for isLoaded
-  isLoaded.mockReturnValue(true);
-
   expect(component.toJSON()).toMatchSnapshot();
 });

@@ -33,7 +33,7 @@ const initialState = {
   value: '',
   selectedCategory: 'All',
 };
-class BrowseProducts extends Component {
+export class BrowseProducts extends Component {
   state = initialState;
 
   handleResultSelect = (e, { result }) => {
