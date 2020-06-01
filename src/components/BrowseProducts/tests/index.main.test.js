@@ -9,9 +9,7 @@ import { Route, MemoryRouter } from 'react-router-dom';
 import { isLoaded } from 'react-redux-firebase';
 import BrowseProducts from '../index';
 
-import { minItems } from '../../../mockData/itemsArrayMin';
-import { sellerStore } from '../../../mockData/sellerStoreObject';
-
+import { minItems, sellerStore } from '../../../mockData/browseProductsTestsMockData';
 
 jest.mock('react-redux-firebase');
 
@@ -51,6 +49,6 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-it('should render with given state from Redux store', () => {
+it('renders with given state from Redux store', () => {
   expect(component.toJSON()).toMatchSnapshot();
 });

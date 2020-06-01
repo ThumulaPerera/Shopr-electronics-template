@@ -1,19 +1,18 @@
 /* eslint-disable no-undef */
 import React, { createRef } from 'react';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { cleanup } from '@testing-library/react';
-
+import { mount } from 'enzyme';
 import { Route, MemoryRouter } from 'react-router-dom';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
-import BrowseProducts from '../index';
 
-import { minItems } from '../../../mockData/itemsArrayMin';
-import { sellerStore } from '../../../mockData/sellerStoreObject';
+import BrowseProducts, { BrowseProducts as UnconnectedBrowseProducts } from '../index';
+
+import { minItems, sellerStore } from '../../../mockData/browseProductsTestsMockData';
 
 
-jest.mock('react-redux-firebase');
+jest.unmock('react-redux-firebase');
+const rrf = require.requireActual('react-redux-firebase');
 
 const mockStore = configureStore([]);
 
@@ -35,12 +34,12 @@ beforeEach(() => {
   // mock fn for window.scrollTo
   global.scrollTo = jest.fn();
   // mock fn for isLoaded
-  isLoaded.mockReturnValue(true);
+  rrf.isLoaded = jest.fn(() => true);
   // mock fn for isEmpty
-  isEmpty.mockReturnValue(true);
+  rrf.isEmpty = jest.fn(() => true);
 
   // const ref = createRef();
-  component = renderer.create(
+  const wrapperComponent = mount(
     <Provider store={store}>
       <MemoryRouter initialEntries={[{ pathname: '/home', key: 'testKey' }]}>
         <Route path="/home">
@@ -49,11 +48,20 @@ beforeEach(() => {
       </MemoryRouter>
     </Provider>,
   );
+  component = wrapperComponent.find(UnconnectedBrowseProducts);
 });
 
 afterEach(cleanup);
 
 
-it('should render no categories to display message if categories are empty', () => {
+it('renders no categories to display message if categories are empty', () => {
   expect(component).toMatchSnapshot();
+
+  // renders no categories message
+  const message = (
+    <div>
+      No categories to display...
+    </div>
+  );
+  expect(component).toContainReact(message);
 });

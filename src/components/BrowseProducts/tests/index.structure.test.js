@@ -15,8 +15,7 @@ import CategoryDropdown from '../CategoryDropdown';
 import SearchResultsGrid from '../SearchResultsGrid';
 
 import { MAIN_ROUTE, HOME_ROUTE } from '../../../constants/routes';
-import { minItems } from '../../../mockData/itemsArrayMin';
-import { sellerStore } from '../../../mockData/sellerStoreObject';
+import { minItems, sellerStore } from '../../../mockData/browseProductsTestsMockData';
 
 
 jest.mock('react-redux-firebase');
@@ -58,7 +57,7 @@ beforeAll(() => {
 afterAll(cleanup);
 
 
-it('renders the corresponding sub components', () => {
+it('renders the corresponding sub components and passes correct props', () => {
   /* Search field */
   const search = component.find(Search);
   // renders the search field
@@ -91,15 +90,17 @@ it('renders the corresponding sub components', () => {
   // renders twice (once for onlyComputer and once for onlyMobile&Tablet)
   expect(itemGrid.length).toEqual(10);
   // passes correct initial props
-  expect(itemGrid.at(0).props()).toHaveProperty('selectedCategory', 'category 0');
-  expect(itemGrid.at(0).props()).toHaveProperty('url', '/storeId123');
-  expect(itemGrid.at(0).props()).toHaveProperty('searchString', '');
-  expect(itemGrid.at(0).props()).toHaveProperty('categories', sellerStore.categories);
-  expect(itemGrid.at(0).props()).toHaveProperty('currency', sellerStore.currency);
-  expect(itemGrid.at(0).props()).toHaveProperty('ratingEnabled', sellerStore.enableRating);
-  expect(itemGrid.at(0).props()).toHaveProperty('items');
-  // only 3 items in itemArray shold pass filter test
-  expect(itemGrid.at(0).props().items.length).toEqual(3);
+  for (let i = 0; i < itemGrid.length; i++) {
+    expect(itemGrid.at(i).props()).toHaveProperty('selectedCategory', `category ${i % 5}`);
+    expect(itemGrid.at(i).props()).toHaveProperty('url', '/storeId123');
+    expect(itemGrid.at(i).props()).toHaveProperty('searchString', '');
+    expect(itemGrid.at(i).props()).toHaveProperty('categories', sellerStore.categories);
+    expect(itemGrid.at(i).props()).toHaveProperty('currency', sellerStore.currency);
+    expect(itemGrid.at(i).props()).toHaveProperty('ratingEnabled', sellerStore.enableRating);
+    expect(itemGrid.at(i).props()).toHaveProperty('items');
+    // only 3 items in itemArray shold pass filter test
+    expect(itemGrid.at(0).props().items.length).toEqual(3);
+  }
 
 
   /* Search Results Grid */
@@ -119,13 +120,15 @@ it('renders the corresponding sub components', () => {
   // renders twice (once for onlyComputer and once for onlyMobile&Tablet)
   expect(searchResultsGrid.length).toEqual(2);
   // passes correct initial props
-  expect(searchResultsGrid.at(0).props()).toHaveProperty('searchString', 'a');
-  expect(searchResultsGrid.at(0).props()).toHaveProperty('url', '/storeId123');
-  expect(searchResultsGrid.at(0).props()).toHaveProperty('currency', sellerStore.currency);
-  expect(searchResultsGrid.at(0).props()).toHaveProperty('ratingEnabled', sellerStore.enableRating);
-  expect(searchResultsGrid.at(0).props()).toHaveProperty('items');
-  // only 3 items in itemArray shold pass filter test
-  expect(searchResultsGrid.at(0).props().items.length).toEqual(3);
+  for (let i = 0; i < searchResultsGrid.length; i++) {
+    expect(searchResultsGrid.at(i).props()).toHaveProperty('searchString', 'a');
+    expect(searchResultsGrid.at(i).props()).toHaveProperty('url', '/storeId123');
+    expect(searchResultsGrid.at(i).props()).toHaveProperty('currency', sellerStore.currency);
+    expect(searchResultsGrid.at(i).props()).toHaveProperty('ratingEnabled', sellerStore.enableRating);
+    expect(searchResultsGrid.at(i).props()).toHaveProperty('items');
+    // only 3 items in itemArray shold pass filter test
+    expect(searchResultsGrid.at(i).props().items.length).toEqual(3);
+  }
 
   // does not render the items grid since search value is not ''
   expect(component.find(ItemGrid).length).toEqual(0);

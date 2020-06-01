@@ -119,7 +119,9 @@ export class BrowseProducts extends Component {
               {storeName}
             </title>
           </Helmet>
-          No categories to display...
+          <div>
+            No categories to display...
+          </div>
         </div>
       );
     }

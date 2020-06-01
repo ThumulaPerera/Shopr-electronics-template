@@ -1,7 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render no categories to display message if categories are empty 1`] = `
-<div>
-  No categories to display...
-</div>
+exports[`renders no categories to display message if categories are empty 1`] = `
+<BrowseProducts
+  categories={
+    Array [
+      Object {
+        "name": "category 0",
+      },
+      Object {
+        "name": "category 1",
+      },
+      Object {
+        "name": "category 2",
+      },
+      Object {
+        "name": "category 3",
+      },
+      Object {
+        "name": "category 4",
+      },
+    ]
+  }
+  contextRef={
+    Object {
+      "current": null,
+    }
+  }
+  currency="USD"
+  dispatch={[Function]}
+  items={
+    Array [
+      Object {
+        "basePrice": 3835.16,
+        "category": 3,
+        "deleted": true,
+        "description": "Sint elit dolore pariatur in occaecat pariatur amet est officia elit ea enim. Enim amet enim elit ut nulla sit in minim eu ea. Consequat duis anim laboris laborum officia exercitation amet reprehenderit deserunt consequat fugiat ea aute ex. Ex deserunt labore in sunt ex proident sit ad. Ad elit excepteur irure eiusmod nisi Lorem eu qui ipsum ea. Ipsum excepteur non et velit occaecat duis ut.
+",
+        "id": "5ed1112909f2ff2d85b2c21b",
+        "name": "fugiat",
+        "visible": true,
+      },
+      Object {
+        "basePrice": 1684.05,
+        "category": 2,
+        "deleted": false,
+        "description": "Velit cillum veniam proident in deserunt voluptate cillum. Exercitation velit cillum id commodo aliquip dolor reprehenderit dolore consectetur. Non dolor do cillum nisi. Exercitation sint consectetur irure culpa laboris Lorem reprehenderit sit occaecat occaecat do aute esse. Irure minim nostrud sint adipisicing ipsum eu aliquip.
+",
+        "id": "5ed111295a728d32a9ca49b7",
+        "name": "dolor",
+        "visible": true,
+      },
+      Object {
+        "basePrice": 1921.53,
+        "category": 0,
+        "deleted": true,
+        "description": "Quis commodo occaecat ut in ad quis. Anim eiusmod dolore Lorem sunt eu sint adipisicing officia. Officia laboris ad dolor esse aliqua.
+",
+        "id": "5ed1112908cf459fc5101684",
+        "name": "laborum",
+        "visible": false,
+      },
+      Object {
+        "basePrice": 3172.05,
+        "category": 2,
+        "deleted": false,
+        "description": "Id fugiat consectetur proident nisi sunt quis sint duis minim adipisicing duis. Do enim amet do sit adipisicing elit qui consectetur. Elit laborum ullamco amet eu magna pariatur labore ad ea adipisicing ullamco. Cillum non aliqua aliqua ullamco voluptate voluptate ipsum nulla officia sunt. Excepteur velit aliquip ipsum pariatur laborum qui aliqua sunt. Ullamco pariatur consectetur amet dolor sit.
+",
+        "id": "5ed111296d4090b28f206d38",
+        "name": "ipsum",
+        "visible": true,
+      },
+      Object {
+        "basePrice": 4388.14,
+        "category": 2,
+        "deleted": false,
+        "description": "Est cupidatat est adipisicing est enim magna sit duis ad culpa Lorem labore. Nulla commodo laboris ut excepteur labore do ipsum sit proident officia. Elit esse non in minim in. Laboris laboris dolore tempor mollit consequat culpa id amet. Aliquip commodo cupidatat duis ad ut ex cupidatat in et sunt officia.
+",
+        "id": "5ed11129a3c7710259fa19e1",
+        "name": "officia",
+        "visible": false,
+      },
+      Object {
+        "basePrice": 3317.43,
+        "category": 3,
+        "deleted": false,
+        "description": "Lorem veniam tempor est fugiat proident sit irure nisi veniam nostrud. Dolor id fugiat laboris elit cupidatat aute ad labore eu fugiat. Enim voluptate irure id minim amet anim occaecat officia sint pariatur laboris velit non consectetur. Pariatur est mollit sunt id laboris mollit adipisicing voluptate culpa eiusmod magna nisi. Pariatur dolore labore magna enim aute qui velit officia adipisicing sit ad. Laboris dolor nisi adipisicing veniam est veniam duis labore id ipsum dolor eiusmod. Est amet ex ex adipisicing in amet sit anim magna aliqua.
+",
+        "id": "5ed11129fb522bfdb34ebe21",
+        "name": "mollit",
+        "visible": false,
+      },
+      Object {
+        "basePrice": 3623.22,
+        "category": 3,
+        "deleted": false,
+        "description": "Cillum nulla nulla commodo sint laborum aliquip irure proident mollit dolore nostrud laboris irure. In mollit tempor fugiat aute nisi pariatur labore nostrud eiusmod duis. Laborum aute laborum do sit duis est excepteur sit Lorem eu dolor pariatur. In ea deserunt amet do adipisicing. Exercitation officia irure labore commodo voluptate adipisicing sit nisi consectetur occaecat non magna nisi. Fugiat qui ipsum nulla nisi eu et dolor tempor proident cupidatat proident ipsum cillum culpa.
+",
+        "id": "5ed11129f38a4da11e536dec",
+        "name": "mollit",
+        "visible": false,
+      },
+      Object {
+        "basePrice": 3488.74,
+        "category": 2,
+        "deleted": true,
+        "description": "Sit exercitation ullamco anim mollit dolor nulla ut nisi occaecat in. Occaecat ut qui culpa qui laboris sunt. Consequat proident et eiusmod magna. Ullamco occaecat voluptate qui id nulla minim non velit commodo. Nostrud enim sunt sint magna ullamco officia reprehenderit non cupidatat minim elit. Aliqua adipisicing ex nostrud aute eu do ullamco. Excepteur pariatur nisi qui occaecat nisi veniam in.
+",
+        "id": "5ed11129bf7508bf980aaebc",
+        "name": "eiusmod",
+        "visible": true,
+      },
+      Object {
+        "basePrice": 2480.81,
+        "category": 0,
+        "deleted": false,
+        "description": "Irure veniam magna labore nisi aliquip reprehenderit aliquip. Reprehenderit ex eu nisi esse id commodo nisi exercitation sunt dolor ad officia consectetur. Dolor laboris occaecat Lorem et id cillum dolor occaecat nisi.
+",
+        "id": "5ed11129636830919c3d2175",
+        "name": "nulla",
+        "visible": false,
+      },
+      Object {
+        "basePrice": 2468.8,
+        "category": 3,
+        "deleted": false,
+        "description": "Irure eiusmod officia cupidatat veniam. Exercitation anim laborum cupidatat tempor irure do. Ut ad sunt id nostrud eiusmod mollit mollit. Officia sint eu id exercitation nisi consequat id dolore.
+",
+        "id": "5ed111295cc737557bf875ce",
+        "name": "excepteur",
+        "visible": true,
+      },
+    ]
+  }
+  match={
+    Object {
+      "isExact": true,
+      "params": Object {},
+      "path": "/home",
+      "url": "/home",
+    }
+  }
+  ratingEnabled={true}
+  storeCustomization={Object {}}
+  storeName="ut qui"
+>
+  <div>
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        title={
+          Array [
+            "Products -",
+            " ",
+            "ut qui",
+          ]
+        }
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          title={
+            Array [
+              "Products -",
+              " ",
+              "ut qui",
+            ]
+          }
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+    <div>
+      No categories to display...
+    </div>
+  </div>
+</BrowseProducts>
 `;

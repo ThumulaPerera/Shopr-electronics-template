@@ -1,19 +1,19 @@
 /* eslint-disable no-undef */
 import React, { createRef } from 'react';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { cleanup } from '@testing-library/react';
-
+import { mount } from 'enzyme';
 import { Route, MemoryRouter } from 'react-router-dom';
-import { isLoaded } from 'react-redux-firebase';
-import BrowseProducts from '../index';
+import { Loader } from 'semantic-ui-react';
 
-import { minItems } from '../../../mockData/itemsArrayMin';
-import { sellerStore } from '../../../mockData/sellerStoreObject';
+import BrowseProducts, { BrowseProducts as UnconnectedBrowseProducts } from '../index';
+
+import { minItems, sellerStore } from '../../../mockData/browseProductsTestsMockData';
 
 
-jest.mock('react-redux-firebase');
+jest.unmock('react-redux-firebase');
+const rrf = require.requireActual('react-redux-firebase');
 
 const mockStore = configureStore([]);
 
@@ -35,8 +35,11 @@ beforeEach(() => {
   // mock fn for window.scrollTo
   global.scrollTo = jest.fn();
 
+  // mock fn for isLoaded
+  rrf.isLoaded = jest.fn(() => false);
+
   // const ref = createRef();
-  component = renderer.create(
+  const wrapperComponent = mount(
     <Provider store={store}>
       <MemoryRouter initialEntries={[{ pathname: '/home', key: 'testKey' }]}>
         <Route path="/home">
@@ -45,13 +48,14 @@ beforeEach(() => {
       </MemoryRouter>
     </Provider>,
   );
+  component = wrapperComponent.find(UnconnectedBrowseProducts);
 });
 
 afterEach(cleanup);
 
-it('should render a loader if values in store are not loaded', () => {
-  // mock fn for isLoaded
-  isLoaded.mockReturnValue(false);
+it('renders loader if values in store are not loaded', () => {
+  expect(component).toMatchSnapshot();
 
-  expect(component.toJSON()).toMatchSnapshot();
+  // renders loader
+  expect(component.find(Loader).length).toEqual(1);
 });
