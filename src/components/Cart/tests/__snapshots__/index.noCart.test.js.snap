@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders cart empty message if cart is empty 1`] = `
+<Segment
+  basic={true}
+  style={
+    Object {
+      "marginTop": "5em",
+    }
+  }
+  textAlign="center"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Cart - undefined
+    </title>
+  </HelmetWrapper>
+  <Header
+    as="h2"
+    style={
+      Object {
+        "fontSize": "1.3em",
+        "fontWeight": "normal",
+      }
+    }
+  >
+    You don't have any items in your cart
+  </Header>
+  <Divider
+    hidden={true}
+  />
+  <Button
+    as="a"
+    href="/store123"
+    primary={true}
+    size="big"
+  >
+    Start shopping
+  </Button>
+</Segment>
+`;

@@ -1,0 +1,669 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with given props 1`] = `
+Array [
+  <div>
+    <div
+      className="ui stackable grid"
+    >
+      <div
+        className="computer only row"
+      >
+        <div
+          className="eleven wide computer column"
+        >
+          <div
+            className="ui basic segment"
+          >
+            <div
+              className=""
+            >
+              <div
+                style={Object {}}
+              />
+              <div
+                className="ui sticky"
+              >
+                <table
+                  className="ui fixed center aligned table"
+                  style={
+                    Object {
+                      "borderRadius": "0px",
+                    }
+                  }
+                >
+                  <thead
+                    className=""
+                  >
+                    <tr
+                      className=""
+                    >
+                      <th
+                        className=""
+                      >
+                        Item
+                      </th>
+                      <th
+                        className=""
+                      >
+                        Variants and Attributes
+                      </th>
+                      <th
+                        className=""
+                      >
+                        Quantity
+                      </th>
+                      <th
+                        className=""
+                      >
+                        Total
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <table
+              className="ui fixed very basic center aligned table"
+            >
+              <tbody
+                className=""
+              >
+                <tr
+                  className=""
+                >
+                  <td
+                    className="top aligned"
+                    style={
+                      Object {
+                        "padding": "1rem",
+                      }
+                    }
+                  >
+                    <a
+                      className="ui raised card"
+                      onClick={[Function]}
+                    >
+                      <img
+                        alt=""
+                        height="100px"
+                        src="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg"
+                        style={
+                          Object {
+                            "objectFit": "contain",
+                          }
+                        }
+                      />
+                      <div
+                        className="content"
+                      >
+                        <div
+                          className="center aligned header"
+                        >
+                          dolor
+                        </div>
+                        
+                      </div>
+                      <div
+                        className="extra center aligned content"
+                      >
+                        <span
+                          style={
+                            Object {
+                              "color": "red",
+                            }
+                          }
+                        >
+                          <p>
+                             
+                            <i
+                              aria-hidden="true"
+                              className="money bill alternate outline icon"
+                              onClick={[Function]}
+                            />
+                             
+                            USD
+                             
+                            100.00
+                             
+                          </p>
+                        </span>
+                      </div>
+                    </a>
+                  </td>
+                  <td
+                    className="left aligned top aligned"
+                  >
+                    <div
+                      className="accordion ui"
+                    >
+                      <div>
+                        <div
+                          className="title"
+                          onClick={[Function]}
+                        >
+                          <i
+                            aria-hidden="true"
+                            className="dropdown icon"
+                            onClick={[Function]}
+                          />
+                          Variants
+                        </div>
+                        <div
+                          className="content"
+                        >
+                          <div>
+                            <b>
+                              variant title 1
+                               
+                              :
+                            </b>
+                            <p>
+                              variant attribute 11
+                            </p>
+                            <br />
+                          </div>
+                          <div>
+                            <b>
+                              variant title 2
+                               
+                              :
+                            </b>
+                            <p>
+                              variant attribute 21
+                            </p>
+                            <br />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    className="center aligned top aligned"
+                  >
+                    <h4>
+                      x
+                       
+                      1
+                       
+                    </h4>
+                    <div
+                      className="accordion ui"
+                    >
+                      <button
+                        className="ui fluid button title"
+                        onClick={[Function]}
+                      >
+                        <i
+                          aria-hidden="true"
+                          className="edit icon"
+                          onClick={[Function]}
+                        />
+                        Change Quantity
+                      </button>
+                      <div
+                        className="content"
+                      >
+                        <form
+                          className="ui form"
+                          onSubmit={[Function]}
+                        >
+                          <div
+                            className="sixteen wide field"
+                          >
+                            <label />
+                             
+                            <div
+                              className="ui input"
+                            >
+                              <input
+                                name="quantity"
+                                onChange={[Function]}
+                                placeholder="quantity"
+                                type="number"
+                                value={1}
+                              />
+                            </div>
+                            
+                          </div>
+                          <button
+                            className="ui disabled button"
+                            disabled={true}
+                            onClick={[Function]}
+                            tabIndex={-1}
+                          >
+                            Change
+                          </button>
+                          <div
+                            className="ui hidden divider"
+                          />
+                        </form>
+                      </div>
+                    </div>
+                    <br />
+                    <button
+                      className="ui basic fluid negative button"
+                      onClick={[Function]}
+                    >
+                      Remove from cart
+                    </button>
+                  </td>
+                  <td
+                    className="top aligned"
+                  >
+                    <div
+                      className="ui hidden divider"
+                    />
+                    <h4>
+                      USD
+                       
+                      100.00
+                    </h4>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          className="five wide computer column"
+        >
+          <div
+            className=""
+          >
+            <div
+              style={Object {}}
+            />
+            <div
+              className="ui sticky"
+            >
+              <div
+                className="ui massive segment"
+                style={
+                  Object {
+                    "marginRight": "2rem",
+                  }
+                }
+              >
+                <h2
+                  className="ui center aligned header"
+                >
+                  Cart Summary
+                </h2>
+                <h3
+                  className="ui header"
+                >
+                  1
+                   
+                  item in cart
+                </h3>
+                <h6
+                  className="ui header"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="cart icon"
+                    onClick={[Function]}
+                  />
+                  Cart Total :
+                </h6>
+                <div
+                  className="ui center aligned container"
+                >
+                  <h2
+                    className="ui header"
+                  >
+                    USD
+                     
+                    100.00
+                  </h2>
+                </div>
+                <div
+                  className="ui container"
+                  style={
+                    Object {
+                      "marginTop": "3rem",
+                    }
+                  }
+                >
+                  <div
+                    className="ui divider"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="tablet only mobile only row"
+      >
+        <div
+          className="ui basic segment"
+        >
+          <div
+            className=""
+          >
+            <div
+              style={Object {}}
+            />
+            <div
+              className="ui sticky"
+            >
+              <table
+                className="ui fixed center aligned table"
+                style={
+                  Object {
+                    "borderRadius": "0px",
+                  }
+                }
+              >
+                <thead
+                  className=""
+                >
+                  <tr
+                    className=""
+                  >
+                    <th
+                      className=""
+                    >
+                      Item
+                    </th>
+                    <th
+                      className=""
+                    >
+                      Variants and Attributes
+                    </th>
+                    <th
+                      className=""
+                    >
+                      Quantity
+                    </th>
+                    <th
+                      className=""
+                    >
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <table
+            className="ui fixed very basic center aligned table"
+          >
+            <tbody
+              className=""
+            >
+              <tr
+                className=""
+              >
+                <td
+                  className="top aligned"
+                  style={
+                    Object {
+                      "padding": "1rem",
+                    }
+                  }
+                >
+                  <a
+                    className="ui raised card"
+                    onClick={[Function]}
+                  >
+                    <img
+                      alt=""
+                      height="100px"
+                      src="https://www.cowgirlcontractcleaning.com/wp-content/uploads/sites/360/2018/05/placeholder-img-1.jpg"
+                      style={
+                        Object {
+                          "objectFit": "contain",
+                        }
+                      }
+                    />
+                    <div
+                      className="content"
+                    >
+                      <div
+                        className="center aligned header"
+                      >
+                        dolor
+                      </div>
+                      
+                    </div>
+                    <div
+                      className="extra center aligned content"
+                    >
+                      <span
+                        style={
+                          Object {
+                            "color": "red",
+                          }
+                        }
+                      >
+                        <p>
+                           
+                          <i
+                            aria-hidden="true"
+                            className="money bill alternate outline icon"
+                            onClick={[Function]}
+                          />
+                           
+                          USD
+                           
+                          100.00
+                           
+                        </p>
+                      </span>
+                    </div>
+                  </a>
+                </td>
+                <td
+                  className="left aligned top aligned"
+                >
+                  <div
+                    className="accordion ui"
+                  >
+                    <div>
+                      <div
+                        className="title"
+                        onClick={[Function]}
+                      >
+                        <i
+                          aria-hidden="true"
+                          className="dropdown icon"
+                          onClick={[Function]}
+                        />
+                        Variants
+                      </div>
+                      <div
+                        className="content"
+                      >
+                        <div>
+                          <b>
+                            variant title 1
+                             
+                            :
+                          </b>
+                          <p>
+                            variant attribute 11
+                          </p>
+                          <br />
+                        </div>
+                        <div>
+                          <b>
+                            variant title 2
+                             
+                            :
+                          </b>
+                          <p>
+                            variant attribute 21
+                          </p>
+                          <br />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td
+                  className="center aligned top aligned"
+                >
+                  <h4>
+                    x
+                     
+                    1
+                     
+                  </h4>
+                  <div
+                    className="accordion ui"
+                  >
+                    <button
+                      className="ui fluid button title"
+                      onClick={[Function]}
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="edit icon"
+                        onClick={[Function]}
+                      />
+                      Change Quantity
+                    </button>
+                    <div
+                      className="content"
+                    >
+                      <form
+                        className="ui form"
+                        onSubmit={[Function]}
+                      >
+                        <div
+                          className="sixteen wide field"
+                        >
+                          <label />
+                           
+                          <div
+                            className="ui input"
+                          >
+                            <input
+                              name="quantity"
+                              onChange={[Function]}
+                              placeholder="quantity"
+                              type="number"
+                              value={1}
+                            />
+                          </div>
+                          
+                        </div>
+                        <button
+                          className="ui disabled button"
+                          disabled={true}
+                          onClick={[Function]}
+                          tabIndex={-1}
+                        >
+                          Change
+                        </button>
+                        <div
+                          className="ui hidden divider"
+                        />
+                      </form>
+                    </div>
+                  </div>
+                  <br />
+                  <button
+                    className="ui basic fluid negative button"
+                    onClick={[Function]}
+                  >
+                    Remove from cart
+                  </button>
+                </td>
+                <td
+                  className="top aligned"
+                >
+                  <div
+                    className="ui hidden divider"
+                  />
+                  <h4>
+                    USD
+                     
+                    100.00
+                  </h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div
+        className="ui divider"
+      />
+      <div
+        className="tablet only mobile only two column row"
+      >
+        <div
+          className="column"
+        />
+        <div
+          className="column"
+        >
+          <div
+            className="ui massive segment"
+            style={
+              Object {
+                "marginRight": "2rem",
+              }
+            }
+          >
+            <h2
+              className="ui center aligned header"
+            >
+              Cart Summary
+            </h2>
+            <h3
+              className="ui header"
+            >
+              1
+               
+              item in cart
+            </h3>
+            <h6
+              className="ui header"
+            >
+              <i
+                aria-hidden="true"
+                className="cart icon"
+                onClick={[Function]}
+              />
+              Cart Total :
+            </h6>
+            <div
+              className="ui center aligned container"
+            >
+              <h2
+                className="ui header"
+              >
+                USD
+                 
+                100.00
+              </h2>
+            </div>
+            <div
+              className="ui container"
+              style={
+                Object {
+                  "marginTop": "3rem",
+                }
+              }
+            >
+              <div
+                className="ui divider"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ui hidden divider"
+      />
+    </div>
+  </div>,
+  ",",
+]
+`;
