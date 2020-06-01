@@ -20,7 +20,7 @@ import {
 } from '../../actions/cartActions';
 import calculateCartTotal from '../../helpers/calculateCartTotal';
 
-function Cart({
+export function Cart({
   auth,
   items,
   currency,
@@ -63,9 +63,7 @@ function Cart({
       >
         <Helmet>
           <title>
-            Cart -
-            {' '}
-            {storeName}
+            { `Cart - ${storeName}` }
           </title>
         </Helmet>
         <Header
@@ -102,9 +100,7 @@ function Cart({
     >
       <Helmet>
         <title>
-          Cart -
-          {' '}
-          {storeName}
+          { `Cart - ${storeName}` }
         </title>
       </Helmet>
       <Grid stackable>
