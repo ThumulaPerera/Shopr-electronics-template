@@ -15,6 +15,9 @@ beforeEach(() => {
   // mock fn for isLoaded
   rrf.isLoaded = jest.fn(() => false);
 
+  // eslint-disable-next-line no-console
+  console.error = jest.fn(); /* disable proptype warnings */
+
   component = shallow(
     <UnconnectedCart auth={{
       uid: '123',

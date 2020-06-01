@@ -18,6 +18,9 @@ beforeEach(() => {
   // mock fn for isLoaded
   rrf.isLoaded = jest.fn(() => true);
 
+  // eslint-disable-next-line no-console
+  console.error = jest.fn(); /* disable proptype warnings */
+
   component = shallow(
     <MemoryRouter initialEntries={[{ pathname: `/storeId123${CART_ROUTE}`, key: 'testKey' }]}>
       <Route path={`${MAIN_ROUTE}${CART_ROUTE}`}>
