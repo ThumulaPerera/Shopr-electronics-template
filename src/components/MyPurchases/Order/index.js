@@ -24,12 +24,15 @@ function Order({
     paymentMethod, totalPrice, orderItems, id,
   } = order;
   const total = currency.concat(' ', totalPrice.toFixed(2).toString());
-  let shippingAddress = order.shippingAddress.name.full_name;
+  let shippingAddress = order.shippingAddress.name && order.shippingAddress.name.full_name
+    ? order.shippingAddress.name.full_name : '';
   const addressFields = ['address_line_1', 'admin_area_1', 'admin_area_2', 'country_code', 'postal_code'];
-  addressFields.map((field) => {
-    shippingAddress = shippingAddress.concat(', ', order.shippingAddress.address[field]);
-    return null;
-  });
+  if (order.shippingAddress.address) {
+    addressFields.map((field) => {
+      shippingAddress = shippingAddress.concat(', ', order.shippingAddress.address[field]);
+      return null;
+    });
+  }
 
   return (
     <Segment color={color}>

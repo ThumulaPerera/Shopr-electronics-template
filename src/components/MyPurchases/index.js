@@ -15,7 +15,7 @@ import SignInToContinue from '../SignInToContinue';
 import Order from './Order';
 import { addReview } from '../../actions/reviewActions';
 
-function MyPurchases({
+export function MyPurchases({
   auth,
   items,
   currency,

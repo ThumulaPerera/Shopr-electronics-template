@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders loader if values in store are not loaded 1`] = `
+<Loader
+  active={true}
+  size="large"
+/>
+`;

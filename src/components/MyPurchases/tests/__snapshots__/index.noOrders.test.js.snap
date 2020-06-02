@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders purchases empty message if purchases are empty 1`] = `
+<Segment
+  basic={true}
+  style={
+    Object {
+      "marginTop": "5em",
+    }
+  }
+  textAlign="center"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <title>
+      Purchases -
+       
+    </title>
+  </HelmetWrapper>
+  <Header
+    as="h2"
+    style={
+      Object {
+        "fontSize": "1.3em",
+        "fontWeight": "normal",
+      }
+    }
+  >
+    You don't have any purchases
+  </Header>
+  <Divider
+    hidden={true}
+  />
+  <Button
+    as="a"
+    href="/store123"
+    primary={true}
+    size="big"
+  >
+    Start shopping
+  </Button>
+</Segment>
+`;

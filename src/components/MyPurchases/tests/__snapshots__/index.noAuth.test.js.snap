@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders sign in to continue if auth.uid is absent 1`] = `
+<SignInToContinue
+  icon={null}
+/>
+`;
