@@ -22,15 +22,18 @@ import ChatBot from '../ChatBot';
 import NotFoundPage from '../NotFoundPage';
 import * as ROUTES from '../../constants/routes';
 
-function SellerApp({ sellerStore }) {
+function SellerApp({ sellerStore, templates }) {
   const contextRef = createRef();
   const { path, storeID } = useRouteMatch();
 
-  if (!isLoaded(sellerStore)) {
+  if (!(isLoaded(sellerStore) && isLoaded(templates))) {
     return <Loader active size="large" />;
   }
 
-  if (isEmpty(sellerStore) || !sellerStore[0].verified) {
+  if (isEmpty(sellerStore)
+    || !sellerStore[0].verified
+    || templates[sellerStore[0].template.id].title !== 'Electronics'
+  ) {
     return <NotFoundPage />;
   }
 
@@ -95,10 +98,15 @@ const connectTo = ({ match }) => [
     doc: 'config_main',
     storeAs: 'config',
   },
+  {
+    collection: 'Templates',
+    storeAs: 'templates',
+  },
 ];
 
 const mapStateToProps = (state) => ({
   sellerStore: get(state.firestore.ordered, 'sellerStore'),
+  templates: get(state.firestore.data, 'templates'),
 });
 
 export default compose(
@@ -108,8 +116,10 @@ export default compose(
 
 SellerApp.propTypes = {
   sellerStore: PropTypes.array,
+  templates: PropTypes.object,
 };
 
 SellerApp.defaultProps = {
   sellerStore: undefined,
+  templates: undefined,
 };
