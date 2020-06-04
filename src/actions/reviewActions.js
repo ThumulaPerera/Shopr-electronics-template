@@ -51,7 +51,7 @@ export const addReview = (firestore, item, ratingValue, reviewValue, storeId, bu
     .collection('Items')
     .doc(id);
 
-  ItemDocRef.update({ rating, reviews })
+  return ItemDocRef.update({ rating, reviews })
     .then(() => {
       dispatch({ type: REVIEW_ACTION_TYPES.REVIEW_SUCESS });
       toastr.success('Feedback added');

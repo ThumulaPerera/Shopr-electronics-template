@@ -10,5 +10,5 @@ import 'jest-enzyme';
 
 configure({ adapter: new Adapter() });
 
-//refer https://create-react-app.dev/docs/running-tests/
-//refer https://www.robinwieruch.de/react-testing-jest
+// refer https://create-react-app.dev/docs/running-tests/
+// refer https://www.robinwieruch.de/react-testing-jest

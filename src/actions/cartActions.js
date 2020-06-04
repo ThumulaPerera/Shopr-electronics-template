@@ -13,10 +13,12 @@ export const removeItem = (firestore, itemIndex, storeId, buyerId) => (dispatch)
     .doc(buyerId)
     .get()
     .then((dataSnapshot) => {
+      console.log(dataSnapshot.get());
       const cart = dataSnapshot.get('cart');
       return cart || [];
     })
     .then((cart) => {
+      console.log(cart);
       cart.splice(itemIndex, 1);
       console.log(cart);
       return firestore
@@ -50,6 +52,7 @@ export const editItemQuantity = (firestore, itemIndex, newQantity, storeId, buye
       return cart || [];
     })
     .then((cart) => {
+      console.log(cart);
       if (newQantity) {
         // eslint-disable-next-line no-param-reassign
         cart[itemIndex].noOfItems = newQantity;
@@ -92,7 +95,7 @@ export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
 
     batch.update(itemDocRef, { subItems });
   });
-  batch.commit()
+  return batch.commit()
     .catch((error) => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
       console.log(error);
@@ -118,7 +121,7 @@ export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
 
     batch.update(itemDocRef, { subItems });
   });
-  batch.commit()
+  return batch.commit()
     .then(() => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_CANCEL });
     })
@@ -205,7 +208,7 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
 
   batch.update(BuyerDocRef, { cart: [] });
 
-  batch.commit()
+  return batch.commit()
     .then(() => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_SUCCESS });
       toastr.success('Checkout complete');
