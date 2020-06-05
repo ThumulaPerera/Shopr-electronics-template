@@ -41,4 +41,13 @@ collection.mockImplementation(() => ({
   doc,
 }));
 
-export const firestore = { doc, collection, batch };
+const Timestamp = {
+  now: () => new Date(),
+};
+
+export const firestore = {
+  doc,
+  collection,
+  batch,
+  Timestamp,
+};
