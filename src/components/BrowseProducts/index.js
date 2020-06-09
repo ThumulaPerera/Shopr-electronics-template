@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Grid, Search, Label, Segment, Sticky, Responsive, Loader,
+  Grid, Search, Label, Segment, Sticky, Responsive, Loader, Dropdown,
 } from 'semantic-ui-react';
 import { useRouteMatch } from 'react-router-dom';
 import _, { get } from 'lodash';
@@ -32,7 +32,16 @@ const initialState = {
   results: [],
   value: '',
   selectedCategory: 'All',
+  sortBy: '',
 };
+
+const sortOptions = [
+  { key: 'Price: Low to High', text: 'Price: Low to High', value: 'Price: Low to High' },
+  { key: 'Price: High to Low', text: 'Price: High to Low', value: 'Price: High to Low' },
+  { key: 'Name: A - Z', text: 'Name: A - Z', value: 'Name: A - Z' },
+  { key: 'Name: Z - A', text: 'Name: Z - A', value: 'Name: Z - A' },
+];
+
 export class BrowseProducts extends Component {
   state = initialState;
 
@@ -85,6 +94,10 @@ export class BrowseProducts extends Component {
     value: '',
   })
 
+  handleSortSelection = (e, { value }) => this.setState({
+    sortBy: value,
+  })
+
   handleOnResponsiveUpdate = (e, { width }) => this.setState({ width })
 
   render() {
@@ -92,7 +105,7 @@ export class BrowseProducts extends Component {
       contextRef, categories, match, items, currency, storeCustomization, ratingEnabled, storeName,
     } = this.props;
     const {
-      isLoading, value, results, selectedCategory, width,
+      isLoading, value, results, selectedCategory, width, sortBy,
     } = this.state;
     const { url } = match;
     const stickSearchBar = width > Responsive.onlyMobile.maxWidth;
@@ -159,9 +172,9 @@ export class BrowseProducts extends Component {
               style={{ padding: '.5em', borderRadius: '0px' }}
             >
               <Grid relaxed="very" padded="horizontally" stackable>
-                <Grid.Row columns={3}>
-                  <Grid.Column only="computer" computer="5" />
-                  <Grid.Column computer="6" tablet="8">
+                <Grid.Row columns={4}>
+                  <Grid.Column only="computer" computer="4" />
+                  <Grid.Column computer="4" tablet="6">
                     <Search
                       fluid
                       size="large"
@@ -175,7 +188,19 @@ export class BrowseProducts extends Component {
                       resultRenderer={resultRenderer}
                     />
                   </Grid.Column>
-                  <Grid.Column computer="5" tablet="8">
+                  <Grid.Column computer="4" tablet="5">
+                    <Dropdown
+                      onChange={this.handleSortSelection}
+                      options={sortOptions}
+                      placeholder="Sort by"
+                      selection
+                      fluid
+                      value={sortBy}
+                      icon="dropdown"
+                      clearable
+                    />
+                  </Grid.Column>
+                  <Grid.Column computer="4" tablet="5">
                     <CategoryDropdown
                       handleCategoryClick={this.handleCategoryDropdownSelection}
                       selectedCategory={selectedCategory}
@@ -211,6 +236,7 @@ export class BrowseProducts extends Component {
                         currency={currency}
                         items={itemsToDisplay}
                         ratingEnabled={ratingEnabled}
+                        sortBy={sortBy}
                       />
                     ))
                   }
@@ -226,6 +252,7 @@ export class BrowseProducts extends Component {
                       currency={currency}
                       items={itemsToDisplay}
                       ratingEnabled={ratingEnabled}
+                      sortBy={sortBy}
                     />
                     )
                   }
@@ -259,6 +286,7 @@ export class BrowseProducts extends Component {
                         currency={currency}
                         items={itemsToDisplay}
                         ratingEnabled={ratingEnabled}
+                        sortBy={sortBy}
                       />
                     ))
                   }
@@ -274,6 +302,7 @@ export class BrowseProducts extends Component {
                       currency={currency}
                       items={itemsToDisplay}
                       ratingEnabled={ratingEnabled}
+                      sortBy={sortBy}
                     />
                     )
                   }

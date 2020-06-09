@@ -12,7 +12,7 @@ import calculateRating from '../../../helpers/calculateRating';
 import getItemsAndIconByCategory from '../../../helpers/getItemsAndIconByCategory';
 import { defaultImgUrl } from '../../../constants/defaults';
 import paginate from '../../../helpers/paginate';
-
+import calculateDiscount from '../../../helpers/calculateDiscount';
 
 const ItemGrid = (props) => {
   const [activePage, setActivePage] = useState(1);
@@ -20,7 +20,7 @@ const ItemGrid = (props) => {
 
   let { items } = props;
   const {
-    categories, selectedCategory, url, currency, ratingEnabled,
+    categories, selectedCategory, url, currency, ratingEnabled, sortBy,
   } = props;
 
   const handlePaginationChange = (e, { activePage }) => setActivePage(activePage);
@@ -41,6 +41,46 @@ const ItemGrid = (props) => {
   if (selectedCategory !== prevCategory) {
     setActivePage(1);
     setPrevCategory(selectedCategory);
+  }
+
+  switch (sortBy) {
+    case 'Price: Low to High': {
+      items.sort((a, b) => {
+        const priceA = a.basePrice - calculateDiscount(a.basePrice, a.discount);
+        const priceB = b.basePrice - calculateDiscount(b.basePrice, b.discount);
+        return priceA - priceB;
+      });
+      break;
+    }
+    case 'Price: High to Low': {
+      items.sort((a, b) => {
+        const priceA = a.basePrice - calculateDiscount(a.basePrice, a.discount);
+        const priceB = b.basePrice - calculateDiscount(b.basePrice, b.discount);
+        return priceB - priceA;
+      });
+      break;
+    }
+    case 'Name: A - Z': {
+      items.sort((a, b) => {
+        const x = a.name.toLowerCase();
+        const y = b.name.toLowerCase();
+        if (x < y) { return -1; }
+        if (x > y) { return 1; }
+        return 0;
+      });
+      break;
+    }
+    case 'Name: Z - A': {
+      items.sort((a, b) => {
+        const x = a.name.toLowerCase();
+        const y = b.name.toLowerCase();
+        if (x > y) { return -1; }
+        if (x < y) { return 1; }
+        return 0;
+      });
+      break;
+    }
+    default:
   }
 
 
@@ -137,5 +177,6 @@ ItemGrid.propTypes = {
   currency: PropTypes.string.isRequired,
   selectedCategory: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  sortBy: PropTypes.string.isRequired,
   ratingEnabled: PropTypes.bool.isRequired,
 };
