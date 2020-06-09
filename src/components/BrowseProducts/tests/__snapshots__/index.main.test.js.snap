@@ -25,13 +25,13 @@ exports[`renders with given state from Redux store 1`] = `
             className="ui stackable horizontally padded very relaxed grid"
           >
             <div
-              className="three column row"
+              className="four column row"
             >
               <div
-                className="computer only five wide computer column"
+                className="computer only four wide computer column"
               />
               <div
-                className="six wide computer eight wide tablet column"
+                className="four wide computer six wide tablet column"
               >
                 <div
                   className="ui large fluid search"
@@ -73,7 +73,112 @@ exports[`renders with given state from Redux store 1`] = `
                 </div>
               </div>
               <div
-                className="five wide computer eight wide tablet column"
+                className="four wide computer five wide tablet column"
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui fluid selection dropdown"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
+                  <div
+                    aria-atomic={true}
+                    aria-live="polite"
+                    className="default text"
+                    role="alert"
+                  >
+                    Sort by
+                  </div>
+                  <i
+                    aria-hidden="true"
+                    className="dropdown icon"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="menu transition"
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={true}
+                      className="selected item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Price: Low to High
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Price: High to Low
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Name: A - Z
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Name: Z - A
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="four wide computer five wide tablet column"
               >
                 <div
                   aria-expanded={false}
