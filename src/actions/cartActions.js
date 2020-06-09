@@ -13,7 +13,6 @@ export const removeItem = (firestore, itemIndex, storeId, buyerId) => (dispatch)
     .doc(buyerId)
     .get()
     .then((dataSnapshot) => {
-      console.log(dataSnapshot.get());
       const cart = dataSnapshot.get('cart');
       return cart || [];
     })
