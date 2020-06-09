@@ -58,7 +58,7 @@ function SellerApp({ sellerStore, templates }) {
         <Switch>
           <Route
             path={`${path}${ROUTES.MY_PURCHASES_ROUTE}`}
-            component={MyPurchases}
+            render={(props) => <MyPurchases {...props} contextRef={contextRef} />}
           />
           <Route
             path={`${path}${ROUTES.CART_ROUTE}`}

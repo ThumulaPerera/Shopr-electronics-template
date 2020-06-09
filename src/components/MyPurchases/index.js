@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import {
-  Segment, Divider, Header, Button, Loader, Dropdown,
+  Segment, Divider, Header, Button, Loader, Dropdown, Sticky, Grid, Responsive,
 } from 'semantic-ui-react';
 import {
   isLoaded, isEmpty, firestoreConnect,
@@ -30,9 +30,11 @@ export function MyPurchases({
   match,
   storeName,
   firestore,
+  contextRef,
 }) {
   const [filter, setFilter] = useState('');
   const [sortBy, setSortBy] = useState('Date: closest to earliest');
+  const [width, setWidth] = useState();
 
   if (!auth.uid) {
     return <SignInToContinue />;
@@ -77,6 +79,10 @@ export function MyPurchases({
       </Segment>
     );
   }
+
+  const handleOnResponsiveUpdate = (e, { width }) => setWidth(width);
+
+  const stickSearchBar = width > Responsive.onlyMobile.maxWidth;
 
   const dateAsc = 'Date: Earliest to Closest';
   const dateDsc = 'Date: Closest to Earliest';
@@ -147,7 +153,10 @@ export function MyPurchases({
   }
 
   return (
-    <Segment basic>
+    <Responsive
+      fireOnMount
+      onUpdate={handleOnResponsiveUpdate}
+    >
       <Helmet>
         <title>
           Purchases -
@@ -155,30 +164,56 @@ export function MyPurchases({
           {storeName}
         </title>
       </Helmet>
-      <Dropdown
-        onChange={handleFilterChange}
-        options={filterOptions}
-        placeholder="Filter by state"
-        fluid
-        selection
-        clearable
-        icon="filter"
-        labeled
-        button
-        className="icon"
-      />
-      <Dropdown
-        onChange={handleSortChange}
-        options={sortOptions}
-        placeholder="Sort by"
-        selection
-        fluid
-        icon="sort"
-        labeled
-        button
-        className="icon"
-      />
-      {
+      <Sticky
+        context={contextRef}
+        offset={72}
+        active={stickSearchBar}
+      >
+        <Segment
+          textAlign="center"
+          color={color}
+          inverted
+          tertiary
+          style={{ padding: '.5em', borderRadius: '0px' }}
+        >
+          <Grid relaxed="very" padded="horizontally" stackable>
+            <Grid.Row columns={3}>
+              <Grid.Column only="computer" computer="6" />
+              <Grid.Column computer="5" tablet="8">
+                <Dropdown
+                  onChange={handleFilterChange}
+                  options={filterOptions}
+                  placeholder="Filter by state"
+                  fluid
+                  selection
+                  clearable
+                  icon="filter"
+                  labeled
+                  button
+                  className="icon"
+                />
+              </Grid.Column>
+              <Grid.Column computer="5" tablet="8">
+                <Dropdown
+                  onChange={handleSortChange}
+                  options={sortOptions}
+                  placeholder="Sort by"
+                  selection
+                  fluid
+                  icon="sort"
+                  labeled
+                  button
+                  className="icon"
+                />
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Segment>
+      </Sticky>
+      <Segment basic>
+
+
+        {
       filteredOrders && filteredOrders.map((order) => (
         <div key={order.id}>
           <Order
@@ -199,7 +234,8 @@ export function MyPurchases({
         </div>
       ))
     }
-    </Segment>
+      </Segment>
+    </Responsive>
   );
 }
 
@@ -262,6 +298,7 @@ MyPurchases.propTypes = {
   match: PropTypes.object.isRequired,
   firestore: PropTypes.object.isRequired,
   storeName: PropTypes.string,
+  contextRef: PropTypes.object.isRequired,
 };
 
 MyPurchases.defaultProps = {
