@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 import ItemsAccordian from '../ItemsAccordian';
+import ReceivedBtn from '../ReceivedBtn';
 
 function Order({
   order,
@@ -17,9 +18,12 @@ function Order({
   changeInProgress,
   buyerId,
   url,
+  firestore,
+  storeId,
 }) {
   const date = order.date.toDate().toString();
-  const orderState = orderStates[order.orderStates[order.orderStates.length - 1].stateId];
+  const orderStateId = order.orderStates[order.orderStates.length - 1].stateId;
+  const orderState = orderStates[orderStateId];
   const {
     paymentMethod, totalPrice, orderItems, id,
   } = order;
@@ -38,7 +42,6 @@ function Order({
     <Segment color={color}>
       <Item.Group>
         <Item>
-
           <Item.Content>
             <h4>
               Order ID :
@@ -99,6 +102,16 @@ function Order({
                 </Item.Description>
               </Grid.Column>
             </Grid>
+            {orderStateId === 1
+            && (
+            <Item.Extra>
+              <ReceivedBtn
+                firestore={firestore}
+                storeId={storeId}
+                orderId={id}
+              />
+            </Item.Extra>
+            )}
           </Item.Content>
         </Item>
       </Item.Group>
@@ -119,6 +132,8 @@ Order.propTypes = {
   changeInProgress: PropTypes.bool.isRequired,
   buyerId: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  firestore: PropTypes.object.isRequired,
+  storeId: PropTypes.string.isRequired,
 };
 
 Order.defaultProps = {

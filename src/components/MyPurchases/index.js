@@ -27,6 +27,7 @@ export function MyPurchases({
   changeInProgress,
   match,
   storeName,
+  firestore,
 }) {
   if (!auth.uid) {
     return <SignInToContinue />;
@@ -95,6 +96,8 @@ export function MyPurchases({
             changeInProgress={changeInProgress}
             buyerId={auth.uid}
             url={url}
+            firestore={firestore}
+            storeId={storeID}
           />
           <Divider hidden />
         </div>
@@ -161,6 +164,7 @@ MyPurchases.propTypes = {
   addReview: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
   match: PropTypes.object.isRequired,
+  firestore: PropTypes.object.isRequired,
   storeName: PropTypes.string,
 };
 
