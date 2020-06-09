@@ -53,7 +53,9 @@ export class BrowseProducts extends Component {
   }
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value, selectedCategory: 'All' });
+    this.setState({
+      isLoading: true, value, selectedCategory: 'All', sortBy: '',
+    });
 
     // eslint-disable-next-line consistent-return
     setTimeout(() => {
