@@ -2,167 +2,393 @@
 
 exports[`renders with given props 1`] = `
 Array [
-  <div
-    className="ui basic segment"
-  >
-    <div>
+  <div>
+    <div
+      className=""
+    >
       <div
-        className="ui segment"
+        style={Object {}}
+      />
+      <div
+        className="ui sticky"
       >
         <div
-          className="ui items"
+          className="ui inverted tertiary center aligned segment"
+          style={
+            Object {
+              "borderRadius": "0px",
+              "padding": ".5em",
+            }
+          }
         >
           <div
-            className="item"
+            className="ui stackable horizontally padded very relaxed grid"
           >
             <div
-              className="content"
+              className="three column row"
             >
-              <h4>
-                Order ID :
-                 
-                order123
-              </h4>
               <div
-                className="ui divider"
+                className="computer only six wide computer column"
               />
               <div
-                className="meta"
+                className="five wide computer eight wide tablet column"
               >
-                <h4>
-                  Order Items
-                </h4>
-              </div>
-              <div
-                className="accordion ui"
-              >
-                <div>
+                <div
+                  aria-expanded={false}
+                  className="ui button fluid labeled selection dropdown icon"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
                   <div
-                    className="title"
-                    onClick={[Function]}
+                    aria-atomic={true}
+                    aria-live="polite"
+                    className="default text"
+                    role="alert"
                   >
-                    <i
-                      aria-hidden="true"
-                      className="dropdown icon"
-                      onClick={[Function]}
-                    />
-                    dolor
+                    Filter by state
                   </div>
+                  <i
+                    aria-hidden="true"
+                    className="filter icon"
+                    onClick={[Function]}
+                  />
                   <div
-                    className="content"
+                    className="menu transition"
                   >
                     <div
-                      className="ui items"
+                      aria-checked={false}
+                      aria-selected={true}
+                      className="selected item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Paid
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Shipped
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Delivered
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="five wide computer eight wide tablet column"
+              >
+                <div
+                  aria-expanded={false}
+                  className="ui button fluid labeled selection dropdown icon"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onMouseDown={[Function]}
+                  role="listbox"
+                  tabIndex={0}
+                >
+                  <div
+                    aria-atomic={true}
+                    aria-live="polite"
+                    className="default text"
+                    role="alert"
+                  >
+                    Sort by
+                  </div>
+                  <i
+                    aria-hidden="true"
+                    className="sort icon"
+                    onClick={[Function]}
+                  />
+                  <div
+                    className="menu transition"
+                  >
+                    <div
+                      aria-checked={false}
+                      aria-selected={true}
+                      className="selected item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Date: Earliest to Closest
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Date: Closest to Earliest
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Order Total: Low to High
+                      </span>
+                    </div>
+                    <div
+                      aria-checked={false}
+                      aria-selected={false}
+                      className="item"
+                      onClick={[Function]}
+                      role="option"
+                      style={
+                        Object {
+                          "pointerEvents": "all",
+                        }
+                      }
+                    >
+                      <span
+                        className="text"
+                      >
+                        Order Total: High to Low
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ui basic segment"
+    >
+      <div>
+        <div
+          className="ui segment"
+        >
+          <div
+            className="ui items"
+          >
+            <div
+              className="item"
+            >
+              <div
+                className="content"
+              >
+                <h4>
+                  Order ID :
+                   
+                  order123
+                </h4>
+                <div
+                  className="ui divider"
+                />
+                <div
+                  className="meta"
+                >
+                  <h4>
+                    Order Items
+                  </h4>
+                </div>
+                <div
+                  className="accordion ui"
+                >
+                  <div>
+                    <div
+                      className="title"
+                      onClick={[Function]}
+                    >
+                      <i
+                        aria-hidden="true"
+                        className="dropdown icon"
+                        onClick={[Function]}
+                      />
+                      dolor
+                    </div>
+                    <div
+                      className="content"
                     >
                       <div
-                        className="item"
+                        className="ui items"
                       >
                         <div
-                          className="image"
+                          className="item"
                         >
-                          <img
-                            src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
-                          />
-                        </div>
-                        <div
-                          className="content"
-                        >
-                          <a
-                            className="header"
-                            href="/store123/Items/5ed111295a728d32a9ca49b7"
-                          >
-                            dolor
-                          </a>
                           <div
-                            className="ui two column grid"
+                            className="image"
                           >
+                            <img
+                              src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Fdefault%20images%2FdefaultItem.jpg?alt=media&token=25d58086-a46e-42dc-9228-82a3b1a116d9"
+                            />
+                          </div>
+                          <div
+                            className="content"
+                          >
+                            <a
+                              className="header"
+                              href="/store123/Items/5ed111295a728d32a9ca49b7"
+                            >
+                              dolor
+                            </a>
                             <div
-                              className="column"
+                              className="ui two column grid"
                             >
                               <div
-                                className="accordion ui"
+                                className="column"
                               >
-                                <div>
-                                  <div
-                                    className="title"
-                                    onClick={[Function]}
-                                  >
-                                    <i
-                                      aria-hidden="true"
-                                      className="dropdown icon"
+                                <div
+                                  className="accordion ui"
+                                >
+                                  <div>
+                                    <div
+                                      className="title"
                                       onClick={[Function]}
-                                    />
-                                    Variants
-                                  </div>
-                                  <div
-                                    className="content"
-                                  >
-                                    <div>
-                                      <b>
-                                        variant title 1
-                                         
-                                        :
-                                      </b>
-                                      <p>
-                                        variant attribute 11
-                                      </p>
-                                      <br />
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        className="dropdown icon"
+                                        onClick={[Function]}
+                                      />
+                                      Variants
                                     </div>
-                                    <div>
-                                      <b>
-                                        variant title 2
-                                         
-                                        :
-                                      </b>
-                                      <p>
-                                        variant attribute 21
-                                      </p>
-                                      <br />
+                                    <div
+                                      className="content"
+                                    >
+                                      <div>
+                                        <b>
+                                          variant title 1
+                                           
+                                          :
+                                        </b>
+                                        <p>
+                                          variant attribute 11
+                                        </p>
+                                        <br />
+                                      </div>
+                                      <div>
+                                        <b>
+                                          variant title 2
+                                           
+                                          :
+                                        </b>
+                                        <p>
+                                          variant attribute 21
+                                        </p>
+                                        <br />
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div
-                              className="column"
-                            >
                               <div
-                                className="meta"
+                                className="column"
                               >
-                                Unit price :
-                              </div>
-                              <div
-                                className="description"
-                              >
-                                USD 100.00
-                              </div>
-                              <div
-                                className="meta"
-                              >
-                                Quantity :
-                              </div>
-                              <div
-                                className="description"
-                              >
-                                x
-                                 
-                                1
-                              </div>
-                              <div
-                                className="meta"
-                              >
-                                <b>
-                                  Sub Total :
-                                </b>
-                              </div>
-                              <div
-                                className="description"
-                              >
-                                <h4>
+                                <div
+                                  className="meta"
+                                >
+                                  Unit price :
+                                </div>
+                                <div
+                                  className="description"
+                                >
+                                  USD 100.00
+                                </div>
+                                <div
+                                  className="meta"
+                                >
+                                  Quantity :
+                                </div>
+                                <div
+                                  className="description"
+                                >
+                                  x
+                                   
+                                  1
+                                </div>
+                                <div
+                                  className="meta"
+                                >
                                   <b>
-                                    USD 100.00
+                                    Sub Total :
                                   </b>
-                                </h4>
+                                </div>
+                                <div
+                                  className="description"
+                                >
+                                  <h4>
+                                    <b>
+                                      USD 100.00
+                                    </b>
+                                  </h4>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -171,81 +397,81 @@ Array [
                     </div>
                   </div>
                 </div>
-              </div>
-              <div
-                className="ui divider"
-              />
-              <div
-                className="ui two column grid"
-              >
                 <div
-                  className="column"
+                  className="ui divider"
+                />
+                <div
+                  className="ui two column grid"
                 >
                   <div
-                    className="meta"
+                    className="column"
                   >
-                    Order Date :
+                    <div
+                      className="meta"
+                    >
+                      Order Date :
+                    </div>
+                    <div
+                      className="description"
+                    >
+                      Mon Dec 24 2018 10:33:30 GMT+0530 (India Standard Time)
+                    </div>
+                    <div
+                      className="meta"
+                    >
+                      Order State :
+                    </div>
+                    <div
+                      className="description"
+                    >
+                      Paid
+                    </div>
+                    <div
+                      className="meta"
+                    >
+                      Shipping Address :
+                    </div>
+                    <div
+                      className="description"
+                    >
+                      
+                    </div>
                   </div>
                   <div
-                    className="description"
+                    className="column"
                   >
-                    Mon Dec 24 2018 10:33:30 GMT+0530 (India Standard Time)
-                  </div>
-                  <div
-                    className="meta"
-                  >
-                    Order State :
-                  </div>
-                  <div
-                    className="description"
-                  >
-                    Paid
-                  </div>
-                  <div
-                    className="meta"
-                  >
-                    Shipping Address :
-                  </div>
-                  <div
-                    className="description"
-                  >
-                    
-                  </div>
-                </div>
-                <div
-                  className="column"
-                >
-                  <div
-                    className="meta"
-                  >
-                    Total Price:
-                  </div>
-                  <div
-                    className="description"
-                  >
-                    <h1>
-                      USD 3200.00
-                    </h1>
-                  </div>
-                  <div
-                    className="meta"
-                  >
-                    Payment Method :
-                  </div>
-                  <div
-                    className="description"
-                  >
-                    paypal
+                    <div
+                      className="meta"
+                    >
+                      Total Price:
+                    </div>
+                    <div
+                      className="description"
+                    >
+                      <h1>
+                        USD 3200.00
+                      </h1>
+                    </div>
+                    <div
+                      className="meta"
+                    >
+                      Payment Method :
+                    </div>
+                    <div
+                      className="description"
+                    >
+                      paypal
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div
+          className="ui hidden divider"
+        />
       </div>
-      <div
-        className="ui hidden divider"
-      />
     </div>
   </div>,
   ",",
