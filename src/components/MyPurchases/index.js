@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import {
-  Segment, Divider, Header, Button, Loader,
+  Segment, Divider, Header, Button, Loader, Dropdown,
 } from 'semantic-ui-react';
 import {
   isLoaded, isEmpty, firestoreConnect,
 } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Helmet } from 'react-helmet';
+import * as moment from 'moment';
 
 import SignInToContinue from '../SignInToContinue';
 import Order from './Order';
 import { addReview } from '../../actions/reviewActions';
+
 
 export function MyPurchases({
   auth,
@@ -29,6 +31,9 @@ export function MyPurchases({
   storeName,
   firestore,
 }) {
+  const [filter, setFilter] = useState('');
+  const [sortBy, setSortBy] = useState('Date: closest to earliest');
+
   if (!auth.uid) {
     return <SignInToContinue />;
   }
@@ -73,6 +78,74 @@ export function MyPurchases({
     );
   }
 
+  const dateAsc = 'Date: Earliest to Closest';
+  const dateDsc = 'Date: Closest to Earliest';
+  const totAsc = 'Order Total: Low to High';
+  const totDsc = 'Order Total: High to Low';
+
+  const sortOptions = [
+    { key: dateAsc, text: dateAsc, value: dateAsc },
+    { key: dateDsc, text: dateDsc, value: dateDsc },
+    { key: totAsc, text: totAsc, value: totAsc },
+    { key: totDsc, text: totDsc, value: totDsc },
+  ];
+
+  const filterOptions = [];
+  orderStates.forEach((orderState) => {
+    filterOptions.push({
+      key: orderState,
+      text: orderState,
+      value: orderState,
+    });
+  });
+
+  const handleSortChange = (e, { value }) => setSortBy(value);
+
+  const handleFilterChange = (e, { value }) => setFilter(value);
+
+  const filteredOrders = orders.filter((order) => {
+    if (!filter) {
+      return true;
+    }
+    return orderStates[order.orderStates[order.orderStates.length - 1].stateId] === filter;
+  });
+
+  switch (sortBy) {
+    case dateDsc: {
+      filteredOrders.sort((a, b) => {
+        const dateA = moment(a.date.toDate());
+        const dateB = moment(b.date.toDate());
+        return dateA.isBefore(dateB) ? 1 : -1;
+      });
+      break;
+    }
+    case dateAsc: {
+      filteredOrders.sort((a, b) => {
+        const dateA = moment(a.date.toDate());
+        const dateB = moment(b.date.toDate());
+        return dateA.isBefore(dateB) ? -1 : 1;
+      });
+      break;
+    }
+    case totAsc: {
+      filteredOrders.sort((a, b) => {
+        const totA = a.totalPrice;
+        const totB = b.totalPrice;
+        return totA - totB;
+      });
+      break;
+    }
+    case totDsc: {
+      filteredOrders.sort((a, b) => {
+        const totA = a.totalPrice;
+        const totB = b.totalPrice;
+        return totB - totA;
+      });
+      break;
+    }
+    default:
+  }
+
   return (
     <Segment basic>
       <Helmet>
@@ -82,8 +155,31 @@ export function MyPurchases({
           {storeName}
         </title>
       </Helmet>
+      <Dropdown
+        onChange={handleFilterChange}
+        options={filterOptions}
+        placeholder="Filter by state"
+        fluid
+        selection
+        clearable
+        icon="filter"
+        labeled
+        button
+        className="icon"
+      />
+      <Dropdown
+        onChange={handleSortChange}
+        options={sortOptions}
+        placeholder="Sort by"
+        selection
+        fluid
+        icon="sort"
+        labeled
+        button
+        className="icon"
+      />
       {
-      orders && orders.map((order) => (
+      filteredOrders && filteredOrders.map((order) => (
         <div key={order.id}>
           <Order
             order={order}
