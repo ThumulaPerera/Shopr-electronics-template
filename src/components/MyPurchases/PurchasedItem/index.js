@@ -12,8 +12,7 @@ import { ITEMS_ROUTE } from '../../../constants/routes';
 function PurchasedItem({
   item,
   orderItem,
-  // eslint-disable-next-line no-unused-vars
-  orderState,
+  orderStateId,
   currency,
   ratingEnabled,
   addReview,
@@ -77,7 +76,7 @@ function PurchasedItem({
         </Item.Content>
       </Item>
       {ratingEnabled
-      /* && orderState === 'Delivered' */
+      && orderStateId === 2
       && (
         !prevReviews.length
           ? (
@@ -111,7 +110,7 @@ PurchasedItem.propTypes = {
   currency: PropTypes.string.isRequired,
   ratingEnabled: PropTypes.bool.isRequired,
   orderItem: PropTypes.object.isRequired,
-  orderState: PropTypes.string.isRequired,
+  orderStateId: PropTypes.number.isRequired,
   addReview: PropTypes.func.isRequired,
   changeInProgress: PropTypes.bool.isRequired,
   buyerId: PropTypes.string.isRequired,

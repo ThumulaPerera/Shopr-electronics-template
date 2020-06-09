@@ -54,7 +54,7 @@ function Order({
             </Item.Meta>
             <ItemsAccordian
               orderItems={orderItems}
-              orderState={orderState}
+              orderStateId={orderStateId}
               items={items}
               currency={currency}
               ratingEnabled={ratingEnabled}
