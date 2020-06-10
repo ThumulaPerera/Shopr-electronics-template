@@ -45,6 +45,7 @@ export function Cart({
   const handleOnUpdate = (e, { width }) => setWidth(width);
 
   const onComputerAndTablet = width > Responsive.onlyMobile.maxWidth;
+  const stickSidePane = width > Responsive.onlyComputer.minWidth;
 
   if (!auth.uid) {
     return <SignInToContinue icon="shopping cart" />;
@@ -104,8 +105,8 @@ export function Cart({
         </title>
       </Helmet>
       <Grid stackable>
-        <Grid.Row only="computer">
-          <Grid.Column computer="11">
+        <Grid.Row>
+          <Grid.Column computer="11" tablet="16">
             <ItemTable
               items={items}
               currency={currency}
@@ -122,8 +123,9 @@ export function Cart({
               onComputerAndTablet={onComputerAndTablet}
             />
           </Grid.Column>
-          <Grid.Column computer="5">
-            <Sticky context={contextRef} offset={100} pushing>
+          <Grid.Column only="tablet" tablet="8" />
+          <Grid.Column computer="5" tablet="8">
+            <Sticky context={contextRef} offset={100} pushing active={stickSidePane}>
               <SidePane
                 total={cartTotal}
                 currency={currency}
@@ -139,43 +141,6 @@ export function Cart({
                 merchantId={merchantId}
               />
             </Sticky>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row only="tablet mobile">
-          <ItemTable
-            items={items}
-            currency={currency}
-            cart={cart}
-            url={`/${match.params.storeID}`}
-            removeItem={removeItem}
-            editItemQuantity={editItemQuantity}
-            contextRef={contextRef}
-            changeInProgress={changeInProgress}
-            checkoutInProgress={checkoutInProgress}
-            color={color}
-            stockEnabled={stockEnabled}
-            ratingEnabled={ratingEnabled}
-            onComputerAndTablet={onComputerAndTablet}
-          />
-        </Grid.Row>
-        <Divider />
-        <Grid.Row only="tablet mobile" columns={2}>
-          <Grid.Column />
-          <Grid.Column>
-            <SidePane
-              total={cartTotal}
-              currency={currency}
-              color={color}
-              noOfItems={cart ? cart.length : 0}
-              updateStock={updateStock}
-              resetStock={resetStock}
-              createOrderInDb={createOrderInDb}
-              checkoutInProgress={checkoutInProgress}
-              stockEnabled={stockEnabled}
-              items={items}
-              cart={cart}
-              merchantId={merchantId}
-            />
           </Grid.Column>
         </Grid.Row>
         <Divider hidden />

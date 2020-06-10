@@ -58,7 +58,7 @@ class ItemTable extends Component {
             </Table>
           </Sticky>
           {/* <div style={{ maxHeight: '70vh', overflowY: 'scroll', marginTop: '.5rem' }}> */}
-          <Table basic="very" fixed textAlign="center">
+          <Table fixed textAlign="center">
             <Table.Body>
               {cart && cart.map((orderItem, index) => {
                 const item = items[orderItem.item];
