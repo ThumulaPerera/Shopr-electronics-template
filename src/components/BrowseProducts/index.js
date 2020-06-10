@@ -32,7 +32,7 @@ const initialState = {
   results: [],
   value: '',
   selectedCategory: 'All',
-  sortBy: '',
+  sortBy: 'Name: A - Z',
 };
 
 const sortOptions = [
@@ -197,9 +197,7 @@ export class BrowseProducts extends Component {
                       placeholder="Sort by"
                       selection
                       fluid
-                      value={sortBy}
                       icon="dropdown"
-                      clearable
                     />
                   </Grid.Column>
                   <Grid.Column computer="4" tablet="5">
