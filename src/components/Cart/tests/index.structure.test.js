@@ -66,8 +66,7 @@ it('renders the corresponding sub components and passes props correctly', () => 
   /* Side Pane */
   const sidePane = component.find(SidePane);
   // renders the side pane
-  // renders twice (once for onlyComputer and once for onlyMobile&Tablet)
-  expect(sidePane.length).toEqual(2);
+  expect(sidePane.length).toEqual(1);
   // passes correct initial props
   for (let i = 0; i < sidePane.length; i++) {
     expect(sidePane.at(i).props()).toHaveProperty('total');
@@ -87,8 +86,7 @@ it('renders the corresponding sub components and passes props correctly', () => 
   /* Item Table */
   const itemTable = component.find(ItemTable);
   // renders the item table
-  // renders twice (once for onlyComputer and once for onlyMobile&Tablet)
-  expect(itemTable.length).toEqual(2);
+  expect(itemTable.length).toEqual(1);
   // passes correct initial props
   for (let i = 0; i < itemTable.length; i++) {
     expect(itemTable.at(i).props()).toHaveProperty('items', items);
