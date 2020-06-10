@@ -24,7 +24,7 @@ import * as ROUTES from '../../constants/routes';
 
 function SellerApp({ sellerStore, templates }) {
   const contextRef = createRef();
-  const { path, storeID } = useRouteMatch();
+  const { path, params } = useRouteMatch();
 
   if (!(isLoaded(sellerStore) && isLoaded(templates))) {
     return <Loader active size="large" />;
@@ -53,7 +53,7 @@ function SellerApp({ sellerStore, templates }) {
         />
         {
         sellerStore[0].enableChatbot
-        && <ChatBot storeID={storeID} />
+        && <ChatBot storeId={params.storeID} />
       }
         <Switch>
           <Route
