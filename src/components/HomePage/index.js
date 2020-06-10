@@ -61,10 +61,22 @@ function HomePage() {
                   showIndicators={false}
                   emulateTouch
                 >
-                  <img src={browseProductsPageImgUrl} alt="" />
-                  <img src={itemPageImgUrl} alt="" />
-                  <img src={cartPageImgUrl} alt="" />
-                  <img src={myPurshasesPageImgUrl} alt="" />
+                  <div>
+                    <img src={browseProductsPageImgUrl} alt="" />
+                    <p className="legend">Browse Products</p>
+                  </div>
+                  <div>
+                    <img src={itemPageImgUrl} alt="" />
+                    <p className="legend">Item View</p>
+                  </div>
+                  <div>
+                    <img src={cartPageImgUrl} alt="" />
+                    <p className="legend">Cart</p>
+                  </div>
+                  <div>
+                    <img src={myPurshasesPageImgUrl} alt="" />
+                    <p className="legend">Purchase History</p>
+                  </div>
                 </Carousel>
               </Segment>
             </Grid.Column>
