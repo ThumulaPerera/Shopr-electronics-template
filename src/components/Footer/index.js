@@ -5,7 +5,9 @@ import {
 import PropTypes from 'prop-types';
 
 function Footer({ sellerStore }) {
-  const { storeCustomization, storeName } = sellerStore;
+  const {
+    storeCustomization, storeName, fbPageId, telephoneNo, address, email, aboutUs,
+  } = sellerStore;
   const { color } = storeCustomization;
 
   const doNotInvertOn = ['yellow', 'olive'];
@@ -23,21 +25,46 @@ function Footer({ sellerStore }) {
         <Grid divided inverted={inverted} stackable>
           <Grid.Row>
             <Grid.Column width={5}>
-              <Header inverted={inverted} as="h4" content="About" />
-              <List link inverted={inverted}>
-                <List.Item as="a">Sitemap</List.Item>
-                <List.Item as="a">Contact Us</List.Item>
-                <List.Item as="a">Religious Ceremonies</List.Item>
-                <List.Item as="a">Gazebo Plans</List.Item>
+              <Header inverted={inverted} as="h4" content={storeName} />
+              <List inverted={inverted}>
+                {address && (
+                <List.Item>
+                  <List.Icon name="marker" />
+                  <List.Content>{address}</List.Content>
+                </List.Item>
+                )}
+
+                {telephoneNo && (
+                <List.Item>
+                  <List.Icon name="phone" />
+                  <List.Content>{telephoneNo}</List.Content>
+                </List.Item>
+                )}
+                {email
+                && (
+                <List.Item>
+                  <List.Icon name="mail" />
+                  <List.Content>{email}</List.Content>
+                </List.Item>
+                )}
+                {fbPageId
+                && (
+                <List.Item as="a" href={`https://www.facebook.com/${fbPageId}`}>
+                  <List.Icon name="facebook f" />
+                  <List.Content>visit us on facebook</List.Content>
+                </List.Item>
+                )}
               </List>
             </Grid.Column>
             <Grid.Column width={5}>
-              <Header inverted={inverted} as="h4" content={storeName} />
-              <List link inverted={inverted}>
-                <List.Item as="a">Banana Pre-Order</List.Item>
-                <List.Item as="a">DNA FAQ</List.Item>
-                <List.Item as="a">How To Access</List.Item>
-                <List.Item as="a">Favorite X-Men</List.Item>
+              <Header inverted={inverted} as="h4" content="About Us" />
+              <List inverted={inverted}>
+                {aboutUs
+                && (
+                <List.Item>
+                  <List.Content>{aboutUs}</List.Content>
+                </List.Item>
+                )}
               </List>
             </Grid.Column>
             <Grid.Column width={6}>
