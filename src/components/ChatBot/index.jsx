@@ -11,7 +11,7 @@ export default class ChatBot extends PureComponent {
         customData: { language: 'en' },
         socketUrl: 'https://rasa.shopr.cf',
         socketPath: '/socket.io/',
-        title: 'AI Assistent',
+        title: 'AI Assistant',
         // subtitle: 'Subtitle',
         storage: 'session',
         inputTextFieldHint: 'Type a message...',
