@@ -22,7 +22,7 @@ function Order({
   storeId,
 }) {
   const date = order.date.toDate().toString();
-  const orderStateId = order.orderStates[order.orderStates.length - 1].stateId;
+  const orderStateId = order.orderState[order.orderState.length - 1].stateId;
   const orderState = orderStates[orderStateId];
   const {
     paymentMethod, totalPrice, orderItems, id,

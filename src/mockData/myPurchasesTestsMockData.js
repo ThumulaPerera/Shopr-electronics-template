@@ -119,7 +119,7 @@ export const sellerStore = {
 export const orders = [
   {
     id: 'order123',
-    orderStates: [
+    orderState: [
       {
         date: {
           seconds: 1590234479,
@@ -137,7 +137,7 @@ export const orders = [
       {
         item: '5ed111295a728d32a9ca49b7',
         noOfItems: 1,
-        subItem: 0,
+        subItemId: 0,
         unitPrice: 100,
       },
 

@@ -21,7 +21,7 @@ function PurchasedItem({
   url,
 }) {
   const { noOfItems, unitPrice } = orderItem;
-  const subItemId = orderItem.subItem;
+  const { subItemId } = orderItem;
   const {
     name, photos, subItems, id,
   } = item;

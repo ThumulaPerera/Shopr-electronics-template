@@ -145,7 +145,7 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
     } = cartItem;
     return {
       item,
-      subItem,
+      subItemId: subItem,
       noOfItems,
       unitPrice: unitPrice - calculateDiscount(unitPrice, items[item].discount),
     };
@@ -154,14 +154,14 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
   // eslint-disable-next-line array-callback-return
   discountedCart.map((cartItem) => {
     const {
-      item, subItem, noOfItems, unitPrice,
+      item, subItemId, noOfItems, unitPrice,
     } = cartItem;
 
     const purchase = {
       date,
       unitPrice,
       noOfItems,
-      subItem,
+      subItem: subItemId,
       buyer: buyerId,
     };
 
@@ -180,7 +180,7 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
     buyer: buyerId,
     date,
     orderItems: discountedCart,
-    orderStates: [
+    orderState: [
       {
         date,
         stateId: 0,

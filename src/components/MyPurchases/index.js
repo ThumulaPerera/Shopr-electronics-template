@@ -113,7 +113,7 @@ export function MyPurchases({
     if (!filter) {
       return true;
     }
-    return orderStates[order.orderStates[order.orderStates.length - 1].stateId] === filter;
+    return orderStates[order.orderState[order.orderState.length - 1].stateId] === filter;
   });
 
   switch (sortBy) {

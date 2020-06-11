@@ -11,12 +11,12 @@ function ReceivedBtn({ firestore, storeId, orderId }) {
     .doc(orderId)
     .get()
     .then((dataSnapshot) => {
-      const orderStates = dataSnapshot.get('orderStates');
-      return orderStates || [];
+      const orderState = dataSnapshot.get('orderState');
+      return orderState || [];
     })
-    .then((orderStates) => {
+    .then((orderState) => {
       const date = firestore.Timestamp.now();
-      orderStates.push({
+      orderState.push({
         date,
         stateId: 2,
       });
@@ -25,7 +25,7 @@ function ReceivedBtn({ firestore, storeId, orderId }) {
         .doc(storeId)
         .collection('Orders')
         .doc(orderId)
-        .update({ orderStates });
+        .update({ orderState });
     })
     .then(() => {
       toastr.success('Item successfully marked as received');
