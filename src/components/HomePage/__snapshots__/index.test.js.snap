@@ -70,7 +70,7 @@ exports[`snapshot renders 1`] = `
             </div>
             <div
               className="carousel-root"
-              tabIndex="0"
+              tabIndex={0}
             >
               <div
                 className="carousel carousel-slider"
@@ -236,32 +236,36 @@ exports[`snapshot renders 1`] = `
                     onTouchStart={[Function]}
                     style={
                       Object {
-                        "MozTransform": "translate3d(0px,0,0)",
+                        "MozTransform": "translate3d(0,0,0)",
                         "MozTransitionDuration": "350ms",
-                        "MsTransform": "translate3d(0px,0,0)",
+                        "MsTransform": "translate3d(0,0,0)",
                         "MsTransitionDuration": "350ms",
-                        "OTransform": "translate3d(0px,0,0)",
+                        "OTransform": "translate3d(0,0,0)",
                         "OTransitionDuration": "350ms",
-                        "WebkitTransform": "translate3d(0px,0,0)",
+                        "WebkitTransform": "translate3d(0,0,0)",
                         "WebkitTransitionDuration": "350ms",
-                        "msTransform": "translate3d(0px,0,0)",
+                        "msTransform": "translate3d(0,0,0)",
                         "msTransitionDuration": "350ms",
-                        "transform": "translate3d(0px,0,0)",
+                        "transform": "translate3d(0,0,0)",
                         "transitionDuration": "350ms",
                       }
                     }
                   >
                     <li
                       aria-label="slide item 1"
-                      className="thumb"
+                      className="thumb selected"
                       onClick={[Function]}
                       onKeyDown={[Function]}
                       role="button"
+                      style={
+                        Object {
+                          "width": 80,
+                        }
+                      }
                       tabIndex={0}
                     >
                       <img
                         alt=""
-                        onLoad={[Function]}
                         src="https://firebasestorage.googleapis.com/v0/b/ecom-cse.appspot.com/o/electronics-template%2Ftemplate%20screenshots%2Fbrowse%20products%20page%20bordered.jpg?alt=media&token=fffe3e37-eb40-42b4-8203-b35a6b3d90b8"
                       />
                     </li>
@@ -271,6 +275,11 @@ exports[`snapshot renders 1`] = `
                       onClick={[Function]}
                       onKeyDown={[Function]}
                       role="button"
+                      style={
+                        Object {
+                          "width": 80,
+                        }
+                      }
                       tabIndex={0}
                     >
                       <img
@@ -284,6 +293,11 @@ exports[`snapshot renders 1`] = `
                       onClick={[Function]}
                       onKeyDown={[Function]}
                       role="button"
+                      style={
+                        Object {
+                          "width": 80,
+                        }
+                      }
                       tabIndex={0}
                     >
                       <img
@@ -297,6 +311,11 @@ exports[`snapshot renders 1`] = `
                       onClick={[Function]}
                       onKeyDown={[Function]}
                       role="button"
+                      style={
+                        Object {
+                          "width": 80,
+                        }
+                      }
                       tabIndex={0}
                     >
                       <img
