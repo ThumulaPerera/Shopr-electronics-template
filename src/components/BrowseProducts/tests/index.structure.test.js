@@ -17,7 +17,6 @@ import SearchResultsGrid from '../SearchResultsGrid';
 import { MAIN_ROUTE, HOME_ROUTE } from '../../../constants/routes';
 import { minItems, sellerStore } from '../../../mockData/browseProductsTestsMockData';
 
-
 jest.mock('react-redux-firebase');
 
 const mockStore = configureStore([]);
@@ -55,7 +54,6 @@ beforeAll(() => {
 });
 
 afterAll(cleanup);
-
 
 it('renders the corresponding sub components and passes correct props', () => {
   /* Search field */
@@ -102,12 +100,10 @@ it('renders the corresponding sub components and passes correct props', () => {
     expect(itemGrid.at(0).props().items.length).toEqual(3);
   }
 
-
   /* Search Results Grid */
   let searchResultsGrid = component.find(SearchResultsGrid);
   // does not render since search value is ''
   expect(searchResultsGrid.length).toEqual(0);
-
 
   /* simulating a search value change...... */
   const browseProducts = component.find(UnconnectedBrowseProducts);

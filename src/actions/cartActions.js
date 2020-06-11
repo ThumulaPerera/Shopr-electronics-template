@@ -101,7 +101,6 @@ export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
     });
 };
 
-
 // eslint-disable-next-line no-unused-vars
 export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
   const batch = firestore.batch();

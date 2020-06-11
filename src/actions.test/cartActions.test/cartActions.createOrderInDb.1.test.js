@@ -8,7 +8,6 @@ import { createOrderInDb } from '../../actions/cartActions';
 import { CART_ACTION_TYPES } from '../../constants/actionTypes';
 import { cart, items } from '../../mockData/cartTestsMockData';
 
-
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
