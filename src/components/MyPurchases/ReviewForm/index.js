@@ -27,8 +27,8 @@ class ReviewForm extends Component {
     const { rating, review } = this.state;
     const { item, addReview, changeInProgress } = this.props;
 
-    console.log(rating);
-    console.log(review);
+    // console.log(rating);
+    // console.log(review);
 
     if (rating && !changeInProgress) {
       addReview(item, rating, review);

@@ -17,9 +17,9 @@ export const removeItem = (firestore, itemIndex, storeId, buyerId) => (dispatch)
       return cart || [];
     })
     .then((cart) => {
-      console.log(cart);
+      // console.log(cart);
       cart.splice(itemIndex, 1);
-      console.log(cart);
+      // console.log(cart);
       return firestore
         .collection('Stores')
         .doc(storeId)
@@ -51,12 +51,12 @@ export const editItemQuantity = (firestore, itemIndex, newQantity, storeId, buye
       return cart || [];
     })
     .then((cart) => {
-      console.log(cart);
+      // console.log(cart);
       if (newQantity) {
         // eslint-disable-next-line no-param-reassign
         cart[itemIndex].noOfItems = newQantity;
       }
-      console.log(cart);
+      // console.log(cart);
       return firestore
         .collection('Stores')
         .doc(storeId)
@@ -82,7 +82,7 @@ export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
   // eslint-disable-next-line array-callback-return
   cart.map((cartItem) => {
     const { subItems } = items[cartItem.item];
-    console.log(subItems);
+    // console.log(subItems);
     const newStock = subItems[cartItem.subItem].stock - cartItem.noOfItems;
     subItems[cartItem.subItem].stock = newStock;
 
@@ -97,7 +97,7 @@ export const updateStock = (firestore, storeId, items, cart) => (dispatch) => {
   return batch.commit()
     .catch((error) => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
-      console.log(error);
+      // console.log(error);
     });
 };
 
@@ -108,7 +108,7 @@ export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
   // eslint-disable-next-line array-callback-return
   cart.map((cartItem) => {
     const { subItems } = items[cartItem.item];
-    console.log(subItems);
+    // console.log(subItems);
     const newStock = subItems[cartItem.subItem].stock + cartItem.noOfItems;
     subItems[cartItem.subItem].stock = newStock;
 
@@ -126,7 +126,7 @@ export const resetStock = (firestore, storeId, items, cart) => (dispatch) => {
     })
     .catch((error) => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
-      console.log(error);
+      // console.log(error);
     });
 };
 
@@ -211,12 +211,12 @@ export const createOrderInDb = (firestore, storeId, buyerId, items, cart, paymen
     .then(() => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_SUCCESS });
       toastr.success('Checkout complete');
-      console.log('done');
+      // console.log('done');
     })
     .catch((error) => {
       dispatch({ type: CART_ACTION_TYPES.CHECKOUT_ERROR, error });
       // remove error message ?
       toastr.error('Checkout failed', 'If money is deducted from your paypal account, please contact the store for a refund');
-      console.log('error', error);
+      // console.log('error', error);
     });
 };

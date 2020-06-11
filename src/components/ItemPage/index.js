@@ -87,7 +87,7 @@ const ItemPage = ({
 
   if (isLoaded(selectedVariants) && isLoaded(item)) {
     selectedSubItem = getCorrespondingSubItem(item, selectedVariants);
-    console.log('selected :', selectedSubItem);
+    // console.log('selected :', selectedSubItem);
   }
 
   return (

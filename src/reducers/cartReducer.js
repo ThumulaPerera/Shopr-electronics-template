@@ -11,7 +11,7 @@ const initState = {
 const cartReducer = (state = initState, action) => {
   switch (action.type) {
     case CART_ACTION_TYPES.DELETE_IN_PROGRESS:
-      console.log('delete in progress');
+      // console.log('delete in progress');
       return {
         ...state,
         deleteError: null,
@@ -19,7 +19,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.DELETE_SUCCESS:
-      console.log('delete success');
+      // console.log('delete success');
       return {
         ...state,
         deleteError: null,
@@ -27,7 +27,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.DELETE_ERROR:
-      console.log('delete error :', action.error);
+      // console.log('delete error :', action.error);
       return {
         ...state,
         deleteError: action.error,
@@ -35,7 +35,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.EDIT_IN_PROGRESS:
-      console.log('edit in progress');
+      // console.log('edit in progress');
       return {
         ...state,
         editError: null,
@@ -43,7 +43,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.EDIT_SUCCESS:
-      console.log('edit success');
+      // console.log('edit success');
       return {
         ...state,
         editError: null,
@@ -51,7 +51,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.EDIT_ERROR:
-      console.log('edit error :', action.error);
+      // console.log('edit error :', action.error);
       return {
         ...state,
         editError: action.error,
@@ -59,7 +59,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.CHECKOUT_IN_PROGRESS:
-      console.log('checkout in progress');
+      // console.log('checkout in progress');
       return {
         ...state,
         checkoutError: null,
@@ -68,7 +68,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.CHECKOUT_SUCCESS:
-      console.log('checkout success');
+      // console.log('checkout success');
       return {
         ...state,
         checkoutError: null,
@@ -77,7 +77,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.CHECKOUT_CANCEL:
-      console.log('checkout cancelled');
+      // console.log('checkout cancelled');
       return {
         ...state,
         checkoutError: null,
@@ -86,7 +86,7 @@ const cartReducer = (state = initState, action) => {
       };
 
     case CART_ACTION_TYPES.CHECKOUT_ERROR:
-      console.log('checkout error :', action.error);
+      // console.log('checkout error :', action.error);
       return {
         ...state,
         checkoutError: action.error,

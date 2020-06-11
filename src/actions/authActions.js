@@ -6,7 +6,7 @@ import * as ROUTES from '../constants/routes';
 export const signInWithFb = (currentStore, firestore) => (dispatch, getState, { getFirebase }) => {
   const firebase = getFirebase();
 
-  console.log('curerent store :', currentStore);
+  // console.log('curerent store :', currentStore);
 
   firebase
     .auth()

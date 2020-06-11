@@ -8,7 +8,7 @@ const initState = {
 const reviewReducer = (state = initState, action) => {
   switch (action.type) {
     case REVIEW_ACTION_TYPES.REVIEW_IN_PROGRESS:
-      console.log('review in progress');
+      // console.log('review in progress');
       return {
         ...state,
         error: null,
@@ -16,7 +16,7 @@ const reviewReducer = (state = initState, action) => {
       };
 
     case REVIEW_ACTION_TYPES.REVIEW_SUCESS:
-      console.log('review success');
+      // console.log('review success');
       return {
         ...state,
         error: null,
@@ -24,7 +24,7 @@ const reviewReducer = (state = initState, action) => {
       };
 
     case REVIEW_ACTION_TYPES.REVIEW_ERROR:
-      console.log('review error :', action.error);
+      // console.log('review error :', action.error);
       return {
         ...state,
         error: action.error,

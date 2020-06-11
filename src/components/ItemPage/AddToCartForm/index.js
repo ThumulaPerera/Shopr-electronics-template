@@ -42,7 +42,7 @@ function AddToCartForm({
       warningList.push('Insufficient quantity of items in stock');
     }
   }
-  console.log(warningList);
+  // console.log(warningList);
 
   const renderSelect = (field) => (
     <Form.Select

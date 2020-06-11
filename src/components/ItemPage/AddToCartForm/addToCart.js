@@ -3,7 +3,7 @@ import { toastr } from 'react-redux-toastr';
 
 // eslint-disable-next-line import/prefer-default-export
 export const addToCart = (values, dispatch, props) => {
-  console.log(props);
+  // console.log(props);
   const {
     selectedSubItem,
     selectedValues,
@@ -16,7 +16,7 @@ export const addToCart = (values, dispatch, props) => {
     stockEnabled,
   } = props;
 
-  console.log(selectedSubItem.stock);
+  // console.log(selectedSubItem.stock);
 
   // same variable is used in form as well
   const addToCartDisabled = isEmpty(selectedSubItem)
@@ -63,7 +63,7 @@ export const addToCart = (values, dispatch, props) => {
         }
       });
       cart.push(orderItem);
-      console.log(cart);
+      // console.log(cart);
       return firestore
         .collection('Stores')
         .doc(storeId)

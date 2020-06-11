@@ -31,8 +31,8 @@ class PayPalChkoutButton extends Component {
 
     const onSuccess = (details, data) => {
       // Congratulation, it came here means everything's fine!
-      console.log('The payment was succeeded!', details);
-      console.log('data', data);
+      // console.log('The payment was succeeded!', details);
+      // console.log('data', data);
       createOrderInDb(items, cart, details);
     };
 
@@ -41,7 +41,7 @@ class PayPalChkoutButton extends Component {
       if (stockEnabled) {
         resetStock(items, cart);
       }
-      console.log('The payment was cancelled!', data);
+      // console.log('The payment was cancelled!', data);
     };
 
     const onError = (err) => {
@@ -49,7 +49,7 @@ class PayPalChkoutButton extends Component {
       if (stockEnabled) {
         resetStock(items, cart);
       }
-      console.log('Error!', err);
+      // console.log('Error!', err);
     };
 
     const createOrder = (data, actions) => {
