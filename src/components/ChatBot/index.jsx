@@ -9,7 +9,7 @@ export default class ChatBot extends PureComponent {
         selector: '#webchat',
         initPayload: `/get_started{"store": "${storeId}"}`,
         customData: { language: 'en' },
-        socketUrl: 'https://rasa.shopr.cf',
+        socketUrl: 'https://shopr.ml',
         socketPath: '/socket.io/',
         title: 'AI Assistant',
         // subtitle: 'Subtitle',
